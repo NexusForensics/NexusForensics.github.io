@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexus Social Recon | Social Media Evidence Capture</title>
+  <meta name="description" content="Nexus Social Recon by Nexus Forensics Inc. captures public social media evidence, comments, media, OCR, account links, and court-ready reports from one local case workspace." />
+  <meta property="og:title" content="Nexus Social Recon" />
+  <meta property="og:description" content="Public social media evidence capture, link analysis, OCR, face matching, comments, PDF packages, and investigator-controlled reporting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/nexus-social-recon-logo.png" />
+  <style>
+    :root {
+      --ink: #111827;
+      --muted: #586579;
+      --paper: #ffffff;
+      --soft: #f5f7fb;
+      --line: #dde6ef;
+      --navy: #07101d;
+      --navy-2: #111d31;
+      --cyan: #19c9d2;
+      --teal: #009688;
+      --magenta: #c026d3;
+      --purple: #6d4bb8;
+      --gold: #b7791f;
+      --green: #15803d;
+      --blue: #1d4ed8;
+      --shadow: 0 16px 38px rgba(10, 22, 40, .12);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px clamp(18px, 4vw, 56px);
+      color: #fff;
+      background: rgba(6, 12, 24, .9);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(14px);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 950;
+      min-width: 0;
+    }
+    .brand img {
+      width: auto;
+      height: clamp(34px, 4vw, 46px);
+      object-fit: contain;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 13px;
+      font-weight: 850;
+    }
+    nav a {
+      color: rgba(255,255,255,.82);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    nav a:hover { color: #fff; }
+    nav a.product-link {
+      color: #fff;
+      padding: 8px 10px;
+      border: 1px solid rgba(255,255,255,.26);
+      border-radius: 6px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 11px 16px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .button:hover { transform: translateY(-1px); }
+    .button.primary { background: #fff; color: var(--navy); }
+    .button.secondary { color: #fff; border-color: rgba(255,255,255,.34); background: rgba(255,255,255,.08); }
+    .button.dark { color: #fff; background: var(--navy); }
+
+    .hero {
+      min-height: 92vh;
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      align-items: center;
+      padding: 120px clamp(20px, 5vw, 76px) 62px;
+      overflow: hidden;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(7,13,25,.98) 0%, rgba(7,13,25,.9) 56%, rgba(7,13,25,.68) 100%),
+        #07101c;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--magenta), var(--cyan), var(--gold));
+      z-index: 2;
+    }
+    .hero-bg {
+      position: absolute;
+      right: clamp(-180px, -9vw, -40px);
+      top: clamp(90px, 13vh, 150px);
+      width: min(68vw, 820px);
+      opacity: .42;
+      filter: saturate(1.16) contrast(1.05) drop-shadow(0 0 34px rgba(25,201,210,.25));
+      z-index: -1;
+    }
+    .hero-inner {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      min-width: 0;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #67e8f9;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(52px, 9vw, 112px);
+      line-height: .9;
+      letter-spacing: 0;
+    }
+    h1 .title-word { display: inline; }
+    h1 .title-word:nth-child(2)::after {
+      content: "\A";
+      white-space: pre;
+    }
+    .slogan {
+      margin: 16px 0 0;
+      max-width: 760px;
+      color: #fff;
+      font-size: clamp(24px, 3.2vw, 43px);
+      line-height: 1.07;
+      font-weight: 930;
+      letter-spacing: 0;
+    }
+    .hero-lede {
+      margin: 24px 0 0;
+      max-width: 720px;
+      color: rgba(255,255,255,.84);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.42;
+      font-weight: 640;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .hero-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      width: min(760px, 100%);
+      margin-top: 42px;
+    }
+    .hero-strip span {
+      min-height: 54px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.86);
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      overflow-wrap: anywhere;
+      backdrop-filter: blur(10px);
+    }
+
+    main section { padding: 78px clamp(20px, 5vw, 76px); }
+    .inner { width: 100%; max-width: 1220px; margin: 0 auto; }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(300px, .65fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+    .section-head.compact { grid-template-columns: minmax(0, 780px); }
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(34px, 4.5vw, 62px);
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+    h3 { margin: 0; font-size: 21px; line-height: 1.2; letter-spacing: 0; }
+    .lead { margin: 0; color: var(--muted); font-size: 18px; font-weight: 650; }
+
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .summary-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      min-height: 190px;
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(13, 24, 42, .06);
+    }
+    .summary-card b { display: block; margin-bottom: 10px; color: var(--ink); font-size: 18px; }
+    .summary-card p { margin: 0; color: var(--muted); }
+    .workflow-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--line);
+    }
+    .workflow-step { min-height: 124px; padding: 18px; background: #fbfcfe; }
+    .workflow-step span {
+      display: block;
+      color: var(--magenta);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .workflow-step b { display: block; margin-top: 8px; font-size: 18px; }
+
+    .platforms {
+      background: var(--soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .platform-card {
+      min-height: 240px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(13, 24, 42, .05);
+    }
+    .platform-card .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 8px;
+      border-radius: 6px;
+      color: #fff;
+      background: var(--navy);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .platform-card p { margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+    .platform-card strong {
+      display: block;
+      margin-top: 14px;
+      color: var(--teal);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .automation { color: #fff; background: var(--navy); }
+    .automation .kicker { color: #fbbf24; }
+    .automation .lead { color: #cbd8e7; }
+    .automation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .automation-card {
+      min-height: 248px;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+    }
+    .automation-card span {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 16px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: #18304d;
+      font-weight: 950;
+    }
+    .automation-card p { margin: 12px 0 0; color: #dbe7f4; }
+    .automation-card small { display: block; margin-top: 14px; color: #a8c4df; font-size: 13px; line-height: 1.45; }
+
+    .intel-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(330px, .75fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .intel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .intel-card {
+      min-height: 210px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(13, 24, 42, .06);
+    }
+    .intel-card .line {
+      width: 44px;
+      height: 5px;
+      margin-bottom: 16px;
+      border-radius: 5px;
+      background: var(--teal);
+    }
+    .intel-card:nth-child(2) .line { background: var(--magenta); }
+    .intel-card:nth-child(3) .line { background: var(--gold); }
+    .intel-card:nth-child(4) .line { background: var(--blue); }
+    .intel-card p { margin: 10px 0 0; color: var(--muted); }
+    .example-art {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfe;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .example-art img { border-radius: 6px; border: 1px solid var(--line); }
+    .example-art p { margin: 12px 0 0; color: var(--muted); font-size: 14px; font-weight: 700; }
+
+    .reports {
+      background: var(--soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .report-card {
+      min-height: 220px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(13, 24, 42, .05);
+    }
+    .report-card b { display: block; color: var(--ink); font-size: 19px; }
+    .report-card p { margin: 10px 0 0; color: var(--muted); }
+    .report-card code {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 7px;
+      color: var(--blue);
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-radius: 6px;
+      font: 800 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .tiers {
+      background: #fff;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(13, 24, 42, .06);
+    }
+    .comparison-table {
+      width: 100%;
+      min-width: 850px;
+      border-collapse: collapse;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 15px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+    .comparison-table th {
+      color: #fff;
+      background: var(--navy);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .comparison-table th:first-child,
+    .comparison-table td:first-child { text-align: left; width: 34%; }
+    .comparison-table td:first-child { color: #26354b; font-weight: 850; background: #fbfcfe; }
+    .yes { color: var(--green); font-size: 19px; font-weight: 950; }
+    .no { color: #8b98a8; font-size: 16px; font-weight: 950; }
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .price-card {
+      min-height: 210px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(13, 24, 42, .05);
+    }
+    .price-card b { display: block; color: var(--ink); font-size: 20px; }
+    .price-card strong { display: block; margin: 12px 0 8px; color: var(--blue); font-size: 27px; line-height: 1.1; }
+    .price-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .deployment { color: #fff; background: var(--navy-2); }
+    .deployment .kicker { color: #fbbf24; }
+    .deployment .lead { color: #dbe7f4; }
+    .deployment-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .deployment-card {
+      min-height: 190px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+    }
+    .deployment-card p { color: #dbe7f4; margin: 10px 0 0; }
+
+    .cta {
+      padding: 68px clamp(20px, 5vw, 76px);
+      color: #fff;
+      background: linear-gradient(90deg, var(--navy), #122742);
+    }
+    .cta-panel {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+    }
+    .cta h2 { font-size: clamp(32px, 4vw, 54px); }
+    .cta p { margin: 12px 0 0; color: rgba(255,255,255,.78); font-size: 18px; font-weight: 650; }
+    footer {
+      padding: 24px clamp(20px, 5vw, 76px);
+      color: #aab6c8;
+      background: #050a13;
+      font-size: 13px;
+    }
+    footer .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    footer a { color: #e5edf8; text-decoration: none; }
+
+    @media (max-width: 980px) {
+      nav { display: none; }
+      .hero { min-height: auto; padding-top: 106px; }
+      .hero-bg { right: -170px; width: 720px; opacity: .24; }
+      .section-head,
+      .intel-layout,
+      .cta-panel { grid-template-columns: 1fr; }
+      .summary-row,
+      .automation-grid,
+      .report-grid,
+      .price-grid { grid-template-columns: 1fr; }
+      .platform-grid,
+      .deployment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .workflow-strip { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .site-header { position: absolute; }
+      .brand img { height: 34px; max-width: 240px; }
+      .hero-strip,
+      .platform-grid,
+      .deployment-grid,
+      .intel-grid { grid-template-columns: 1fr; }
+      .hero {
+        padding-right: 24px;
+        padding-left: 24px;
+        padding-top: 92px;
+        padding-bottom: 34px;
+      }
+      .hero-inner {
+        width: 330px;
+        max-width: 100%;
+        margin: 0;
+      }
+      .hero-bg {
+        right: -330px;
+        width: 690px;
+        opacity: .18;
+      }
+      h1 {
+        max-width: 100%;
+        font-size: clamp(42px, 13vw, 52px);
+        line-height: .94;
+      }
+      h1 .title-word { display: block; }
+      h1 .title-word:nth-child(2)::after { content: ""; }
+      .slogan {
+        max-width: 100%;
+        font-size: clamp(21px, 6.4vw, 25px);
+        line-height: 1.08;
+      }
+      .hero-lede {
+        max-width: 100%;
+        font-size: 16px;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: min(100%, 290px);
+        gap: 10px;
+        margin-top: 22px;
+      }
+      .hero-actions .button {
+        width: 100%;
+        min-height: 40px;
+      }
+      .hero-strip { display: none; }
+      .button { text-align: center; }
+      main section { padding-top: 58px; padding-bottom: 58px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Nexus Social Recon home">
+      <img src="assets/nexus-social-recon-sidebar-logo.png" alt="Nexus Social Recon" />
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#what">What It Does</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#intelligence">Intelligence</a>
+      <a href="#reports">Reports</a>
+      <a href="#tiers">Tiers</a>
+      <a class="product-link" href="https://github.com/NexusForensics/Nexus-Social-Recon">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <img class="hero-bg" src="assets/nexus-social-recon-x.png" alt="" aria-hidden="true" />
+    <div class="hero-inner">
+      <p class="eyebrow">Nexus Forensics Inc.</p>
+      <h1><span class="title-word">Nexus</span> <span class="title-word">Social</span> <span class="title-word">Recon</span></h1>
+      <p class="slogan">Social media investigations documented, organized, and report-ready.</p>
+      <p class="hero-lede">Capture public online evidence, preserve comments and media, run OCR and visual intelligence, then export clean HTML or PDF evidence packages from one local case workspace.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#what">See What It Does</a>
+        <a class="button secondary" href="#reports">Evidence Packages</a>
+        <a class="button secondary" href="mailto:sales@nexus-forensics.ca">Contact Nexus Forensics</a>
+      </div>
+      <div class="hero-strip" aria-label="Core product outcomes">
+        <span>Capture public social media evidence</span>
+        <span>Connect profiles, comments, media, and signals</span>
+        <span>Create court-readable reports and packages</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="what">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">What It Does</p>
+            <h2>Turn social platforms into organized case evidence.</h2>
+          </div>
+          <p class="lead">Nexus Social Recon follows the investigator's path: preserve the source, capture local evidence, enrich the evidence with OCR and indexing, then build a report that keeps every finding tied to source context.</p>
+        </div>
+        <div class="summary-row">
+          <article class="summary-card">
+            <b>Capture the source</b>
+            <p>Save public profiles, posts, comments, replies, images, videos, screenshots, source URLs, and local evidence files while reviewing the page.</p>
+          </article>
+          <article class="summary-card">
+            <b>Understand the signals</b>
+            <p>Run OCR, keyword checks, account match finding, facial recognition, object/detail matching, and user index enrichment from the case workspace.</p>
+          </article>
+          <article class="summary-card">
+            <b>Report the case</b>
+            <p>Create HTML reports, PDF packages, thumbnails, source links, media folders, SHA-256 records, comments, bookmarks, and investigator context.</p>
+          </article>
+        </div>
+        <div class="workflow-strip" aria-label="Investigation workflow">
+          <div class="workflow-step"><span>Step 1</span><b>Open a case</b></div>
+          <div class="workflow-step"><span>Step 2</span><b>Capture public evidence</b></div>
+          <div class="workflow-step"><span>Step 3</span><b>Bookmark key findings</b></div>
+          <div class="workflow-step"><span>Step 4</span><b>Run OCR and intelligence</b></div>
+          <div class="workflow-step"><span>Step 5</span><b>Export reports</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="platforms" id="platforms">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Platform Tasks</p>
+            <h2>Evidence workflows for public social media surfaces.</h2>
+          </div>
+          <p class="lead">Each platform module is task-driven, so the operator can capture the right evidence without scattering files across tabs, downloads, and screenshots.</p>
+        </div>
+        <div class="platform-grid">
+          <article class="platform-card">
+            <span class="tag">Facebook</span>
+            <h3>Profiles, posts, reels, friends, comments</h3>
+            <p>Capture public profile context, selected posts, reels, media, comments, replies, like counts, and source-linked case reports.</p>
+            <strong>New: hidden liker capture and fuller comment runs</strong>
+          </article>
+          <article class="platform-card">
+            <span class="tag">Instagram / Threads</span>
+            <h3>Accounts, posts, media, relations</h3>
+            <p>Preserve account pages, post media, captions, profile details, cross-posted comment signals, and report-ready account context.</p>
+            <strong>Use case: profile and media preservation</strong>
+          </article>
+          <article class="platform-card">
+            <span class="tag">TikTok / YouTube</span>
+            <h3>Videos, channels, comments, timestamps</h3>
+            <p>Capture videos, thumbnails, public comments, channel context, time bookmarks, clip notes, and preservation records.</p>
+            <strong>Use case: bookmark a video moment</strong>
+          </article>
+          <article class="platform-card">
+            <span class="tag">Reddit / X / LinkedIn</span>
+            <h3>Threads, posts, public text, media</h3>
+            <p>Preserve public posts, profile context, comments, media files, source URLs, keyword-searchable text, and local report outputs.</p>
+            <strong>Use case: discussion evidence and source links</strong>
+          </article>
+          <article class="platform-card">
+            <span class="tag">Marketplace / Kijiji</span>
+            <h3>Listings, sellers, images, reports</h3>
+            <p>Capture listings, seller context, thumbnails, local files, source links, and ad reports before public content changes or disappears.</p>
+            <strong>Use case: public ad preservation</strong>
+          </article>
+          <article class="platform-card">
+            <span class="tag">Snapchat / Public Capture</span>
+            <h3>Public captures and visual context</h3>
+            <p>Preserve public-source capture workflows, screenshots, media, OCR text, and translated context where available.</p>
+            <strong>Use case: visual evidence and context</strong>
+          </article>
+          <article class="platform-card">
+            <span class="tag">Bookmarks</span>
+            <h3>Selected findings across platforms</h3>
+            <p>Save the items that matter, enrich them with media and OCR, collect comment liker context on demand, and build a focused global report.</p>
+            <strong>Use case: best evidence report</strong>
+          </article>
+          <article class="platform-card">
+            <span class="tag">Reports</span>
+            <h3>Evidence packages for review</h3>
+            <p>Keep source URLs, local paths, thumbnails, hashes, comments, OCR, profile links, and investigator notes in court-readable form.</p>
+            <strong>Use case: disclosure-ready package</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="automation">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Automation</p>
+            <h2>Background work stays visible to the investigator.</h2>
+          </div>
+          <p class="lead">Longer tasks can keep running after capture. The report can update as OCR, indexing, media checks, and evidence enrichment complete.</p>
+        </div>
+        <div class="automation-grid">
+          <article class="automation-card">
+            <span>01</span>
+            <h3>OCR and keyword checks</h3>
+            <p>Images, screenshots, comments, bookmarks, and sampled video frames can be processed for searchable text.</p>
+            <small>Example: a phone number appears inside a screenshot rather than page text.</small>
+          </article>
+          <article class="automation-card">
+            <span>02</span>
+            <h3>Bookmark enrichment</h3>
+            <p>Saved findings can include thumbnails, local media links, source context, comment liker lists, and report references.</p>
+            <small>Example: manually fetch a profile avatar only when a comment is bookmarked.</small>
+          </article>
+          <article class="automation-card">
+            <span>03</span>
+            <h3>Case targets and alerts</h3>
+            <p>Names, handles, keywords, faces, objects, and recurring case signals can be checked against captured evidence.</p>
+            <small>Example: a known alias appears in a newly captured profile or report.</small>
+          </article>
+          <article class="automation-card">
+            <span>04</span>
+            <h3>Account match finder</h3>
+            <p>Compare handles and visual clues across platforms to build a documented cross-platform lookup report.</p>
+            <small>Example: one username family is checked across Snapchat, Instagram, Twitch, and other sources.</small>
+          </article>
+          <article class="automation-card">
+            <span>05</span>
+            <h3>Processing queues</h3>
+            <p>Background OCR, indexing, and media capture can continue while the investigator reviews the rest of the case.</p>
+            <small>Example: comment profile photos and media indexing finish after the source capture is saved.</small>
+          </article>
+          <article class="automation-card">
+            <span>06</span>
+            <h3>Case activity logs</h3>
+            <p>Capture steps, local files, timestamps, source context, reports, and investigator details can be recorded in the case.</p>
+            <small>Example: show when a source was captured and where local evidence was saved.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="intelligence">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Built-In Intelligence</p>
+            <h2>Connect evidence without hiding the evidence trail.</h2>
+          </div>
+          <p class="lead">The intelligence layer is built to keep leads explainable. Source links, thumbnails, local paths, comments, and confidence context stay visible.</p>
+        </div>
+        <div class="intel-layout">
+          <div class="intel-grid">
+            <article class="intel-card">
+              <div class="line"></div>
+              <h3>User index cards</h3>
+              <p>Collect profile details, aliases, account links, notes, extracted emails, media references, and related evidence hits in one reviewable card.</p>
+            </article>
+            <article class="intel-card">
+              <div class="line"></div>
+              <h3>OCR and media search</h3>
+              <p>Extract text from saved images, screenshots, reports, bookmark media, and sampled video frames for searchable case signals.</p>
+            </article>
+            <article class="intel-card">
+              <div class="line"></div>
+              <h3>Face and visual matching</h3>
+              <p>Build a face index for case media and compare selected faces, objects, and details against captured evidence.</p>
+            </article>
+            <article class="intel-card">
+              <div class="line"></div>
+              <h3>Cross-case index</h3>
+              <p>Find repeated identifiers, handles, media hashes, OCR text, and visual targets across a local encrypted evidence index.</p>
+            </article>
+          </div>
+          <aside class="example-art" aria-label="Account match finder example">
+            <img src="assets/account-match-finder-example.jpg" alt="Example cross-platform lookup report" />
+            <p>Example output: cross-platform lookup with matched profiles, source links, visual scores, and report metadata.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="reports" id="reports">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Reports And Packages</p>
+            <h2>Readable reports with the original evidence nearby.</h2>
+          </div>
+          <p class="lead">The reporting workflow is HTML-first for review and PDF-ready for handoff. Media stays in extracted folders beside the report package, with hashes and a manifest for traceability.</p>
+        </div>
+        <div class="report-grid">
+          <article class="report-card">
+            <b>Create HTML Report</b>
+            <p>Generate platform reports with source URLs, captures, comments, replies, screenshots, OCR, thumbnails, and local evidence links.</p>
+            <code>HTML review package</code>
+          </article>
+          <article class="report-card">
+            <b>Create PDF Report</b>
+            <p>Export a PDF package for court or law enforcement review while keeping original media in structured companion folders.</p>
+            <code>PDF evidence package</code>
+          </article>
+          <article class="report-card">
+            <b>Zip and hash manifest</b>
+            <p>Package the report, media folders, manifest, file locations, and SHA-256 values so the evidence handoff has a clear integrity record.</p>
+            <code>SHA-256 manifest</code>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tiers" id="tiers">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Tiers</p>
+            <h2>Clear feature levels for capture, investigation, and intelligence.</h2>
+          </div>
+          <p class="lead">The product can be positioned from baseline preservation to deeper local intelligence and team indexing. Pricing can be adjusted per agency, team, or deployment model.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Capture</th>
+                <th>Investigator</th>
+                <th>Intelligence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Public evidence capture and source links</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+              <tr><td>HTML/PDF reports, bookmarks, comments, hashes</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+              <tr><td>OCR and keyword reports</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+              <tr><td>Case targets and user index cards</td><td class="no">Limited</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+              <tr><td>Face index and visual matching</td><td class="no">No</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+              <tr><td>Account match finder and richer media intelligence</td><td class="no">No</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+              <tr><td>Local encrypted cross-case index</td><td class="no">No</td><td class="no">No</td><td class="yes">&#10003;</td></tr>
+              <tr><td>Sentry-style workflows and global target checks</td><td class="no">No</td><td class="no">Optional</td><td class="yes">&#10003;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="price-grid">
+          <article class="price-card">
+            <b>Capture</b>
+            <strong>Preservation</strong>
+            <p>Baseline public-source capture, reports, OCR, bookmarks, hashes, and local case management.</p>
+          </article>
+          <article class="price-card">
+            <b>Investigator</b>
+            <strong>Case intelligence</strong>
+            <p>Capture plus targets, profile themes, visual matching, account context, and richer media analysis.</p>
+          </article>
+          <article class="price-card">
+            <b>Intelligence</b>
+            <strong>Cross-case memory</strong>
+            <p>Investigator plus local encrypted indexing, historical collision detection, and wider target workflows.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="deployment">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Deployment</p>
+            <h2>Local-first, team-ready, and expandable.</h2>
+          </div>
+          <p class="lead">Nexus Social Recon can support investigators working from a single workstation, a shared office environment, a controlled server, or a managed processing model.</p>
+        </div>
+        <div class="deployment-grid">
+          <article class="deployment-card">
+            <h3>Local workstation</h3>
+            <p>Evidence, reports, OCR, and case files stay on the investigator's machine.</p>
+          </article>
+          <article class="deployment-card">
+            <h3>Small team / NAS</h3>
+            <p>Shared indexing and repeated identifier/media discovery across team cases.</p>
+          </article>
+          <article class="deployment-card">
+            <h3>Corporate server</h3>
+            <p>Controlled shared evidence repository behind organizational policies.</p>
+          </article>
+          <article class="deployment-card">
+            <h3>Managed processing</h3>
+            <p>Optional offloaded processing, storage, retention, audit logs, and support.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="cta">
+    <div class="cta-panel">
+      <div>
+        <h2>Build a defensible public-source evidence workflow.</h2>
+        <p>Nexus Social Recon keeps captures, media, OCR, comments, links, reports, and hashes together so the case file stays understandable.</p>
+      </div>
+      <a class="button primary" href="mailto:sales@nexus-forensics.ca">Contact sales</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="inner">
+      <span>Nexus Social Recon by Nexus Forensics Inc.</span>
+      <span><a href="https://github.com/NexusForensics/Nexus-Social-Recon">GitHub repository</a> &middot; <a href="mailto:sales@nexus-forensics.ca">sales@nexus-forensics.ca</a></span>
+    </div>
+  </footer>
+</body>
+</html>
