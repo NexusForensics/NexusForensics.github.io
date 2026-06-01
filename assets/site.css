@@ -361,8 +361,12 @@ main section,
 }
 .product-card.video .product-media {
   background:
-    linear-gradient(135deg, rgba(7,16,29,.82), rgba(40,96,180,.58)),
-    url("video-anchor-visual.png") center / cover no-repeat;
+    radial-gradient(circle at 50% 20%, rgba(25,184,199,.24), transparent 34%),
+    linear-gradient(135deg, #07101d, #123154);
+}
+.product-card.video .product-media img {
+  max-height: 146px;
+  filter: drop-shadow(0 14px 22px rgba(0,0,0,.34));
 }
 .product-card.lens .product-media {
   background:
@@ -413,6 +417,18 @@ main section,
   font-weight: 680;
   border-top: 1px solid var(--line);
 }
+.visual-panel.icon-panel {
+  background: var(--night);
+}
+.visual-panel.icon-panel img {
+  width: auto;
+  max-width: min(430px, 86%);
+  margin: 28px auto;
+}
+.visual-panel.icon-panel .visual-caption {
+  color: var(--muted);
+  background: #fff;
+}
 
 .product-hero {
   min-height: 70vh;
@@ -436,7 +452,7 @@ main section,
 .product-hero.video {
   background:
     linear-gradient(90deg, rgba(7,16,29,.98), rgba(7,16,29,.85) 58%, rgba(7,16,29,.43)),
-    url("video-anchor-visual.png") right 7% center / min(700px, 58vw) no-repeat,
+    url("video-anchor-icon.png") right 9% center / min(460px, 38vw) no-repeat,
     var(--night);
 }
 .product-hero.lens {
@@ -451,6 +467,11 @@ main section,
   width: auto;
   height: auto;
   margin-bottom: 18px;
+}
+.product-hero .product-logo.video-anchor-logo {
+  max-width: 220px;
+  max-height: 220px;
+  filter: drop-shadow(0 16px 28px rgba(0,0,0,.36));
 }
 
 .timeline-card {
