@@ -336,6 +336,19 @@ main section,
 .proof-card:nth-child(2) .accent-bar { background: var(--gold); }
 .feature-card:nth-child(3) .accent-bar { background: var(--magenta); }
 .feature-card:nth-child(4) .accent-bar { background: var(--green); }
+.mode-card {
+  overflow: hidden;
+  padding: 0;
+}
+.mode-card img {
+  width: 100%;
+  aspect-ratio: 1498 / 704;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+}
+.mode-copy {
+  padding: 22px;
+}
 
 .product-card {
   min-height: 360px;
@@ -370,8 +383,8 @@ main section,
 }
 .product-card.lens .product-media {
   background:
-    linear-gradient(135deg, rgba(7,16,29,.75), rgba(36,138,90,.45)),
-    url("lens-witness-visual.png") center / cover no-repeat;
+    linear-gradient(135deg, rgba(7,16,29,.78), rgba(36,138,90,.38)),
+    url("lens-witness-phone-to-computer.png") center / cover no-repeat;
 }
 .product-body {
   flex: 1;
@@ -458,7 +471,7 @@ main section,
 .product-hero.lens {
   background:
     linear-gradient(90deg, rgba(7,16,29,.98), rgba(7,16,29,.84) 58%, rgba(7,16,29,.42)),
-    url("lens-witness-visual.png") right 7% center / min(700px, 58vw) no-repeat,
+    url("lens-witness-phone-to-computer.png") right 7% center / min(760px, 58vw) no-repeat,
     var(--night);
 }
 .product-hero .product-logo {
