@@ -71,6 +71,8 @@ img { display: block; max-width: 100%; }
   position: relative;
   display: inline-flex;
   align-items: center;
+  margin-bottom: -14px;
+  padding-bottom: 14px;
 }
 .nav-menu-trigger {
   display: inline-flex;
@@ -89,7 +91,7 @@ img { display: block; max-width: 100%; }
 .nav-menu.is-active > .nav-menu-trigger { color: var(--night); }
 .nav-submenu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: 100%;
   left: -12px;
   min-width: 226px;
   display: grid;
@@ -627,6 +629,8 @@ footer a {
   .nav-menu {
     display: block;
     width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
   .nav-menu-trigger {
     width: max-content;
