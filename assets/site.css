@@ -563,7 +563,8 @@ main section,
 
 .pricing-card {
   display: grid;
-  align-content: start;
+  grid-template-rows: auto auto 1fr auto;
+  align-content: stretch;
   gap: 18px;
   min-height: 100%;
   padding: 28px;
@@ -642,6 +643,7 @@ main section,
 
 .pricing-list {
   display: grid;
+  align-content: start;
   gap: 10px;
   margin: 0;
   padding: 0;
@@ -672,6 +674,7 @@ main section,
 
 .pricing-card .button {
   justify-self: center;
+  align-self: end;
   width: min(100%, 320px);
   min-height: 42px;
   margin-top: 4px;
