@@ -622,7 +622,7 @@ main section,
 
 .platform-support-preview {
   display: block;
-  width: min(100%, 230px);
+  width: min(100%, 265px);
   height: auto;
   margin: 16px auto 0;
   border: 1px solid var(--line);
