@@ -9,7 +9,7 @@
   <meta property="og:description" content="Video evidence anchoring for time-coded notes, clips, stills, transcripts, hashes, forensic reports, and review packages." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="../assets/video-anchor-icon.png" />
-  <link rel="stylesheet" href="../assets/site.css?v=20260602-10" />
+  <link rel="stylesheet" href="../assets/site.css?v=20260602-12" />
 </head>
 <body>
   <header class="site-header">
@@ -102,6 +102,70 @@
       </div>
     </section>
 
+    <section id="screenshots">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Product Screenshots</p>
+            <h2>Video Anchor Pro in action.</h2>
+          </div>
+          <p class="lead">A closer look at the capture queue, active download log, forensic report output, timeline bookmarks, and selected timeframe clip generation workflow.</p>
+        </div>
+        <div class="screenshot-gallery">
+          <article class="screenshot-card">
+            <button class="screenshot-thumb" type="button" data-lightbox-src="../assets/video-anchor-add-video-to-queue.jpg" data-lightbox-title="Adding a video to the queue">
+              <img src="../assets/video-anchor-add-video-to-queue.jpg" alt="Video Anchor Pro screen showing a video added to the download queue" loading="lazy" />
+            </button>
+            <div class="screenshot-copy">
+              <span>01</span>
+              <h3>Adding a video to the queue</h3>
+              <p>Queue a source URL, choose a case folder, monitor the active task, and keep the source, size, hash, and capture time attached to the item.</p>
+            </div>
+          </article>
+          <article class="screenshot-card">
+            <button class="screenshot-thumb" type="button" data-lightbox-src="../assets/video-anchor-downloading-activity-log.jpg" data-lightbox-title="Downloading activity log">
+              <img src="../assets/video-anchor-downloading-activity-log.jpg" alt="Video Anchor Pro preview and active download activity log" loading="lazy" />
+            </button>
+            <div class="screenshot-copy">
+              <span>02</span>
+              <h3>Downloading activity log</h3>
+              <p>Follow the live download progress and preserve the activity trail while the preview remains visible for review.</p>
+            </div>
+          </article>
+          <article class="screenshot-card">
+            <button class="screenshot-thumb" type="button" data-lightbox-src="../assets/video-anchor-forensic-report-sha256.jpg" data-lightbox-title="Forensic report with SHA-256 hash">
+              <img src="../assets/video-anchor-forensic-report-sha256.jpg" alt="Video Anchor Pro forensic report with file metadata and SHA-256 hash" loading="lazy" />
+            </button>
+            <div class="screenshot-copy">
+              <span>03</span>
+              <h3>Forensic report with SHA-256 hash</h3>
+              <p>Generate a report with case details, source URL, file size, timestamps, duration, frame rate, and SHA-256 hash evidence fields.</p>
+            </div>
+          </article>
+          <article class="screenshot-card">
+            <button class="screenshot-thumb" type="button" data-lightbox-src="../assets/video-anchor-time-bookmarks.jpg" data-lightbox-title="Add time bookmarks">
+              <img src="../assets/video-anchor-time-bookmarks.jpg" alt="Video Anchor Pro timeline bookmarks with notes and preview frame" loading="lazy" />
+            </button>
+            <div class="screenshot-copy">
+              <span>04</span>
+              <h3>Add time bookmarks</h3>
+              <p>Save timestamped notes into the forensic report with a preview frame and playback point for each important moment.</p>
+            </div>
+          </article>
+          <article class="screenshot-card wide">
+            <button class="screenshot-thumb" type="button" data-lightbox-src="../assets/video-anchor-generate-combined-clip.jpg" data-lightbox-title="Generate a combined clip video">
+              <img src="../assets/video-anchor-generate-combined-clip.jpg" alt="Video Anchor Pro selected clip ranges used to generate a combined clip video" loading="lazy" />
+            </button>
+            <div class="screenshot-copy">
+              <span>05</span>
+              <h3>Generate your own video from selected timeframes</h3>
+              <p>Select the relevant clip ranges and create a combined video built from only the moments that matter to the case.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="pricing">
       <div class="section-inner">
         <div class="section-head">
@@ -185,5 +249,48 @@
       <span><a href="../products.html">Products</a> &middot; <a href="mailto:sales@nexus-forensics.ca">sales@nexus-forensics.ca</a></span>
     </div>
   </footer>
+  <div class="lightbox" data-lightbox aria-hidden="true">
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close screenshot preview">Close</button>
+    <figure>
+      <img src="../assets/video-anchor-add-video-to-queue.jpg" alt="" data-lightbox-image />
+      <figcaption data-lightbox-caption>Adding a video to the queue</figcaption>
+    </figure>
+  </div>
+  <script>
+    (() => {
+      const lightbox = document.querySelector("[data-lightbox]");
+      const image = document.querySelector("[data-lightbox-image]");
+      const caption = document.querySelector("[data-lightbox-caption]");
+      const closeButton = document.querySelector("[data-lightbox-close]");
+      const thumbs = document.querySelectorAll(".screenshot-thumb");
+
+      if (!lightbox || !image || !caption || !closeButton || !thumbs.length) return;
+
+      const closeLightbox = () => {
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("lightbox-open");
+      };
+
+      thumbs.forEach((button) => {
+        button.addEventListener("click", () => {
+          const title = button.dataset.lightboxTitle || "";
+          image.src = button.dataset.lightboxSrc;
+          image.alt = title;
+          caption.textContent = title;
+          lightbox.setAttribute("aria-hidden", "false");
+          document.body.classList.add("lightbox-open");
+          closeButton.focus();
+        });
+      });
+
+      closeButton.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeLightbox();
+      });
+    })();
+  </script>
 </body>
 </html>
