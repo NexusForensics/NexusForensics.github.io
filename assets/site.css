@@ -622,9 +622,9 @@ main section,
 
 .platform-support-preview {
   display: block;
-  width: 100%;
+  width: min(100%, 230px);
   height: auto;
-  margin-top: 16px;
+  margin: 16px auto 0;
   border: 1px solid var(--line);
   border-radius: 12px;
   box-shadow: 0 10px 22px rgba(13, 24, 42, .09);
