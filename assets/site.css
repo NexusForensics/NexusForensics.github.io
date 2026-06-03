@@ -704,6 +704,15 @@ body.lightbox-open {
   overflow: hidden;
 }
 
+.lightbox-trigger {
+  cursor: zoom-in;
+}
+
+.lightbox-trigger:focus-visible {
+  outline: 3px solid rgba(25, 184, 199, .48);
+  outline-offset: 4px;
+}
+
 .lightbox {
   position: fixed;
   inset: 0;
@@ -716,6 +725,7 @@ body.lightbox-open {
 
 .lightbox[aria-hidden="false"] {
   display: grid;
+  cursor: zoom-out;
 }
 
 .lightbox figure {
@@ -735,6 +745,7 @@ body.lightbox-open {
   border-radius: var(--radius);
   background: #fff;
   box-shadow: 0 22px 60px rgba(0,0,0,.36);
+  cursor: zoom-out;
 }
 
 .lightbox figcaption {

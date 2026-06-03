@@ -9,7 +9,7 @@
   <meta property="og:description" content="Video evidence anchoring for time-coded notes, clips, stills, transcripts, hashes, forensic reports, and review packages." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="../assets/video-anchor-icon.png" />
-  <link rel="stylesheet" href="../assets/site.css?v=20260603-02" />
+  <link rel="stylesheet" href="../assets/site.css?v=20260603-03" />
 </head>
 <body>
   <header class="site-header">
@@ -240,48 +240,6 @@
       <span><a href="../products.html">Products</a> &middot; <a href="mailto:sales@nexus-forensics.ca">sales@nexus-forensics.ca</a></span>
     </div>
   </footer>
-  <div class="lightbox" data-lightbox aria-hidden="true">
-    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close screenshot preview">Close</button>
-    <figure>
-      <img src="../assets/video-anchor-add-video-to-queue.jpg" alt="" data-lightbox-image />
-      <figcaption data-lightbox-caption>Add single video or a playlist to the queue</figcaption>
-    </figure>
-  </div>
-  <script>
-    (() => {
-      const lightbox = document.querySelector("[data-lightbox]");
-      const image = document.querySelector("[data-lightbox-image]");
-      const caption = document.querySelector("[data-lightbox-caption]");
-      const closeButton = document.querySelector("[data-lightbox-close]");
-      const thumbs = document.querySelectorAll(".screenshot-thumb");
-
-      if (!lightbox || !image || !caption || !closeButton || !thumbs.length) return;
-
-      const closeLightbox = () => {
-        lightbox.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("lightbox-open");
-      };
-
-      thumbs.forEach((button) => {
-        button.addEventListener("click", () => {
-          const title = button.dataset.lightboxTitle || "";
-          image.src = button.dataset.lightboxSrc;
-          image.alt = title;
-          caption.textContent = title;
-          lightbox.setAttribute("aria-hidden", "false");
-          document.body.classList.add("lightbox-open");
-          closeButton.focus();
-        });
-      });
-
-      closeButton.addEventListener("click", closeLightbox);
-      lightbox.addEventListener("click", (event) => {
-        if (event.target === lightbox) closeLightbox();
-      });
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeLightbox();
-      });
-    })();
-  </script>
+  <script src="../assets/site-lightbox.js?v=20260603-03" defer></script>
 </body>
 </html>
