@@ -543,6 +543,7 @@ main section,
 
 .platform-support-card h3 {
   display: inline-flex;
+  gap: 8px;
   min-height: 30px;
   align-items: center;
   margin-bottom: 10px;
@@ -553,6 +554,34 @@ main section,
   font-size: 15px;
   font-weight: 900;
 }
+
+.platform-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 6px;
+  color: #fff;
+  background: var(--night);
+  font-size: 12px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.platform-mark.facebook { background: #1877f2; font-family: Arial, sans-serif; font-size: 16px; }
+.platform-mark.instagram {
+  background: radial-gradient(circle at 30% 105%, #feda75 0 24%, #fa7e1e 35%, #d62976 56%, #962fbf 76%, #4f5bd5 100%);
+  font-size: 18px;
+}
+.platform-mark.threads { background: #050505; font-size: 16px; }
+.platform-mark.tiktok { background: #050505; color: #25f4ee; font-size: 16px; }
+.platform-mark.x-twitter { background: #050505; font-size: 13px; }
+.platform-mark.youtube { background: #ff0033; font-size: 12px; }
+.platform-mark.snapchat { color: #050505; background: #fffc00; font-size: 10px; }
+.platform-mark.linkedin { background: #0a66c2; font-family: Arial, sans-serif; font-size: 13px; }
+.platform-mark.reddit { background: #ff4500; font-size: 11px; }
+.platform-mark.marketplace { background: #1877f2; font-size: 13px; }
 
 .platform-support-card p {
   margin: 0;
