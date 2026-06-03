@@ -251,30 +251,6 @@ h3 {
   font-weight: 760;
   text-align: center;
 }
-.hero-price-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-}
-.hero-price-strip span {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-  min-height: 40px;
-  padding: 8px 12px;
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 6px;
-  color: #f5fbff;
-  background: rgba(255,255,255,.09);
-  font-size: 14px;
-  font-weight: 760;
-}
-.hero-price-strip strong {
-  color: #fff;
-  font-weight: 900;
-}
-
 main section,
 .page-section {
   padding: 76px 48px;
