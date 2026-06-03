@@ -732,7 +732,8 @@ body.lightbox-open {
   position: relative;
   display: grid;
   gap: 12px;
-  width: min(1600px, 96vw);
+  justify-items: center;
+  width: min(1600px, 100%);
   max-height: 96vh;
   margin: 0;
 }
