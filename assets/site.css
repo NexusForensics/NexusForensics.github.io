@@ -403,7 +403,7 @@ main section,
   filter: drop-shadow(0 14px 22px rgba(0,0,0,.34));
 }
 .product-card.lens .product-media {
-  background: #eef7f7;
+  background: #000;
 }
 .product-card.lens .product-media img,
 .product-hero .product-logo.lens-witness-logo {
