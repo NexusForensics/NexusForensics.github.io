@@ -9,6 +9,12 @@
     element.closest("figure")?.querySelector("figcaption")?.textContent?.trim() ||
     "";
 
+  const getSource = (element) =>
+    element.dataset.lightboxSrc ||
+    element.currentSrc ||
+    element.src ||
+    "";
+
   const makeLightbox = () => {
     let lightbox = document.querySelector("[data-site-lightbox]");
     if (lightbox) return lightbox;
@@ -54,7 +60,7 @@
 
   document.querySelectorAll("img").forEach((image) => {
     if (image.closest(SKIP_SELECTOR)) return;
-    if (image.closest("[data-lightbox-src]")) return;
+    if (image.closest("button[data-lightbox-src], a[data-lightbox-src]")) return;
     image.classList.add(TRIGGER_CLASS);
     image.setAttribute("tabindex", "0");
     image.setAttribute("role", "button");
@@ -70,7 +76,7 @@
 
     const image = event.target.closest(`img.${TRIGGER_CLASS}`);
     if (image) {
-      openLightbox(image.currentSrc || image.src, getTitle(image));
+      openLightbox(getSource(image), getTitle(image));
     }
   });
 
@@ -82,7 +88,7 @@
 
     if ((event.key === "Enter" || event.key === " ") && event.target.matches(`img.${TRIGGER_CLASS}`)) {
       event.preventDefault();
-      openLightbox(event.target.currentSrc || event.target.src, getTitle(event.target));
+      openLightbox(getSource(event.target), getTitle(event.target));
     }
   });
 
