@@ -388,7 +388,7 @@ main section,
   object-fit: contain;
 }
 .product-card.social .product-media {
-  background: #fff;
+  background: #000;
 }
 .product-card.video .product-media {
   background:
