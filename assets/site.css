@@ -541,10 +541,6 @@ main section,
   box-shadow: 0 8px 22px rgba(13, 24, 42, .06);
 }
 
-.platform-support-card-featured {
-  grid-column: 1 / -1;
-}
-
 .platform-support-card h3 {
   display: inline-flex;
   gap: 8px;
