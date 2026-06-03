@@ -620,6 +620,16 @@ main section,
   background: var(--cyan);
 }
 
+.platform-support-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 10px 22px rgba(13, 24, 42, .09);
+}
+
 .screenshot-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
