@@ -605,7 +605,7 @@ main section,
 .screenshot-copy {
   display: grid;
   align-content: center;
-  gap: 10px;
+  gap: 14px;
 }
 
 .screenshot-copy h3 {
