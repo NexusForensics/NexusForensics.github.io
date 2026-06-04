@@ -849,6 +849,10 @@ body.lightbox-open {
   border-color: rgba(25, 184, 199, .45);
 }
 
+body:has(.product-hero.lens) .pricing-badge {
+  display: none;
+}
+
 .pricing-card h3 {
   margin: 0;
   font-size: 22px;
