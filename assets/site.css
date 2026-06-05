@@ -36,9 +36,9 @@ img { display: block; max-width: 100%; }
   justify-content: space-between;
   gap: 22px;
   padding: 12px 48px;
-  color: var(--ink);
-  background: rgba(255, 255, 255, .96);
-  border-bottom: 1px solid rgba(16,24,39,.12);
+  color: #f4f7f9;
+  background: rgba(43, 47, 54, .96);
+  border-bottom: 1px solid rgba(255,255,255,.12);
   backdrop-filter: blur(12px);
 }
 .brand {
@@ -61,12 +61,12 @@ img { display: block; max-width: 100%; }
   font-weight: 780;
 }
 .site-nav a {
-  color: #425265;
+  color: #e2e8f0;
   text-decoration: none;
   white-space: nowrap;
 }
 .site-nav a:hover,
-.site-nav a[aria-current="page"] { color: var(--night); }
+.site-nav a[aria-current="page"] { color: #ffffff; }
 .nav-menu {
   position: relative;
   display: inline-flex;
@@ -88,7 +88,7 @@ img { display: block; max-width: 100%; }
   border-right: 4px solid transparent;
   border-top: 5px solid currentColor;
 }
-.nav-menu.is-active > .nav-menu-trigger { color: var(--night); }
+.nav-menu.is-active > .nav-menu-trigger { color: #ffffff; }
 .nav-submenu {
   position: absolute;
   top: 100%;
@@ -128,8 +128,8 @@ img { display: block; max-width: 100%; }
   display: inline-flex;
   align-items: center;
   padding: 8px 12px;
-  color: #fff;
-  background: var(--night);
+  color: #07101d;
+  background: var(--cyan);
   border-radius: 6px;
 }
 
@@ -161,8 +161,8 @@ img { display: block; max-width: 100%; }
   padding: 78px 48px 64px;
   color: #fff;
   background:
+    url("nexus-forensics-main-logo-20260605-watermark-25.png") right 7% center / min(700px, 58vw) no-repeat,
     linear-gradient(90deg, rgba(7, 16, 29, .98), rgba(7, 16, 29, .88) 58%, rgba(7, 16, 29, .52)),
-    url("nexus-forensics-main-logo-20260605.png") right 7% center / min(700px, 58vw) no-repeat,
     #07101d;
 }
 .hero:after,
@@ -265,8 +265,8 @@ main section,
   overflow: hidden;
   color: #fff;
   background:
+    url("nexus-forensics-main-logo-20260605-watermark-25.png") right 40px center / min(420px, 40vw) no-repeat,
     linear-gradient(90deg, rgba(7,16,29,.98), rgba(16,27,44,.92)),
-    url("nexus-forensics-main-logo-20260605.png") right 40px center / min(420px, 40vw) no-repeat,
     var(--night);
 }
 .band.dark .lead,
