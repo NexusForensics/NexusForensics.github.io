@@ -162,7 +162,7 @@ img { display: block; max-width: 100%; }
   color: #fff;
   background:
     linear-gradient(90deg, rgba(7, 16, 29, .98), rgba(7, 16, 29, .88) 58%, rgba(7, 16, 29, .52)),
-    url("nexus-forensics-main-logo.png") right 7% center / min(700px, 58vw) no-repeat,
+    url("nexus-forensics-main-logo-20260605.png") right 7% center / min(700px, 58vw) no-repeat,
     #07101d;
 }
 .hero:after,
@@ -266,7 +266,7 @@ main section,
   color: #fff;
   background:
     linear-gradient(90deg, rgba(7,16,29,.98), rgba(16,27,44,.92)),
-    url("nexus-forensics-main-logo.png") right 40px center / min(420px, 40vw) no-repeat,
+    url("nexus-forensics-main-logo-20260605.png") right 40px center / min(420px, 40vw) no-repeat,
     var(--night);
 }
 .band.dark .lead,
