@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nexus Social Recon | Nexus Forensics</title>
-  <meta name="description" content="Nexus Social Recon is Nexus Forensics' public social media evidence intelligence platform for capture, OCR, visual matching, targets, reports, and case packages." />
+  <meta name="description" content="Nexus Social Recon is Nexus Forensics' public social media evidence intelligence platform for capture, OCR, User Index enrichment, local cross-case lookup, targets, reports, and case packages." />
   <meta property="og:title" content="Nexus Social Recon" />
   <meta property="og:description" content="Public social media evidence capture, intelligence, and investigator-controlled reporting." />
   <meta property="og:type" content="website" />
@@ -35,7 +35,7 @@
       <img class="product-logo" src="../assets/nexus-social-recon-logo-light.png" alt="Nexus Social Recon" />
       <p class="eyebrow">Social Evidence Intelligence</p>
       <h1>Nexus Social Recon</h1>
-      <p class="hero-lede">An investigator-first public evidence intelligence platform for preserving social media sources, capturing comments and media, finding case signals, and exporting evidence packages that keep the source trail visible.</p>
+      <p class="hero-lede">An investigator-first public evidence intelligence platform for preserving social media sources, capturing comments and media, building a local User Index, finding case signals, and exporting evidence packages that keep the source trail visible.</p>
       <div class="hero-actions">
         <a class="button primary" href="#workflow">See workflow</a>
         <a class="button line" href="#platforms">Supported platforms</a>
@@ -53,7 +53,7 @@
             <p class="kicker">What It Does</p>
             <h2>Turn public social platforms into organized case evidence.</h2>
           </div>
-          <p class="lead">Nexus Social Recon preserves the public source, captures local files, runs OCR and media intelligence, and keeps profiles, posts, comments, bookmarks, targets, hashes, and reports organized around the case.</p>
+          <p class="lead">Nexus Social Recon preserves the public source, captures local files, runs OCR and media intelligence, and keeps profiles, posts, comments, bookmarks, targets, hashes, User Index links, and reports organized around the case.</p>
         </div>
         <div class="feature-grid">
           <article class="feature-card">
@@ -64,17 +64,51 @@
           <article class="feature-card">
             <div class="accent-bar"></div>
             <h3>Decide</h3>
-            <p>Bookmarks, OCR, keyword hits, case targets, face/object/detail matching, account context, and profile themes.</p>
+            <p>Bookmarks, OCR, keyword hits, case targets, face/object/detail matching, account context, profile themes, and case hit alerts.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
             <h3>Connect</h3>
-            <p>User index cards, repeated identifiers, media fingerprints, cross-platform account matching, and cross-case intelligence.</p>
+            <p>User Index cards, repeated identifiers, friend names, phone numbers, media fingerprints, cross-platform account matching, and local cross-case lookup.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
             <h3>Report</h3>
             <p>HTML and PDF reports with thumbnails, source links, local paths, comments, OCR text, hashes, manifests, and investigator notes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Latest Upgrades</p>
+            <h2>Local indexing now starts earlier in the workflow.</h2>
+          </div>
+          <p class="lead">The newest Social Recon workflow separates same-computer local intelligence from shared network intelligence, so investigators can use local cross-case memory at the Investigator level while reserving network lookup for higher-tier deployments.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Local Index</h3>
+            <p>Investigator cases can index OCR text, User Index identifiers, captured friend names, media signatures, targets, faces, objects, and case context on the local computer.</p>
+          </article>
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Local Cross-Case Lookup</h3>
+            <p>Compare unlocked local cases for text, User Index links, friend identifiers, OCR, comments, captions, faces, thumbnails, objects, and visual signatures.</p>
+          </article>
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Global Targets</h3>
+            <p>Promote faces, logos, and distinctive objects into a local target index for same-computer future-case recognition and explainable hit reports.</p>
+          </article>
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Network Index</h3>
+            <p>Higher-tier Intelligence and team deployments add shared or network lookup beyond the single-computer local index.</p>
           </article>
         </div>
       </div>
@@ -195,13 +229,13 @@
             <p class="kicker">Investigation Workflow</p>
             <h2>Capture first, then enrich without losing source context.</h2>
           </div>
-          <p class="lead">The workflow follows how investigators actually move through social evidence: preserve the page, mark what matters, enrich findings, and package the record.</p>
+          <p class="lead">The workflow follows how investigators actually move through social evidence: preserve the page, mark what matters, index local signals, compare across unlocked cases when allowed, and package the record.</p>
         </div>
         <div class="timeline-grid">
           <article class="timeline-card"><span>Step 1</span><b>Open a case</b><p>Start from a local case workspace with agency and investigator context.</p></article>
           <article class="timeline-card"><span>Step 2</span><b>Capture sources</b><p>Save public pages, media, comments, and source-linked records.</p></article>
           <article class="timeline-card"><span>Step 3</span><b>Bookmark findings</b><p>Keep the strongest evidence visible across platform modules.</p></article>
-          <article class="timeline-card"><span>Step 4</span><b>Run intelligence</b><p>OCR, target checks, visual matching, and user index enrichment.</p></article>
+          <article class="timeline-card"><span>Step 4</span><b>Index and compare</b><p>OCR, User Index links, friend identifiers, target checks, visual matching, and local cross-case lookup.</p></article>
           <article class="timeline-card"><span>Step 5</span><b>Export package</b><p>Generate reports, media folders, hashes, and disclosure-ready files.</p></article>
         </div>
       </div>
@@ -212,7 +246,7 @@
         <div>
           <p class="kicker">Explainable Matches</p>
           <h2>Matches and alerts should show their work.</h2>
-          <p class="lead">A useful lead is not enough. Nexus Social Recon is designed to show thumbnails, source links, local evidence links, confidence, and context so the investigator can decide what the match actually means.</p>
+          <p class="lead">A useful lead is not enough. Nexus Social Recon is designed to show thumbnails, source links, local evidence links, confidence, target context, and repeated identifiers so the investigator can decide what the match actually means.</p>
           <div class="section-actions">
             <a class="button dark" href="#tiers">See feature levels</a>
             <a class="button soft" href="../products.html">All products</a>
@@ -220,7 +254,7 @@
         </div>
         <aside class="visual-panel">
           <img src="../assets/account-match-finder-example.jpg" alt="Example account match finder report" />
-          <p class="visual-caption">Example account match output with source links, visual scores, and report metadata.</p>
+          <p class="visual-caption">Example account match output with source links, visual scores, repeated identifiers, and report metadata.</p>
         </aside>
       </div>
     </section>
@@ -230,9 +264,9 @@
         <div class="section-head">
           <div>
             <p class="kicker">Pricing Ladder</p>
-            <h2>Feature levels from capture to cross-case intelligence.</h2>
+            <h2>Feature levels from capture to local and network intelligence.</h2>
           </div>
-          <p class="lead">High-value intelligence features stay premium: live monitoring, visual target detection, cross-case memory, team collaboration, and cloud or server processing.</p>
+          <p class="lead">High-value intelligence features stay premium, with local cross-case lookup available at Investigator and shared network intelligence reserved for Intelligence, team, server, and managed deployments.</p>
         </div>
         <div class="comparison">
           <table>
@@ -246,22 +280,22 @@
             <tbody>
               <tr>
                 <td>Capture</td>
-                <td>Capture, reports, hashing, OCR, keyword reports, and local case management.</td>
+                <td>Simple capture, reports, hashing, comments, source links, and local case records. OCR and indexing begin at Investigator.</td>
                 <td>Baseline public evidence preservation and report generation.</td>
               </tr>
               <tr>
                 <td>Investigator</td>
-                <td>Capture plus case targets, face/object/detail matching, profile themes, target alerts, and richer media intelligence.</td>
-                <td>Investigators who need to triage and connect social evidence within active cases.</td>
+                <td>Capture plus Local Index, OCR, User Index enrichment, friend identifiers, case targets, global targets, face/object/detail matching, and same-computer cross-case lookup.</td>
+                <td>Investigators who need to triage active cases and compare against unlocked local case memory.</td>
               </tr>
               <tr>
                 <td>Intelligence</td>
-                <td>Investigator plus local encrypted index, historical collision detection, monitoring workflows, and cross-case intelligence.</td>
-                <td>Teams or advanced users who need memory across cases while staying local-first.</td>
+                <td>Investigator plus shared or network intelligence lookup beyond the single-computer local index.</td>
+                <td>Teams or advanced users who need broader lookup across shared indexes or office workflows.</td>
               </tr>
               <tr>
                 <td>Team / Server / Managed</td>
-                <td>Shared indexes, governance, on-prem repositories, managed processing, retention, audit logs, and support options.</td>
+                <td>Shared indexes, governance, NAS evidence repository workflows, on-prem repositories, managed processing, retention, audit logs, and support options.</td>
                 <td>Organizations with shared evidence repositories, larger workloads, or controlled infrastructure needs.</td>
               </tr>
             </tbody>
@@ -275,7 +309,7 @@
     <div class="cta-inner">
       <div>
         <h2>Preserve social evidence and keep the trail explainable.</h2>
-        <p>Nexus Social Recon is built for public-source evidence capture, investigator triage, media intelligence, and defensible reporting.</p>
+        <p>Nexus Social Recon is built for public-source evidence capture, investigator triage, local indexing, media intelligence, and defensible reporting.</p>
       </div>
       <a class="button primary" href="mailto:sales@nexus-forensics.ca">Contact sales</a>
     </div>
