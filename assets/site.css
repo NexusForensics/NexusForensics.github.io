@@ -559,6 +559,61 @@ main section,
     url("compliance-data-privacy-hero.png") right 7% center / min(520px, 42vw) no-repeat,
     var(--night);
 }
+.policy-hero {
+  min-height: 46vh;
+  display: grid;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 72px 48px 58px;
+  color: #fff;
+  background:
+    url("nexus-forensics-main-logo-20260605-watermark-25.png") right 7% center / min(520px, 46vw) no-repeat,
+    linear-gradient(90deg, rgba(7,16,29,.98), rgba(16,27,44,.9)),
+    var(--night);
+}
+.policy-hero:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--cyan), var(--gold), var(--magenta), var(--green));
+}
+.policy-updated {
+  margin: 18px 0 0;
+  color: rgba(255,255,255,.68);
+  font-size: 14px;
+  font-weight: 760;
+}
+.policy-section {
+  padding: 72px 48px;
+}
+.policy-inner {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.policy-inner h2 {
+  margin: 34px 0 10px;
+  max-width: none;
+  font-size: 28px;
+  line-height: 1.15;
+}
+.policy-inner h2:first-child {
+  margin-top: 0;
+}
+.policy-inner p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 17px;
+  font-weight: 590;
+}
+.policy-inner a {
+  color: #0b6570;
+  font-weight: 850;
+}
 .product-hero .product-logo {
   max-width: 240px;
   max-height: 110px;
@@ -1085,6 +1140,10 @@ footer a {
     background-size: 520px auto, auto;
     background-position: right -220px center, center;
   }
+  .policy-hero {
+    min-height: auto;
+    padding: 64px 24px 48px;
+  }
   h1 { font-size: 52px; }
   h2 { font-size: 36px; }
   .section-head,
@@ -1114,6 +1173,7 @@ footer a {
   }
   main section,
   .page-section,
+  .policy-section,
   .cta {
     padding-right: 24px;
     padding-left: 24px;
@@ -1167,6 +1227,7 @@ footer a {
   }
   .hero,
   .product-hero,
+  .policy-hero,
   .product-hero.social,
   .product-hero.video,
   .product-hero.lens,
@@ -1182,6 +1243,12 @@ footer a {
   .hero-lede,
   .lead,
   .cta p {
+    font-size: 16px;
+  }
+  .policy-inner h2 {
+    font-size: 24px;
+  }
+  .policy-inner p {
     font-size: 16px;
   }
   .hero-actions,
