@@ -352,6 +352,21 @@ main section,
   color: var(--muted);
   font-weight: 620;
 }
+.legal-reference {
+  margin: -8px 0 24px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--cyan);
+  border-radius: var(--radius);
+  color: #405168;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 620;
+}
+.legal-reference a {
+  color: #0b6570;
+  font-weight: 850;
+}
 .product-card .product-price {
   margin-top: 14px;
   padding-top: 12px;
@@ -540,8 +555,8 @@ main section,
 }
 .product-hero.compliance {
   background:
-    url("nexus-forensics-main-logo-20260605-watermark-25.png") right 7% center / min(620px, 52vw) no-repeat,
-    linear-gradient(90deg, rgba(7,16,29,.98), rgba(7,16,29,.9) 58%, rgba(7,16,29,.58)),
+    linear-gradient(90deg, rgba(7,16,29,.98), rgba(7,16,29,.9) 58%, rgba(7,16,29,.48)),
+    url("compliance-data-privacy-hero.png") right 7% center / min(520px, 42vw) no-repeat,
     var(--night);
 }
 .product-hero .product-logo {
