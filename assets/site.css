@@ -993,6 +993,21 @@ body:has(.product-hero.lens) .pricing-badge {
 .compliance-table table {
   min-width: 700px;
 }
+.pipeda-chart table {
+  min-width: 680px;
+}
+.privacy-law-chart {
+  margin-bottom: 30px;
+}
+.privacy-law-chart table {
+  min-width: 760px;
+}
+.pipeda-chart th:first-child,
+.pipeda-chart td:first-child,
+.privacy-law-chart th:first-child,
+.privacy-law-chart td:first-child {
+  width: 34%;
+}
 table {
   width: 100%;
   min-width: 780px;

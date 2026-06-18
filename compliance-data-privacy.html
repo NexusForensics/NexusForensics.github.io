@@ -94,17 +94,33 @@
           <p class="lead">The local-first architecture is designed around data minimization, limiting collection, limiting use, limiting disclosure, limiting retention, and safeguards proportionate to sensitive evidence material.</p>
         </div>
         <p class="legal-reference"><strong>PIPEDA</strong> means the Personal Information Protection and Electronic Documents Act, Canada's federal private-sector privacy law. Learn more from the <a href="https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/" target="_blank" rel="noopener">Office of the Privacy Commissioner of Canada</a>.</p>
-        <div class="proof-grid">
-          <article class="proof-card">
-            <div class="accent-bar"></div>
-            <h3>Limiting collection, use, disclosure, and retention</h3>
-            <p>Because evidence data is not transmitted to Nexus Forensics or external servers for processing, the software keeps the operational data footprint under client control. Retention periods can be configured by the user or agency.</p>
-          </article>
-          <article class="proof-card">
-            <div class="accent-bar"></div>
-            <h3>Safeguards for sensitive information</h3>
-            <p>Local encryption at rest helps protect captured media, databases, metadata, and indexes on the host system or private agency network.</p>
-          </article>
+        <div class="comparison pipeda-chart">
+          <table>
+            <thead>
+              <tr>
+                <th>PIPEDA Requirement</th>
+                <th>Nexus Forensics Compliance Step</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Principle 4: Limiting Collection</td>
+                <td>Evidence data is processed locally or on client-controlled infrastructure, reducing unnecessary vendor collection of investigative or personal information.</td>
+              </tr>
+              <tr>
+                <td>Principle 5: Limiting Use, Disclosure, and Retention</td>
+                <td>Nexus Forensics does not transmit evidence to vendor cloud systems for processing. User-configured retention utilities support agency-defined case deletion cycles.</td>
+              </tr>
+              <tr>
+                <td>Principle 7: Safeguards</td>
+                <td>Captured media, databases, metadata, and local indexes are designed to be encrypted at rest using AES-256 encryption on the workstation or private agency network.</td>
+              </tr>
+              <tr>
+                <td>Accountability support</td>
+                <td>Audit logs, local case records, hashes, and controlled deployment boundaries help agencies document how evidence was stored, reviewed, retained, and protected.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -119,6 +135,38 @@
           <p class="lead">The software does not use external public APIs or cloud databases to process evidence. With no external transmission of analyzed evidence to Nexus Forensics, the product is structured to avoid selling or sharing personal information for advertising or third-party data purposes.</p>
         </div>
         <p class="legal-reference"><strong>CCPA</strong> means the California Consumer Privacy Act, which gives California residents rights over personal information collected by covered businesses. <strong>CPRA</strong> means the California Privacy Rights Act, which amended and expanded California's privacy framework. Learn more from the <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener">California Attorney General</a> and the <a href="https://cppa.ca.gov/regulations/" target="_blank" rel="noopener">California Privacy Protection Agency</a>.</p>
+        <div class="comparison privacy-law-chart">
+          <table>
+            <thead>
+              <tr>
+                <th>CCPA / CPRA Requirement</th>
+                <th>Nexus Forensics Compliance Step</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Consumer data control and access rights</td>
+                <td>Nexus Forensics does not host or control customer evidence data. Agencies retain custody of case data on their workstation or private infrastructure and manage access through their own policies.</td>
+              </tr>
+              <tr>
+                <td>No selling or sharing of personal information</td>
+                <td>The software does not transmit analyzed evidence to Nexus Forensics for advertising, resale, cross-context behavioral advertising, or third-party data sharing.</td>
+              </tr>
+              <tr>
+                <td>Data minimization and purpose limitation</td>
+                <td>Processing is limited to the investigative workflow controlled by the client organization, with no vendor cloud processing or unrelated secondary use by Nexus Forensics.</td>
+              </tr>
+              <tr>
+                <td>Sensitive personal information protection</td>
+                <td>Local repositories, media, metadata, and indexes are designed for encrypted storage at rest and private-network deployment boundaries.</td>
+              </tr>
+              <tr>
+                <td>Automated analysis and profiling risk controls</td>
+                <td>Face, image, and cross-case matching operate inside the client's local or agency-controlled environment rather than a public, centralized, or multi-tenant cloud database.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="split">
           <div>
             <p class="compliance-copy">For organizations using shared analysis or image-matching workflows, Nexus Forensics supports local or private-network indexes controlled by the client agency. Team members can match faces or case images previously logged inside their own organization without connecting to a centralized, public, or multi-tenant cloud database.</p>
