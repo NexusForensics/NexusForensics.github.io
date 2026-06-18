@@ -305,6 +305,11 @@ main section,
 .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .timeline-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
 
 .card,
 .product-card,
@@ -328,6 +333,24 @@ main section,
 .proof-card p {
   margin: 10px 0 0;
   color: var(--muted);
+}
+.compliance-copy {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: 620;
+}
+.compliance-note {
+  padding: 28px;
+  border: 1px solid rgba(25, 184, 199, .28);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #f4fbfc, #ffffff);
+  box-shadow: 0 10px 26px rgba(13, 24, 42, .07);
+}
+.compliance-note p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-weight: 620;
 }
 .product-card .product-price {
   margin-top: 14px;
@@ -513,6 +536,12 @@ main section,
   background:
     linear-gradient(90deg, rgba(7,16,29,.98), rgba(7,16,29,.84) 58%, rgba(7,16,29,.42)),
     url("lens-witness-phone-to-computer.png") right 7% center / min(760px, 58vw) no-repeat,
+    var(--night);
+}
+.product-hero.compliance {
+  background:
+    url("nexus-forensics-main-logo-20260605-watermark-25.png") right 7% center / min(620px, 52vw) no-repeat,
+    linear-gradient(90deg, rgba(7,16,29,.98), rgba(7,16,29,.9) 58%, rgba(7,16,29,.58)),
     var(--night);
 }
 .product-hero .product-logo {
@@ -946,6 +975,9 @@ body:has(.product-hero.lens) .pricing-badge {
   background: #fff;
   box-shadow: 0 8px 22px rgba(13, 24, 42, .06);
 }
+.compliance-table table {
+  min-width: 700px;
+}
 table {
   width: 100%;
   min-width: 780px;
@@ -1033,6 +1065,7 @@ footer a {
   .value-grid,
   .product-grid,
   .feature-grid,
+  .compliance-grid,
   .platform-support-grid,
   .screenshot-gallery,
   .pricing-grid,
@@ -1106,7 +1139,8 @@ footer a {
   .product-hero,
   .product-hero.social,
   .product-hero.video,
-  .product-hero.lens {
+  .product-hero.lens,
+  .product-hero.compliance {
     padding-top: 52px;
     background-image:
       linear-gradient(90deg, rgba(7,16,29,.98), rgba(7,16,29,.9)),
@@ -1129,6 +1163,7 @@ footer a {
   .value-grid,
   .product-grid,
   .feature-grid,
+  .compliance-grid,
   .platform-support-grid,
   .screenshot-gallery,
   .pricing-grid,
