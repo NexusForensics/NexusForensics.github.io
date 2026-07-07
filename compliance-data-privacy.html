@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Compliance &amp; Data Privacy | Nexus Forensics</title>
-  <meta name="description" content="Nexus Forensics compliance and data privacy position for Canada and the United States, covering local-first deployment, zero-cloud evidence handling, encryption, retention, and vendor access boundaries." />
+  <meta name="description" content="Nexus Forensics compliance and data privacy position for Canada and the United States, covering visible-capture compliance mode, local-first deployment, zero-cloud evidence handling, encryption, retention, and vendor access boundaries." />
   <meta property="og:title" content="Nexus Forensics Compliance &amp; Data Privacy" />
   <meta property="og:description" content="A local-first, zero-cloud privacy and security framework for investigator-controlled evidence workflows." />
   <meta property="og:type" content="website" />
@@ -34,15 +34,16 @@
     <div class="hero-inner">
       <p class="eyebrow">Compliance &amp; Data Privacy</p>
       <h1>Local-first evidence software designed to reduce data exposure.</h1>
-      <p class="hero-lede">Nexus Forensics products are built around a zero-cloud deployment model and visible-screen evidence preservation. The software records and organizes what the authorized user can view, rather than scraping hidden platform data.</p>
+      <p class="hero-lede">Nexus Forensics products are built around a zero-cloud deployment model, visible-screen evidence preservation, and a compliance-oriented capture mode for investigators who need to avoid platform scraping. The software records and organizes what the authorized user can view, rather than scraping hidden platform data.</p>
       <div class="hero-actions">
         <a class="button primary" href="#framework">View framework</a>
+        <a class="button line" href="#compliance-mode">Compliance mode</a>
         <a class="button line" href="#matrix">Compliance matrix</a>
         <a class="button line" href="mailto:sales@nexus-forensics.ca">Request details</a>
       </div>
       <div class="hero-metrics" aria-label="Compliance posture highlights">
         <span>Zero vendor custody of evidence data</span>
-        <span>Local or agency-network processing</span>
+        <span>Policy-gated visible-capture workflows</span>
         <span>Encrypted repositories and retention controls</span>
       </div>
     </div>
@@ -88,7 +89,74 @@
       </div>
     </section>
 
-    <section class="band">
+    <section class="band" id="compliance-mode">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Nexus Social Recon Compliance</p>
+            <h2>A visible-capture mode for platform ToS-conscious investigations.</h2>
+          </div>
+          <p class="lead">The new Nexus Social Recon Compliance configuration is designed to make visible-screen capture the default evidence path. It uses a feature policy gate to allow low-risk preservation tools while disabling workflows that would scrape platform content, download media streams, or collect hidden structured data.</p>
+        </div>
+        <div class="compliance-grid">
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Green: allowed by default</h3>
+            <p>Visible screenshots, visible screen recordings, manual platform navigation, local OCR on preserved evidence, and local report generation remain available as the core workflow.</p>
+          </article>
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Yellow: authorization required</h3>
+            <p>Approved platform API use, local biometric or profiling analysis, and other sensitive workflows require documented authorization, scope, retention rules, and customer-controlled governance.</p>
+          </article>
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Red: disabled in compliance mode</h3>
+            <p>Structured DOM scraping, hidden-window collection, bulk relationship capture, CDN/media download, network interception, live page automation, and non-visible platform data collection are blocked by policy.</p>
+          </article>
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Policy-gated actions</h3>
+            <p>Restricted capture commands are checked before they run. If a workflow does not meet the visible-capture policy, the software returns a compliance-blocked result and points the investigator to the approved visible-capture replacement.</p>
+          </article>
+          <article class="feature-card">
+            <div class="accent-bar"></div>
+            <h3>Visible-capture provenance</h3>
+            <p>Selected-region captures can be paired with a local metadata record that notes the capture method, source URL, timestamp, SHA-256 hash, selected region, platform, and a provenance note confirming that no platform DOM, private API, cookies, hidden metadata, or media source URLs were queried for that artifact.</p>
+          </article>
+        </div>
+        <div class="comparison compliance-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Compliance Control</th>
+                <th>Website Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Visible evidence preservation</td>
+                <td>Investigators preserve what is visible on screen through screenshots, selected-region capture, and visible playback recording.</td>
+              </tr>
+              <tr>
+                <td>No platform scraping in compliance mode</td>
+                <td>Automated DOM extraction, hidden account data collection, bulk relationship capture, and direct media-source downloads are disabled in the compliance configuration.</td>
+              </tr>
+              <tr>
+                <td>Local processing</td>
+                <td>OCR, indexes, reports, manifests, hashes, and audit records are generated from already preserved local evidence artifacts.</td>
+              </tr>
+              <tr>
+                <td>Documented exceptions</td>
+                <td>Higher-risk workflows require customer authorization, approved platform access where applicable, defined scope, retention rules, and customer-controlled review.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
       <div class="section-inner">
         <div class="section-head">
           <div>
