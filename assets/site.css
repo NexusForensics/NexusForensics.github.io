@@ -411,6 +411,9 @@ main section,
   background: var(--soft);
   font-size: 14px;
 }
+.platform-note {
+  margin: 0 0 20px;
+}
 .mode-card {
   overflow: hidden;
   padding: 0;
