@@ -402,6 +402,15 @@ main section,
 .workflow-grid .feature-card:nth-child(2) li::marker { color: var(--gold); }
 .workflow-grid .feature-card:nth-child(3) li::marker { color: var(--magenta); }
 .workflow-grid .feature-card:nth-child(4) li::marker { color: var(--green); }
+.workflow-note {
+  margin: 18px 0 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--cyan);
+  border-radius: 4px;
+  color: var(--muted);
+  background: var(--soft);
+  font-size: 14px;
+}
 .mode-card {
   overflow: hidden;
   padding: 0;
