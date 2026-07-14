@@ -387,6 +387,21 @@ main section,
 .proof-card:nth-child(2) .accent-bar { background: var(--gold); }
 .feature-card:nth-child(3) .accent-bar { background: var(--magenta); }
 .feature-card:nth-child(4) .accent-bar { background: var(--green); }
+.workflow-grid .feature-card ul {
+  margin: 12px 0 0;
+  padding-left: 1.15em;
+  color: var(--muted);
+}
+.workflow-grid .feature-card li {
+  padding-left: .2em;
+}
+.workflow-grid .feature-card li + li {
+  margin-top: 7px;
+}
+.workflow-grid .feature-card li::marker { color: var(--cyan); }
+.workflow-grid .feature-card:nth-child(2) li::marker { color: var(--gold); }
+.workflow-grid .feature-card:nth-child(3) li::marker { color: var(--magenta); }
+.workflow-grid .feature-card:nth-child(4) li::marker { color: var(--green); }
 .mode-card {
   overflow: hidden;
   padding: 0;
