@@ -678,7 +678,7 @@ main section,
 .product-hero.social {
   background:
     linear-gradient(90deg, rgba(7,16,29,.98), rgba(7,16,29,.86) 58%, rgba(7,16,29,.5)),
-    url("account-match-finder-example.jpg") right 7% center / min(620px, 54vw) no-repeat,
+    url("social-recon-image-case-preview.png") right 7% center / min(720px, 58vw) no-repeat,
     var(--night);
 }
 .product-hero.video {
