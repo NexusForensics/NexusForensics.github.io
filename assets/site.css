@@ -272,8 +272,10 @@ main section,
 .band.dark .lead,
 .band.dark p { color: #dbe7f4; }
 .band.dark .kicker { color: #f0bf57; }
-.band.dark .card { color: var(--ink); }
-.band.dark .card p { color: var(--muted); }
+.band.dark .card,
+.band.dark .feature-card { color: var(--ink); }
+.band.dark .card p,
+.band.dark .feature-card p { color: var(--muted); }
 .section-head {
   display: grid;
   grid-template-columns: minmax(0, .98fr) minmax(310px, .7fr);
@@ -415,6 +417,115 @@ main section,
 }
 .platform-note {
   margin: 0 0 20px;
+}
+.home-v2-hero h1 {
+  max-width: 900px;
+}
+.home-v2-hero .hero-lede {
+  max-width: 680px;
+}
+.home-workflow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding-top: 54px;
+}
+.home-workflow:before {
+  content: "";
+  position: absolute;
+  top: 17px;
+  right: 12.5%;
+  left: 12.5%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--gold), var(--magenta), var(--green));
+  opacity: .45;
+}
+.home-workflow:after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12.5%;
+  width: 13px;
+  height: 13px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--cyan);
+  box-shadow: 0 0 0 6px rgba(25,184,199,.13), 0 6px 18px rgba(7,16,29,.2);
+  animation: home-workflow-progress 6s ease-in-out infinite;
+}
+.home-workflow-step {
+  position: relative;
+  min-height: 220px;
+  padding: 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(13, 24, 42, .06);
+}
+.home-workflow-step p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+.home-workflow-number {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 2px solid var(--cyan);
+  border-radius: 999px;
+  color: var(--night);
+  background: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  transform: translateX(-50%);
+}
+.home-workflow-step:nth-child(2) .home-workflow-number { border-color: var(--gold); }
+.home-workflow-step:nth-child(3) .home-workflow-number { border-color: var(--magenta); }
+.home-workflow-step:nth-child(4) .home-workflow-number { border-color: var(--green); }
+.home-workflow-result {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-left: 5px solid var(--cyan);
+  border-radius: var(--radius);
+  color: #405168;
+  background: var(--soft);
+  font-weight: 620;
+}
+.outcome-grid .card:nth-child(2) .accent-bar,
+.audience-grid .card:nth-child(2) .accent-bar { background: var(--gold); }
+.outcome-grid .card:nth-child(3) .accent-bar,
+.audience-grid .card:nth-child(3) .accent-bar { background: var(--magenta); }
+.home-vision-note {
+  display: grid;
+  grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr);
+  gap: 26px;
+  align-items: center;
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid rgba(25,184,199,.3);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #f3fbfc, #fff);
+  box-shadow: 0 8px 22px rgba(13, 24, 42, .05);
+}
+.home-vision-note .kicker { margin-bottom: 8px; }
+.home-vision-note p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 620;
+}
+@keyframes home-workflow-progress {
+  0%, 8% { left: 12.5%; border-color: var(--cyan); }
+  31% { border-color: var(--gold); }
+  57% { border-color: var(--magenta); }
+  92%, 100% { left: calc(87.5% - 13px); border-color: var(--green); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-workflow:after { animation: none; }
 }
 .mode-card {
   overflow: hidden;
@@ -1206,6 +1317,25 @@ footer a {
   .timeline-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+  .home-workflow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-top: 0;
+  }
+  .home-workflow:before,
+  .home-workflow:after {
+    display: none;
+  }
+  .home-workflow-step {
+    min-height: 0;
+  }
+  .home-workflow-number {
+    position: static;
+    margin-bottom: 14px;
+    transform: none;
+  }
+  .home-vision-note {
+    grid-template-columns: 1fr;
+  }
   main section,
   .page-section,
   .policy-section,
@@ -1302,6 +1432,9 @@ footer a {
   .pricing-grid,
   .timeline-grid,
   .proof-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-workflow {
     grid-template-columns: 1fr;
   }
   .product-card {
