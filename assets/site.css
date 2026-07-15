@@ -641,6 +641,15 @@ main section,
   width: 100%;
   height: auto;
 }
+.detection-visual-grid .visual-panel {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.detection-visual-grid .visual-panel img {
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: #eef3f8;
+}
 .visual-caption {
   margin: 0;
   padding: 14px 16px;
