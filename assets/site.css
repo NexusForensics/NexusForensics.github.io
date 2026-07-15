@@ -272,6 +272,8 @@ main section,
 .band.dark .lead,
 .band.dark p { color: #dbe7f4; }
 .band.dark .kicker { color: #f0bf57; }
+.band.dark .card { color: var(--ink); }
+.band.dark .card p { color: var(--muted); }
 .section-head {
   display: grid;
   grid-template-columns: minmax(0, .98fr) minmax(310px, .7fr);
@@ -1132,6 +1134,12 @@ td:first-child {
   font-size: 18px;
   font-weight: 620;
 }
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+}
 
 footer {
   padding: 24px 48px;
@@ -1279,7 +1287,8 @@ footer a {
     font-size: 16px;
   }
   .hero-actions,
-  .section-actions {
+  .section-actions,
+  .cta-actions {
     display: grid;
     grid-template-columns: 1fr;
   }

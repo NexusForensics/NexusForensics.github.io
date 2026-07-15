@@ -2,6 +2,7 @@
 
 Static GitHub Pages site for Nexus Forensics Inc. and its product pages:
 
+- How Nexus Is Different
 - Nexus Social Recon
 - Video Anchor
 - Lens Witness
