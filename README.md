@@ -4,7 +4,8 @@ Static GitHub Pages site for Nexus Forensics Inc. and its product pages:
 
 - How Nexus Is Different
 - Nexus Social Recon
-- Lens Witness
+
+Lens Witness is retained in the repository but is currently removed from the main public navigation while the website focuses on Nexus Social Recon.
 
 Published by GitHub Pages from the `main` branch root:
 

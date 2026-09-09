@@ -45,12 +45,16 @@ img { display: block; max-width: 100%; }
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  min-width: 170px;
+  min-width: 138px;
   text-decoration: none;
 }
 .brand img {
-  width: 238px;
-  height: auto;
+  width: 168px;
+  height: 62px;
+  padding: 3px 8px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
 }
 .site-nav {
   display: flex;
@@ -132,6 +136,34 @@ img { display: block; max-width: 100%; }
   background: var(--cyan);
   border-radius: 6px;
 }
+.language-picker {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px 4px 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 6px;
+  color: #e2e8f0;
+  background: rgba(255,255,255,.08);
+  white-space: nowrap;
+}
+.language-picker span {
+  font-size: 12px;
+  font-weight: 850;
+}
+.language-picker select {
+  min-width: 108px;
+  height: 30px;
+  padding: 0 28px 0 9px;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 5px;
+  color: var(--night);
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+}
 
 .button {
   display: inline-flex;
@@ -161,8 +193,8 @@ img { display: block; max-width: 100%; }
   padding: 78px 48px 64px;
   color: #fff;
   background:
-    url("nexus-forensics-main-logo-20260605-watermark-25.png") right 7% center / min(700px, 58vw) no-repeat,
     linear-gradient(90deg, rgba(7, 16, 29, .98), rgba(7, 16, 29, .88) 58%, rgba(7, 16, 29, .52)),
+    url("nexus-forensics-logo-20260909.jpg") right 7% center / min(690px, 56vw) no-repeat,
     #07101d;
 }
 .hero:after,
@@ -265,8 +297,8 @@ main section,
   overflow: hidden;
   color: #fff;
   background:
-    url("nexus-forensics-main-logo-20260605-watermark-25.png") right 40px center / min(420px, 40vw) no-repeat,
     linear-gradient(90deg, rgba(7,16,29,.98), rgba(16,27,44,.92)),
+    url("nexus-forensics-logo-20260909.jpg") right 40px center / min(420px, 40vw) no-repeat,
     var(--night);
 }
 .band.dark .lead,
@@ -307,6 +339,10 @@ main section,
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .product-grid.two-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.product-grid.one-up {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: start;
+}
 .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .timeline-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -566,9 +602,7 @@ main section,
   height: 100%;
   object-fit: contain;
 }
-.product-card.social .product-media {
-  background: #000;
-}
+.product-card.social .product-media { background: #fff; }
 .product-card.lens .product-media {
   background: #000;
 }
@@ -700,8 +734,8 @@ main section,
   padding: 72px 48px 58px;
   color: #fff;
   background:
-    url("nexus-forensics-main-logo-20260605-watermark-25.png") right 7% center / min(520px, 46vw) no-repeat,
     linear-gradient(90deg, rgba(7,16,29,.98), rgba(16,27,44,.9)),
+    url("nexus-forensics-logo-20260909.jpg") right 7% center / min(520px, 46vw) no-repeat,
     var(--night);
 }
 .policy-hero:after {
@@ -746,12 +780,25 @@ main section,
   color: #0b6570;
   font-weight: 850;
 }
+.language-legal-notice {
+  padding: 12px 48px;
+  color: #70480d;
+  background: #fff6df;
+  border-bottom: 1px solid #f2d492;
+  font-size: 14px;
+  font-weight: 760;
+  text-align: center;
+}
 .product-hero .product-logo {
-  max-width: 240px;
-  max-height: 110px;
+  max-width: 310px;
+  max-height: 180px;
   width: auto;
   height: auto;
+  padding: 10px 14px;
   margin-bottom: 18px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 18px 42px rgba(0,0,0,.28);
 }
 .product-hero .product-logo.lens-witness-logo {
   max-width: 116px;
@@ -782,6 +829,7 @@ main section,
 }
 
 .platform-support-card {
+  position: relative;
   min-height: 154px;
   padding: 20px;
   border: 1px solid var(--line);
@@ -790,12 +838,34 @@ main section,
   box-shadow: 0 8px 22px rgba(13, 24, 42, .06);
 }
 
+.platform-status {
+  position: absolute;
+  top: 17px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: #0d1b2d;
+  background: #eef3f8;
+  border: 1px solid #d9e3ed;
+  font-size: 12px;
+  font-weight: 900;
+}
+.platform-status.complete { color: #075646; background: #e7f8f0; border-color: #b9ead7; }
+.platform-status.testing,
+.platform-status.verify { color: #70480d; background: #fff6df; border-color: #f2d492; }
+.platform-status.progress { color: #0f4b70; background: #e6f4ff; border-color: #afd8f5; }
+.platform-status.supported { color: #3f3f46; background: #f4f4f5; border-color: #d4d4d8; }
+
 .platform-support-card h3 {
   display: inline-flex;
   gap: 8px;
   min-height: 30px;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 120px;
   padding: 4px 10px;
   border-radius: 999px;
   color: #0f5963;
@@ -1270,8 +1340,8 @@ footer a {
   .product-hero {
     min-height: auto;
     padding: 64px 24px 48px;
-    background-size: 520px auto, auto;
-    background-position: right -220px center, center;
+    background-size: auto, 520px auto;
+    background-position: center, right -220px center;
   }
   .policy-hero {
     min-height: auto;
@@ -1338,7 +1408,10 @@ footer a {
     position: static;
     display: block;
   }
-  .brand img { width: 200px; }
+  .brand img {
+    width: 190px;
+    height: 70px;
+  }
   .site-nav {
     justify-content: flex-start;
     margin-top: 12px;
@@ -1376,6 +1449,13 @@ footer a {
   .site-nav .contact-link {
     min-height: 34px;
     padding: 6px 10px;
+  }
+  .language-picker {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .language-picker select {
+    min-width: 128px;
   }
   .hero,
   .product-hero,
@@ -1427,8 +1507,14 @@ footer a {
   .product-card {
     min-height: 0;
   }
-  .product-grid.two-up {
+  .product-grid.two-up,
+  .product-grid.one-up {
     grid-template-columns: 1fr;
+  }
+  .platform-support-card h3 { margin-right: 0; }
+  .platform-status {
+    position: static;
+    margin-bottom: 10px;
   }
   .screenshot-card {
     min-height: 0;
