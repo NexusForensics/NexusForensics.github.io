@@ -208,7 +208,7 @@
       'Save source URLs and investigator notes without downloading listing media.': 'Enregistrer les URL sources et notes d’enquêteur sans télécharger les médias d’annonce.',
       'Generate reports from locally preserved captures with hashes and saved paths.': 'Générer des rapports à partir de captures préservées localement avec empreintes et chemins sauvegardés.',
       'Capture first, then enrich without losing source context.': 'Capturer d’abord, puis enrichir sans perdre le contexte source.',
-      'The workflow follows how investigators actually move through social evidence: preserve the page, mark what matters, index local signals, compare across unlocked cases when allowed, and package the record.': 'Le flux suit la façon dont les enquêteurs travaillent avec la preuve sociale : préserver la page, marquer ce qui compte, indexer les signaux locaux, comparer entre dossiers débloqués lorsque permis et assembler le dossier.',
+      'The workflow follows how investigators actually move through social evidence: preserve the page, mark what matters, index local signals, compare across unlocked cases when allowed, and package the record.': 'Le flux reflète la façon dont les enquêteurs traitent la preuve sociale : préserver la page, marquer les éléments importants, indexer les signaux locaux, comparer les dossiers accessibles lorsque c’est permis, puis assembler le dossier.',
       'Step 1': 'Étape 1',
       'Open a case': 'Ouvrir un dossier',
       'Start from a local case workspace with agency and investigator context.': 'Commencer dans un espace de dossier local avec le contexte de l’agence et de l’enquêteur.',
