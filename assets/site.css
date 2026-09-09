@@ -60,17 +60,29 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 18px;
+  gap: 8px;
   font-size: 14px;
   font-weight: 780;
 }
 .site-nav a {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 6px;
   color: #e2e8f0;
+  background: rgba(255,255,255,.035);
   text-decoration: none;
   white-space: nowrap;
+  transition: color 150ms ease, background 150ms ease, border-color 150ms ease;
 }
 .site-nav a:hover,
-.site-nav a[aria-current="page"] { color: #ffffff; }
+.site-nav a[aria-current="page"] {
+  color: #ffffff;
+  background: rgba(255,255,255,.11);
+  border-color: rgba(255,255,255,.20);
+}
 .nav-menu {
   position: relative;
   display: inline-flex;
@@ -120,7 +132,9 @@ img { display: block; max-width: 100%; }
   display: block;
   padding: 9px 10px;
   border-radius: 6px;
+  border-color: transparent;
   color: #425265;
+  background: transparent;
 }
 .site-nav .nav-submenu a:hover,
 .site-nav .nav-submenu a[aria-current="page"] {
@@ -134,28 +148,30 @@ img { display: block; max-width: 100%; }
   padding: 8px 12px;
   color: #07101d;
   background: var(--cyan);
+  border-color: var(--cyan);
   border-radius: 6px;
+}
+.site-nav .contact-link:hover,
+.site-nav .contact-link[aria-current="page"] {
+  color: #07101d;
+  background: #35d3df;
+  border-color: #35d3df;
 }
 .language-picker {
   min-height: 38px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 6px 4px 10px;
+  padding: 4px;
   border: 1px solid rgba(255,255,255,.18);
   border-radius: 6px;
   color: #e2e8f0;
   background: rgba(255,255,255,.08);
   white-space: nowrap;
 }
-.language-picker span {
-  font-size: 12px;
-  font-weight: 850;
-}
 .language-picker select {
-  min-width: 108px;
+  min-width: 138px;
   height: 30px;
-  padding: 0 28px 0 9px;
+  padding: 0 30px 0 10px;
   border: 1px solid rgba(255,255,255,.22);
   border-radius: 5px;
   color: var(--night);
@@ -1334,7 +1350,7 @@ footer a {
   }
   .site-nav {
     flex-wrap: wrap;
-    gap: 10px 14px;
+    gap: 10px;
   }
   .hero,
   .product-hero {
@@ -1451,8 +1467,7 @@ footer a {
     padding: 6px 10px;
   }
   .language-picker {
-    width: 100%;
-    justify-content: space-between;
+    width: auto;
   }
   .language-picker select {
     min-width: 128px;

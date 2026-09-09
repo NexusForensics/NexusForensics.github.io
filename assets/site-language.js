@@ -1102,7 +1102,7 @@
     if (!nav || nav.querySelector('[data-language-select]')) return;
     const wrap = document.createElement('label');
     wrap.className = 'language-picker';
-    wrap.innerHTML = `<span>Language</span><select data-language-select aria-label="Language">${Object.entries(languages).map(([value, label]) => `<option value="${value}">${label}</option>`).join('')}</select>`;
+    wrap.innerHTML = `<select data-language-select aria-label="Language">${Object.entries(languages).map(([value, label]) => `<option value="${value}">${label}</option>`).join('')}</select>`;
     const select = wrap.querySelector('select');
     select.value = current;
     select.addEventListener('change', () => {
