@@ -166,7 +166,7 @@
       'Shared Network Index': 'Index réseau partagé',
       'Team deployments extend detection beyond one computer through a governed shared index for authorized investigators.': 'Les déploiements d’équipe étendent la détection au-delà d’un ordinateur grâce à un index partagé gouverné pour les enquêteurs autorisés.',
       'Supported Platforms': 'Plateformes prises en charge',
-      'Real-time capture across public social and marketplace platforms.': 'Capture en temps réel sur les plateformes sociales publiques et de marché.',
+      'Real-time capture across public social and marketplace platforms.': 'Capturez en temps réel sur les réseaux sociaux.',
       'Each module supports investigator-directed capture of public content as it appears on screen, with platform-specific workflows moving through final release validation at different stages.': 'Chaque module prend en charge la capture dirigée par l’enquêteur du contenu public tel qu’il apparaît à l’écran, avec des flux propres à chaque plateforme à différents stades de validation finale.',
       'Platform note:': 'Note sur les plateformes :',
       'Support refers to compatibility with visible, user-directed workflows. It does not imply endorsement or authorization by the named platforms. Investigators remain responsible for following applicable law, agency policy, account permissions, and current platform terms.': 'Le soutien désigne la compatibilité avec les flux visibles dirigés par l’utilisateur. Il n’implique aucune approbation ni autorisation des plateformes nommées. Les enquêteurs demeurent responsables de respecter la loi applicable, les politiques d’agence, les permissions de compte et les conditions courantes des plateformes.',
