@@ -300,7 +300,7 @@
       'Encrypted repositories and retention controls': 'Dépôts chiffrés et contrôles de conservation',
       'Privacy Architecture': 'Architecture de confidentialité',
       'A closed-loop model for sensitive investigative material.': 'Un modèle fermé pour le matériel d’enquête sensible.',
-      'Zero-cloud evidence handling': 'Traitement de preuve sans nuage',
+      'Zero-cloud evidence handling': 'Traitement de preuves Local',
       'No vendor access': 'Aucun accès fournisseur',
       'Encrypted local repositories': 'Dépôts locaux chiffrés',
       'Retention boundaries': 'Limites de conservation',
