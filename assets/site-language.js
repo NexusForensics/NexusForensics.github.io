@@ -303,7 +303,7 @@
       'Zero-cloud evidence handling': 'Traitement de preuves Local',
       'No vendor access': 'Aucun accès fournisseur',
       'Encrypted local repositories': 'Dépôts locaux cryptés',
-      'Retention boundaries': 'Limites de conservation',
+      'Retention boundaries': 'politique de conservation des données',
       'Visible-screen capture': 'Capture d’écran visible',
       'Nexus Social Recon Compliance': 'Conformité Nexus Social Recon',
       'A visible-capture mode for platform ToS-conscious investigations.': 'Un mode de capture visible pour les enquêtes conscientes des conditions des plateformes.',
