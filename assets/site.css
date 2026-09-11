@@ -1318,6 +1318,11 @@ td:first-child {
   font-size: 18px;
   font-weight: 620;
 }
+.cta .purchase-note {
+  color: #f3d492;
+  font-size: 16px;
+  font-weight: 820;
+}
 .cta-actions {
   display: flex;
   flex-wrap: wrap;

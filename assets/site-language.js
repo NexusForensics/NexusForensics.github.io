@@ -120,6 +120,7 @@
       'Organizations with shared evidence repositories or controlled infrastructure requirements.': 'Organisations ayant des dépôts de preuve partagés ou des exigences d’infrastructure contrôlée.',
       'Build the Nexus package around the investigation.': 'Construire l’ensemble Nexus autour de l’enquête.',
       'Start with public social evidence capture, then add analysis, local intelligence, or team infrastructure as the work requires.': 'Commencer par la capture de preuve sociale publique, puis ajouter l’analyse, le renseignement local ou l’infrastructure d’équipe selon les besoins.',
+      'For purchases of more than two licences, please contact sales.': 'Pour l’achat de plus de deux licences, veuillez contacter les ventes.',
 
       'An investigator-first public evidence intelligence platform for preserving visible social media sources, capturing on-screen comments and media, building a local User Index, finding case signals, and exporting evidence packages that keep the source trail visible.': 'Une plateforme de renseignement de preuve publique axée sur l’enquêteur pour préserver les sources sociales visibles, capturer les commentaires et médias à l’écran, créer un index utilisateur local, trouver les signaux de dossier et exporter des ensembles de preuve avec piste source visible.',
       'Move from public content to case-ready evidence.': 'Passer du contenu public à une preuve prête pour le dossier.',
@@ -456,6 +457,7 @@
       'Organizations with shared evidence repositories or controlled infrastructure requirements.': 'Organizaciones con repositorios de evidencia compartidos o requisitos de infraestructura controlada.',
       'Build the Nexus package around the investigation.': 'Construya el paquete Nexus alrededor de la investigacion.',
       'Start with public social evidence capture, then add analysis, local intelligence, or team infrastructure as the work requires.': 'Empiece con captura de evidencia social publica y agregue analisis, inteligencia local o infraestructura de equipo segun el trabajo.',
+      'For purchases of more than two licences, please contact sales.': 'Para compras de más de dos licencias, contacte con ventas.',
 
       'An investigator-first public evidence intelligence platform for preserving visible social media sources, capturing on-screen comments and media, building a local User Index, finding case signals, and exporting evidence packages that keep the source trail visible.': 'Una plataforma de inteligencia de evidencia publica centrada en el investigador para preservar fuentes sociales visibles, capturar comentarios y medios en pantalla, crear un Indice de Usuarios local, encontrar senales de caso y exportar paquetes de evidencia con ruta de fuente visible.',
       'Move from public content to case-ready evidence.': 'Pase de contenido publico a evidencia lista para el caso.',
