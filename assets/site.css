@@ -541,6 +541,24 @@ main section,
   margin: 10px 0 0;
   color: var(--muted);
 }
+.step-icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 14px;
+  color: var(--gold);
+}
+.step-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.timeline-card .step-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
+  color: var(--teal);
+}
 .home-workflow-number {
   position: absolute;
   top: -50px;
@@ -1134,6 +1152,9 @@ body.lightbox-open {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
+}
+.pricing-grid.three-up {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .pricing-card {
