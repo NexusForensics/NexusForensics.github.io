@@ -1431,6 +1431,7 @@ footer a:hover { color: var(--gold-bright); }
   .platform-support-grid,
   .screenshot-gallery,
   .pricing-grid,
+  .pricing-grid.three-up,
   .proof-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1566,6 +1567,7 @@ footer a:hover { color: var(--gold-bright); }
   .platform-support-grid,
   .screenshot-gallery,
   .pricing-grid,
+  .pricing-grid.three-up,
   .timeline-grid,
   .proof-grid {
     grid-template-columns: 1fr;
