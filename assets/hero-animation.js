@@ -155,7 +155,7 @@
       path.setAttribute('stroke-dashoffset', -a);
       const pt = path.getPointAtLength(s);
       head.setAttribute('cx', pt.x); head.setAttribute('cy', pt.y);
-      if (p >= 1 && !landed) { landed = true; flare(target[0], target[1]); head.remove(); }
+      if (p >= 1 && !landed) { landed = true; flare(target[0], target[1]); head.remove(); showCard(target); }
       if (p >= 1) {
         const f = (t - dur) / 500;
         if (f >= 1) { path.remove(); return true; }
@@ -273,25 +273,33 @@
   ];
   const inUse = new Set();
   const labelsInUse = new Set();
-  function runSlot(slot) {
+  // A card only appears when a packet lands on a red node: it takes a free slot on the right.
+  function showCard(from) {
+    const free = SLOTS.filter((sl) => !sl.busy);
+    if (free.length) runSlot(pick(free), from);
+  }
+  function runSlot(slot, from) {
+    slot.busy = true;
     let ai; do { ai = Math.floor(Math.random() * AV.length); } while (inUse.has(ai));
     let li; do { li = Math.floor(Math.random() * LABELS.length); } while (labelsInUse.has(li));
     inUse.add(ai); labelsInUse.add(li);
     const a = AV[ai], text = LABELS[li](), alert = text.indexOf('CASE MATCH') === 0;
     const col = alert ? '#ff6b70' : '#5cc8ff', txtCol = alert ? '#ffd0d2' : '#9fdcff';
     const w = text.length * 6.3 + 18;
+    const link = el('line', { x1: from[0], y1: from[1], x2: slot.x, y2: slot.y - 8, stroke: col, 'stroke-width': 1, 'stroke-dasharray': '3 4', opacity: 0 }, gFaces);
     const g = el('g', { opacity: 0 }, gFaces);
     g.innerHTML = `<g clip-path="url(#fxFaceClip)">${avatarMarkup(a)}<rect class="scan" width="64" height="2.2" fill="${col}" opacity=".7"/><rect class="scan" width="64" height="14" y="-14" fill="${col}" opacity=".12"/></g>
       <path class="brk" d="M-6 6V-6H6 M58 -6H70V6 M70 58V70H58 M6 70H-6V58" stroke="${col}" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       <rect x="${32 - w / 2}" y="74" width="${w}" height="15" rx="3" fill="${alert ? '#2a0d12' : '#07101e'}" opacity=".9" stroke="${alert ? 'rgba(255,107,112,.7)' : 'rgba(92,200,255,.45)'}"/>
       <text x="32" y="85" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9" font-weight="600" letter-spacing=".8" fill="${txtCol}">${text}</text>`;
     const scans = g.querySelectorAll('.scan'), brk = g.querySelector('.brk');
-    const fadeIn = 800, hold = rand(2600, 4200), fadeOut = 800, total = fadeIn + hold + fadeOut;
+    const fadeIn = 700, hold = rand(2400, 3600), fadeOut = 800, total = fadeIn + hold + fadeOut;
     spawn((t) => {
-      if (t >= total) { g.remove(); inUse.delete(ai); labelsInUse.delete(li); after(rand(500, 1800), () => runSlot(slot)); return true; }
+      if (t >= total) { g.remove(); link.remove(); inUse.delete(ai); labelsInUse.delete(li); slot.busy = false; return true; }
       const o = t < fadeIn ? ease.out(t / fadeIn) : t > fadeIn + hold ? 1 - ease.out((t - fadeIn - hold) / fadeOut) : 1;
       const sc = (.92 + .08 * o) * 1.15;
       g.setAttribute('opacity', (.92 * o).toFixed(3));
+      link.setAttribute('opacity', (.5 * o).toFixed(3));
       g.setAttribute('transform', `translate(${slot.x} ${slot.y - 8}) scale(${sc}) translate(-32 -32)`);
       const sweep = ((t % 1500) / 1500) * 78 - 8;
       scans[0].setAttribute('y', sweep); scans[1].setAttribute('y', sweep - 14);
@@ -303,7 +311,6 @@
   /* ---------- go ---------- */
   after(500, runPulse);
   after(300, ambient);
-  SLOTS.forEach((s, i) => after(700 + i * 1100 + rand(0, 500), () => runSlot(s)));
 
   let inView = true;
   const sync = () => (inView && !document.hidden ? start() : stop());
