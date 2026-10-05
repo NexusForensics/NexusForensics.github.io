@@ -262,7 +262,14 @@
     () => 'IMAGE INDEXED',
     () => 'SHA-256 HASH',
     () => 'OCR MATCH',
-    () => 'CASE MATCH HIT!'
+    () => 'CASE MATCH HIT!',
+    () => 'PROFILE MATCH',
+    () => 'PROFILE IMAGE',
+    () => 'FRIENDS DETECTED',
+    () => 'AVATAR INDEXED',
+    () => 'IMAGE ANALYZED',
+    () => 'IDENTITY PHOTO',
+    () => 'ACCOUNT FOUND'
   ];
   const inUse = new Set();
   const labelsInUse = new Set();
@@ -270,7 +277,7 @@
     let ai; do { ai = Math.floor(Math.random() * AV.length); } while (inUse.has(ai));
     let li; do { li = Math.floor(Math.random() * LABELS.length); } while (labelsInUse.has(li));
     inUse.add(ai); labelsInUse.add(li);
-    const a = AV[ai], text = LABELS[li](), alert = text.indexOf('HIT') > -1;
+    const a = AV[ai], text = LABELS[li](), alert = text.indexOf('CASE MATCH') === 0;
     const col = alert ? '#ff6b70' : '#5cc8ff', txtCol = alert ? '#ffd0d2' : '#9fdcff';
     const w = text.length * 6.3 + 18;
     const g = el('g', { opacity: 0 }, gFaces);
