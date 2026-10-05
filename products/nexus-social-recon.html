@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nexus Social Recon | Nexus Forensics</title>
+  <title>Nexus Social Recon | Digital Footprint Intelligence</title>
   <meta name="description" content="Nexus Social Recon is Nexus Forensics' public social media evidence intelligence platform for capture, OCR, User Index enrichment, local cross-case lookup, targets, reports, and case packages." />
   <meta property="og:title" content="Nexus Social Recon" />
   <meta property="og:description" content="Public social media evidence capture, intelligence, and investigator-controlled reporting." />
@@ -11,48 +11,138 @@
   <meta property="og:image" content="../assets/nexus-forensics-logo-white-20260909-transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/site.css?v=20260919-01" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css?v=20261005-04" />
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="../index.html" aria-label="Nexus Forensics home">
-      <img src="../assets/nexus-forensics-logo-white-20260909-transparent.png" alt="Nexus Forensics Inc." />
+      <span class="brand-mark"><img src="../assets/nexus-forensics-logo-white-20260909-transparent.png" alt="" /></span>
+      <span class="brand-text"><span class="brand-name">Nexus Forensics</span><span class="brand-slogan">Digital Footprint Intelligence</span></span>
     </a>
     <nav class="site-nav" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#philosophy">Philosophy</a>
+      <a href="../index.html#methodology">Methodology</a>
       <a href="nexus-social-recon.html" aria-current="page">Nexus Social Recon</a>
       <a href="../pricing.html">Pricing</a>
-      <a href="../how-nexus-is-different.html">Why Nexus</a>
       <a href="../compliance-data-privacy.html">Compliance</a>
-      <a class="contact-link" href="mailto:sales@nexus-forensics.ca">Contact</a>
+      <a class="contact-link" href="../index.html#contact">Contact Us</a>
     </nav>
   </header>
 
-  <section class="product-hero social">
+  <section class="product-hero social center">
+    <div class="hero-banner" aria-hidden="true"></div>
     <div class="hero-inner">
-      <img class="product-logo" src="../assets/nexus-forensics-logo-white-20260909-transparent.png" alt="Nexus Social Recon" />
-      <p class="eyebrow">Social Evidence Intelligence</p>
+      <p class="eyebrow">Nexus Forensics Product</p>
+      <p class="hero-slogan">Digital Footprint Intelligence</p>
       <h1>Nexus Social Recon</h1>
       <p class="hero-lede">An investigator-first public evidence intelligence platform for preserving visible social media sources, capturing on-screen comments and media, building a local User Index, finding case signals, and exporting evidence packages that keep the source trail visible.</p>
       <div class="hero-actions">
-        <a class="button primary" href="#workflow">See workflow</a>
-        <a class="button line" href="#platforms">Supported platforms</a>
+        <a class="button primary" href="#features">See features</a>
+        <a class="button line" href="#methodology">Methodology</a>
         <a class="button line" href="#tiers">See pricing</a>
         <a class="button line" href="mailto:sales@nexus-forensics.ca">Contact sales</a>
       </div>
     </div>
   </section>
 
+  <nav class="subnav" aria-label="Nexus Social Recon sections">
+    <div class="subnav-inner">
+      <a href="#features">Features</a>
+      <a href="#actions">Actions</a>
+      <a href="#methodology">Methodology</a>
+      <a href="#reports">Reports</a>
+      <a href="#hashing">Hashing</a>
+      <a href="#encryption">Encryption</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#tiers">Pricing</a>
+    </div>
+  </nav>
+
   <main>
-    <section>
+    <section id="features">
       <div class="section-inner">
         <div class="section-head">
           <div>
-            <p class="kicker">Investigator Workflow</p>
-            <h2>Move from public content to case-ready evidence.</h2>
+            <p class="kicker">Features</p>
+            <h2>Everything an investigator needs to preserve and understand public evidence.</h2>
           </div>
           <p class="lead">Nexus Social Recon brings collection, review, connection, and reporting into one investigator-controlled workflow.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2h6l2 2h3v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8z"/><circle cx="12" cy="13" r="3.4"/></svg></span>
+            <h3>Visible capture</h3>
+            <p>Profiles, posts, comments, replies, images, and selected video frames, each kept with its source URL.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg></span>
+            <h3>OCR and keyword search</h3>
+            <p>Search the text in every preserved capture, then bookmark the findings that matter.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="11" r="3"/><path d="M7.5 17a5 5 0 0 1 9 0"/></svg></span>
+            <h3>Face, object, and detail matching</h3>
+            <p>Compare faces, objects, and visual details across captures. Matches show thumbnails and context.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 5.6M18 14.5a6 6 0 0 1 3 5.5"/></svg></span>
+            <h3>User Index</h3>
+            <p>Cards for names, platform IDs, aliases, phone numbers, emails, and profile URLs tied to the case.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></span>
+            <h3>Local encrypted index</h3>
+            <p>OCR text, identifiers, media signatures, and targets indexed on the investigator's workstation.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 21h4"/></svg></span>
+            <h3>Previous capture detection</h3>
+            <p>Alerts when a profile, post, or exact source URL was already preserved in an available case.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+            <h3>Targets and alerts</h3>
+            <p>Promote faces, logos, and distinctive objects into a local target index for explainable future-case hits.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7z"/></svg></span>
+            <h3>Case management</h3>
+            <p>Local case workspaces with agency and investigator context, bookmarks, notes, and audit logging.</p>
+          </article>
+        </div>
+        <p class="workflow-note"><strong>Availability:</strong> Some capabilities, such as OCR, facial recognition, and the shared Team Index, depend on licence tier or add-on modules. See pricing below.</p>
+      </div>
+    </section>
+
+    <section class="band" id="actions">
+      <div class="section-inner">
+        <div class="section-head" id="investigation-path">
+          <div>
+            <p class="kicker">Actions</p>
+            <h2>Capture first, then enrich without losing source context.</h2>
+          </div>
+          <p class="lead">The workflow follows how investigators actually move through social evidence: preserve the page, mark what matters, index local signals, compare across unlocked cases when allowed, and package the record.</p>
+        </div>
+        <div class="timeline-grid">
+          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7z"/></svg></span><span>Step 1</span><b>Open a case</b><p>Start from a local case workspace with agency and investigator context.</p></article>
+          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2h6l2 2h3v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8z"/><circle cx="12" cy="13" r="3.4"/></svg></span><span>Step 2</span><b>Capture sources</b><p>Save visible public pages, media, comments, and source-linked records.</p></article>
+          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-6-4-6 4z"/></svg></span><span>Step 3</span><b>Bookmark findings</b><p>Keep the strongest evidence visible across platform modules.</p></article>
+          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="8" height="8" rx="3"/><rect x="13" y="8" width="8" height="8" rx="3"/><path d="M11 12h2"/></svg></span><span>Step 4</span><b>Index and compare</b><p>OCR, User Index links, friend identifiers, target checks, visual matching, and local cross-case lookup.</p></article>
+          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M12 11v6"/><path d="M9.5 14.5 12 17l2.5-2.5"/></svg></span><span>Step 5</span><b>Export package</b><p>Generate reports, media folders, hashes, and disclosure-ready files.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methodology">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Methodology</p>
+            <h2>Move from public content to case-ready evidence.</h2>
+          </div>
+          <p class="lead">The same method applies on every platform module, so a case reads the same no matter where the evidence came from.</p>
         </div>
         <div class="feature-grid workflow-grid">
           <article class="feature-card">
@@ -95,11 +185,16 @@
             </ul>
           </article>
         </div>
-        <p class="workflow-note"><strong>Security direction:</strong> Core workflows are local-first, with encryption and key-management work continuing as a release-critical enhancement.</p>
+        <div class="stat-row" aria-label="Methodology guardrails">
+          <div class="stat"><b>No scraping</b><span>Only what the investigator sees and selects</span></div>
+          <div class="stat"><b>Audit log</b><span>Investigator actions recorded in the case</span></div>
+          <div class="stat"><b>Integrity</b><span>SHA-256 hashes and evidence manifests</span></div>
+          <div class="stat"><b>Explainable</b><span>Matches shown with thumbnails, links, and context</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="band">
+<section class="band">
       <div class="section-inner">
         <div class="section-head">
           <div>
@@ -131,41 +226,121 @@
       </div>
     </section>
 
-    <section>
+    <section class="band" id="reports">
       <div class="section-inner">
         <div class="section-head">
           <div>
-            <p class="kicker">Latest Direction</p>
-            <h2>Local intelligence now sits closer to the daily workflow.</h2>
+            <p class="kicker">Reports</p>
+            <h2>Evidence reports a reviewer can follow.</h2>
           </div>
-          <p class="lead">The current direction separates same-computer local intelligence from shared network intelligence, so investigators can use local cross-case memory while reserving shared lookup for governed team deployments.</p>
+          <p class="lead">Nexus builds structured HTML reports from the investigator's preserved material. Every item links back to its source, its local file, and its hash.</p>
         </div>
-        <div class="feature-grid">
+        <div class="split">
+          <div>
+            <div class="feature-grid three" style="grid-template-columns:repeat(2,minmax(0,1fr))">
           <article class="feature-card">
-            <div class="accent-bar"></div>
-            <h3>Local Index</h3>
-            <p>Investigator cases can index OCR text, User Index identifiers, captured friend names, media signatures, targets, faces, objects, and case context on the local computer.</p>
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h4"/></svg></span>
+            <h3>Source-linked reports</h3>
+            <p>Thumbnails, timestamps, source links, and local paths for each captured item.</p>
           </article>
           <article class="feature-card">
-            <div class="accent-bar"></div>
-            <h3>Local Cross-Case Lookup</h3>
-            <p>Compare local cases for text, User Index links, friend identifiers, OCR, comments, captions, faces, thumbnails, objects, and visual signatures.</p>
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg></span>
+            <h3>Text and context</h3>
+            <p>OCR text, comments, captions, and media details beside the capture.</p>
           </article>
           <article class="feature-card">
-            <div class="accent-bar"></div>
-            <h3>Global Targets</h3>
-            <p>Promote faces, logos, and distinctive objects into a local target index for same-computer future-case recognition and explainable hit reports.</p>
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14M5 15h14M10 4L8 20M16 4l-2 16"/></svg></span>
+            <h3>Hashes and manifests</h3>
+            <p>SHA-256 hash for every file, plus an evidence manifest for the package.</p>
           </article>
           <article class="feature-card">
-            <div class="accent-bar"></div>
-            <h3>Shared Network Index</h3>
-            <p>Team deployments extend detection beyond one computer through a governed shared index for authorized investigators.</p>
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 5.6M18 14.5a6 6 0 0 1 3 5.5"/></svg></span>
+            <h3>Person and activity reports</h3>
+            <p>Single-person and activity reports, kept separate so nothing about other people is included.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span>
+            <h3>Investigator narrative</h3>
+            <p>A factual, chronological summary of what the investigator did, beside the technical record.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+            <h3>Protected export packages</h3>
+            <p>Report packages can be password-protected with AES-256 for disclosure.</p>
+          </article>
+            </div>
+          </div>
+          <aside class="visual-panel">
+            <img class="lightbox-trigger" src="../assets/tiktok-video-report-capture-example-preview-2x.jpg" data-lightbox-src="../assets/tiktok-video-report-capture-example.jpg" data-lightbox-title="TikTok video capture report example" alt="Nexus Social Recon evidence report for a TikTok video, with OCR text and source details" loading="lazy" decoding="async" />
+            <p class="visual-caption">A video capture report: the selected frame, source details, and OCR text on one reviewable page.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="hashing">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Hashing and Integrity</p>
+            <h2>Every preserved file carries a fingerprint.</h2>
+          </div>
+          <p class="lead">Hashes let a reviewer show that a file in the report is the same file that was captured, without taking anyone's word for it.</p>
+        </div>
+        <div class="spec-grid">
+          <article class="spec-card">
+            <span class="spec-tag">SHA-256</span>
+            <h3>Hashed when it is saved</h3>
+            <p>Captured screenshots, media, and exported files are hashed with SHA-256. The hash is written into the evidence report and the manifest next to the source URL and local path.</p>
+            <pre class="hash-sample" aria-label="Illustrative manifest layout"><span class="dim"># illustrative manifest layout</span>
+file          sha256            source_url
+capture-001   &lt;64-character hash&gt;   https://&hellip;</pre>
+          </article>
+          <article class="spec-card">
+            <span class="spec-tag">Verification</span>
+            <h3>Re-check any file, any time</h3>
+            <p>The Nexus Hashing Tool recalculates SHA-256 for any file on the same computer and lists the name, size, and hash, so it can be compared with the report.</p>
+            <p>Investigator actions are written to an audit log in the case, so the handling of the evidence can be reviewed as well as the evidence itself.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="band" id="platforms">
+    <section class="band dark" id="encryption">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Encryption</p>
+            <h2>Case data protected at rest, on the investigator's own machine.</h2>
+          </div>
+          <p class="lead">Nexus is local-first: case files stay on the investigator's workstation or organization-controlled storage, and cloud processing is not required.</p>
+        </div>
+        <div class="spec-grid">
+          <article class="spec-card">
+            <span class="spec-tag">AES-256</span>
+            <h3>Encrypted case vaults</h3>
+            <p>A case can live in its own AES-256 encrypted volume that is mounted only while the case is open and unmounted when it is closed. Available on macOS.</p>
+          </article>
+          <article class="spec-card">
+            <span class="spec-tag">Key management</span>
+            <h3>Passphrase and recovery key</h3>
+            <p>A vault opens with the investigator's passphrase or a one-time recovery key. Touch ID quick unlock is available on supported Macs. Keys are wrapped with scrypt and AES-256-GCM.</p>
+          </article>
+          <article class="spec-card">
+            <span class="spec-tag">AES-256-GCM</span>
+            <h3>Encrypted local index</h3>
+            <p>The local cross-case index of OCR text, identifiers, and media signatures is encrypted, so cross-case memory does not leave searchable plaintext on disk.</p>
+          </article>
+          <article class="spec-card">
+            <span class="spec-tag">AES-256</span>
+            <h3>Protected export packages</h3>
+            <p>Report packages can be password-protected for disclosure, with the password stored encrypted in the system keychain.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+<section class="band" id="platforms">
       <div class="section-inner">
         <div class="section-head">
           <div>
@@ -284,25 +459,6 @@
       </div>
     </section>
 
-    <section class="band" id="workflow">
-      <div class="section-inner">
-        <div class="section-head" id="investigation-path">
-          <div>
-            <p class="kicker">Investigation Workflow</p>
-            <h2>Capture first, then enrich without losing source context.</h2>
-          </div>
-          <p class="lead">The workflow follows how investigators actually move through social evidence: preserve the page, mark what matters, index local signals, compare across unlocked cases when allowed, and package the record.</p>
-        </div>
-        <div class="timeline-grid">
-          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7z"/></svg></span><span>Step 1</span><b>Open a case</b><p>Start from a local case workspace with agency and investigator context.</p></article>
-          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2h6l2 2h3v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8z"/><circle cx="12" cy="13" r="3.4"/></svg></span><span>Step 2</span><b>Capture sources</b><p>Save visible public pages, media, comments, and source-linked records.</p></article>
-          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-6-4-6 4z"/></svg></span><span>Step 3</span><b>Bookmark findings</b><p>Keep the strongest evidence visible across platform modules.</p></article>
-          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="8" height="8" rx="3"/><rect x="13" y="8" width="8" height="8" rx="3"/><path d="M11 12h2"/></svg></span><span>Step 4</span><b>Index and compare</b><p>OCR, User Index links, friend identifiers, target checks, visual matching, and local cross-case lookup.</p></article>
-          <article class="timeline-card"><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M12 11v6"/><path d="M9.5 14.5 12 17l2.5-2.5"/></svg></span><span>Step 5</span><b>Export package</b><p>Generate reports, media folders, hashes, and disclosure-ready files.</p></article>
-        </div>
-      </div>
-    </section>
-
     <section>
       <div class="section-inner">
         <div class="section-head">
@@ -331,7 +487,7 @@
       </div>
     </section>
 
-    <section class="band" id="tiers">
+<section class="band" id="tiers">
       <div class="section-inner">
         <div class="section-head">
           <div>
@@ -404,11 +560,11 @@
 
   <footer>
     <div class="footer-inner">
-      <span>Nexus Social Recon by Nexus Forensics Inc.</span>
-      <span><a href="../index.html">Home</a> &middot; <a href="../compliance-data-privacy.html">Compliance</a> &middot; <a href="../terms-and-conditions.html">Terms</a> &middot; <a href="../privacy-policy.html">Privacy</a> &middot; <a href="../refund-policy.html">Refunds</a> &middot; <a href="mailto:sales@nexus-forensics.ca">sales@nexus-forensics.ca</a></span>
+      <span class="footer-brand"><b>Nexus Social Recon by Nexus Forensics Inc.</b><span>Digital Footprint Intelligence</span></span>
+      <span><a href="../index.html">Home</a> &middot; <a href="../how-nexus-is-different.html">Why Nexus</a> &middot; <a href="../compliance-data-privacy.html">Compliance</a> &middot; <a href="../terms-and-conditions.html">Terms</a> &middot; <a href="../privacy-policy.html">Privacy</a> &middot; <a href="../refund-policy.html">Refunds</a> &middot; <a href="mailto:sales@nexus-forensics.ca">sales@nexus-forensics.ca</a></span>
     </div>
   </footer>
-  <script src="../assets/site-language.js?v=20260911-01" defer></script>
+  <script src="../assets/site-language.js?v=20261005-02" defer></script>
   <script src="../assets/site-lightbox.js?v=20260909-02" defer></script>
 </body>
 </html>
