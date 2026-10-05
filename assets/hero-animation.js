@@ -92,15 +92,10 @@
     after(260, () => ripple(x, y, 24, 1100));
   }
   function ambient() {
-    if (Math.random() < .55) {
-      const h = pick(G.hot);
-      heat(h[0], h[1], { size: rand(24, 38), life: rand(1200, 1900), strength: rand(.35, .6) });
-      if (Math.random() < .5) ripple(h[0], h[1], rand(20, 30), 1100);
-    } else {
-      const d = pick(G.dots);
-      heat(d[0], d[1], { size: rand(14, 24), life: rand(900, 1500), strength: rand(.35, .65), amber: Math.random() < .55 });
-    }
-    after(rand(260, 780), ambient);
+    // random heat on the map itself; the red nodes only react when a packet lands on them
+    const d = pick(G.dots);
+    heat(d[0], d[1], { size: rand(14, 24), life: rand(900, 1500), strength: rand(.35, .65), amber: Math.random() < .55 });
+    after(rand(220, 600), ambient);
   }
 
   /* ---------- platform marks (simplified, 40x40, centred on 0,0) ---------- */
@@ -255,8 +250,7 @@
       ${glasses}
       <path d="M28.6 35.2 q3.4 2.6 6.8 0" stroke="${a.beard ? '#d89a8f' : '#8a4646'}" stroke-width="1.3" fill="none" stroke-linecap="round"/>`;
   }
-  // Staggered row inside the safe vertical band so frame + caption are never cropped.
-  const SLOTS = [{ x: 1515, y: 195 }, { x: 1395, y: 238 }, { x: 1275, y: 198 }];
+  // A card appears only when a packet lands on a red node, right beside that node, and leaves quickly.
   const LABELS = [
     () => `MATCH ${Math.floor(rand(90, 99))}%`,
     () => 'IMAGE INDEXED',
@@ -273,35 +267,37 @@
   ];
   const inUse = new Set();
   const labelsInUse = new Set();
-  // A card only appears when a packet lands on a red node: it takes a free slot on the right.
+  const cards = [];
+  const SAFE_Y = [138, 268]; // keeps the whole frame + caption inside the visible banner band
   function showCard(from) {
-    const free = SLOTS.filter((sl) => !sl.busy);
-    if (free.length) runSlot(pick(free), from);
+    const side = from[0] > 1440 ? -1 : 1;
+    const x = Math.max(70, Math.min(1530, from[0] + side * 62));
+    const y = Math.max(SAFE_Y[0], Math.min(SAFE_Y[1], from[1]));
+    // skip if it would sit on top of a card that is still showing
+    if (cards.some((c) => Math.abs(c.x - x) < 125 && Math.abs(c.y - y) < 112)) return;
+    runCard({ x, y });
   }
-  function runSlot(slot, from) {
-    slot.busy = true;
+  function runCard(pos) {
     let ai; do { ai = Math.floor(Math.random() * AV.length); } while (inUse.has(ai));
     let li; do { li = Math.floor(Math.random() * LABELS.length); } while (labelsInUse.has(li));
-    inUse.add(ai); labelsInUse.add(li);
+    inUse.add(ai); labelsInUse.add(li); cards.push(pos);
     const a = AV[ai], text = LABELS[li](), alert = text.indexOf('CASE MATCH') === 0;
     const col = alert ? '#ff6b70' : '#5cc8ff', txtCol = alert ? '#ffd0d2' : '#9fdcff';
     const w = text.length * 6.3 + 18;
-    const link = el('line', { x1: from[0], y1: from[1], x2: slot.x, y2: slot.y - 8, stroke: col, 'stroke-width': 1, 'stroke-dasharray': '3 4', opacity: 0 }, gFaces);
     const g = el('g', { opacity: 0 }, gFaces);
     g.innerHTML = `<g clip-path="url(#fxFaceClip)">${avatarMarkup(a)}<rect class="scan" width="64" height="2.2" fill="${col}" opacity=".7"/><rect class="scan" width="64" height="14" y="-14" fill="${col}" opacity=".12"/></g>
       <path class="brk" d="M-6 6V-6H6 M58 -6H70V6 M70 58V70H58 M6 70H-6V58" stroke="${col}" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       <rect x="${32 - w / 2}" y="74" width="${w}" height="15" rx="3" fill="${alert ? '#2a0d12' : '#07101e'}" opacity=".9" stroke="${alert ? 'rgba(255,107,112,.7)' : 'rgba(92,200,255,.45)'}"/>
       <text x="32" y="85" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9" font-weight="600" letter-spacing=".8" fill="${txtCol}">${text}</text>`;
     const scans = g.querySelectorAll('.scan'), brk = g.querySelector('.brk');
-    const fadeIn = 700, hold = rand(2400, 3600), fadeOut = 800, total = fadeIn + hold + fadeOut;
+    const fadeIn = 320, hold = rand(1100, 1700), fadeOut = 450, total = fadeIn + hold + fadeOut;
     spawn((t) => {
-      if (t >= total) { g.remove(); link.remove(); inUse.delete(ai); labelsInUse.delete(li); slot.busy = false; return true; }
+      if (t >= total) { g.remove(); inUse.delete(ai); labelsInUse.delete(li); cards.splice(cards.indexOf(pos), 1); return true; }
       const o = t < fadeIn ? ease.out(t / fadeIn) : t > fadeIn + hold ? 1 - ease.out((t - fadeIn - hold) / fadeOut) : 1;
-      const sc = (.92 + .08 * o) * 1.15;
-      g.setAttribute('opacity', (.92 * o).toFixed(3));
-      link.setAttribute('opacity', (.5 * o).toFixed(3));
-      g.setAttribute('transform', `translate(${slot.x} ${slot.y - 8}) scale(${sc}) translate(-32 -32)`);
-      const sweep = ((t % 1500) / 1500) * 78 - 8;
+      const sc = (.9 + .1 * o) * 1.15;
+      g.setAttribute('opacity', (.95 * o).toFixed(3));
+      g.setAttribute('transform', `translate(${pos.x} ${pos.y - 8}) scale(${sc}) translate(-32 -32)`);
+      const sweep = ((t % 900) / 900) * 78 - 8;
       scans[0].setAttribute('y', sweep); scans[1].setAttribute('y', sweep - 14);
       if (alert) brk.setAttribute('stroke-opacity', (.65 + .35 * Math.sin(t / 110)).toFixed(2));
       return false;
