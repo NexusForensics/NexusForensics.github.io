@@ -255,27 +255,40 @@
       ${glasses}
       <path d="M28.6 35.2 q3.4 2.6 6.8 0" stroke="${a.beard ? '#d89a8f' : '#8a4646'}" stroke-width="1.3" fill="none" stroke-linecap="round"/>`;
   }
-  const SLOTS = [{ x: 1490, y: 150 }, { x: 1490, y: 275 }, { x: 1235, y: 262 }];
+  // Staggered row inside the safe vertical band so frame + caption are never cropped.
+  const SLOTS = [{ x: 1515, y: 195 }, { x: 1395, y: 238 }, { x: 1275, y: 198 }];
+  const LABELS = [
+    () => `MATCH ${Math.floor(rand(90, 99))}%`,
+    () => 'IMAGE INDEXED',
+    () => 'SHA-256 HASH',
+    () => 'OCR MATCH',
+    () => 'CASE MATCH HIT!'
+  ];
   const inUse = new Set();
+  const labelsInUse = new Set();
   function runSlot(slot) {
     let ai; do { ai = Math.floor(Math.random() * AV.length); } while (inUse.has(ai));
-    inUse.add(ai);
-    const a = AV[ai], pct = Math.floor(rand(86, 99));
+    let li; do { li = Math.floor(Math.random() * LABELS.length); } while (labelsInUse.has(li));
+    inUse.add(ai); labelsInUse.add(li);
+    const a = AV[ai], text = LABELS[li](), alert = text.indexOf('HIT') > -1;
+    const col = alert ? '#ff6b70' : '#5cc8ff', txtCol = alert ? '#ffd0d2' : '#9fdcff';
+    const w = text.length * 6.3 + 18;
     const g = el('g', { opacity: 0 }, gFaces);
-    g.innerHTML = `<g clip-path="url(#fxFaceClip)">${avatarMarkup(a)}<rect class="scan" width="64" height="2.2" fill="#5cc8ff" opacity=".7"/><rect class="scan" width="64" height="14" y="-14" fill="#5cc8ff" opacity=".12"/></g>
-      <path d="M-6 6V-6H6 M58 -6H70V6 M70 58V70H58 M6 70H-6V58" stroke="#5cc8ff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="2" y="74" width="60" height="15" rx="3" fill="#07101e" opacity=".85" stroke="rgba(92,200,255,.45)"/>
-      <text x="32" y="85" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9" font-weight="600" letter-spacing=".8" fill="#9fdcff">MATCH ${pct}%</text>`;
-    const scans = g.querySelectorAll('.scan');
+    g.innerHTML = `<g clip-path="url(#fxFaceClip)">${avatarMarkup(a)}<rect class="scan" width="64" height="2.2" fill="${col}" opacity=".7"/><rect class="scan" width="64" height="14" y="-14" fill="${col}" opacity=".12"/></g>
+      <path class="brk" d="M-6 6V-6H6 M58 -6H70V6 M70 58V70H58 M6 70H-6V58" stroke="${col}" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="${32 - w / 2}" y="74" width="${w}" height="15" rx="3" fill="${alert ? '#2a0d12' : '#07101e'}" opacity=".9" stroke="${alert ? 'rgba(255,107,112,.7)' : 'rgba(92,200,255,.45)'}"/>
+      <text x="32" y="85" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9" font-weight="600" letter-spacing=".8" fill="${txtCol}">${text}</text>`;
+    const scans = g.querySelectorAll('.scan'), brk = g.querySelector('.brk');
     const fadeIn = 800, hold = rand(2600, 4200), fadeOut = 800, total = fadeIn + hold + fadeOut;
     spawn((t) => {
-      if (t >= total) { g.remove(); inUse.delete(ai); after(rand(500, 1800), () => runSlot(slot)); return true; }
+      if (t >= total) { g.remove(); inUse.delete(ai); labelsInUse.delete(li); after(rand(500, 1800), () => runSlot(slot)); return true; }
       const o = t < fadeIn ? ease.out(t / fadeIn) : t > fadeIn + hold ? 1 - ease.out((t - fadeIn - hold) / fadeOut) : 1;
-      const sc = (.92 + .08 * o) * 1.3;
+      const sc = (.92 + .08 * o) * 1.15;
       g.setAttribute('opacity', (.92 * o).toFixed(3));
       g.setAttribute('transform', `translate(${slot.x} ${slot.y - 8}) scale(${sc}) translate(-32 -32)`);
       const sweep = ((t % 1500) / 1500) * 78 - 8;
       scans[0].setAttribute('y', sweep); scans[1].setAttribute('y', sweep - 14);
+      if (alert) brk.setAttribute('stroke-opacity', (.65 + .35 * Math.sin(t / 110)).toFixed(2));
       return false;
     });
   }

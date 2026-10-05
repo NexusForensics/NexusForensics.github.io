@@ -243,7 +243,7 @@ img { display: block; max-width: 100%; }
 .hero-banner {
   position: relative;
   overflow: hidden;
-  height: 232px;
+  height: clamp(232px, 16vw, 300px);
   border-bottom: 1px solid var(--line);
   background:
     linear-gradient(90deg, rgba(10, 20, 36, .55), transparent 18%, transparent 82%, rgba(10, 20, 36, .55)),
