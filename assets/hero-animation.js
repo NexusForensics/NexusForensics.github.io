@@ -104,7 +104,7 @@
   }
 
   /* ---------- platform marks (simplified, 40x40, centred on 0,0) ---------- */
-  const badge = (fill) => `<rect x="-20" y="-20" width="40" height="40" rx="10" fill="${fill}"/><rect x="-20" y="-20" width="40" height="40" rx="10" fill="none" stroke="rgba(255,255,255,.28)"/>`;
+  const badge = (fill) => `<circle r="20" fill="${fill}"/><circle r="20" fill="none" stroke="rgba(255,255,255,.28)"/>`;
   const PLATFORMS = [
     { name: 'FACEBOOK', svg: badge('#1877f2') + '<text x="2" y="14" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="38" fill="#fff">f</text>' },
     { name: 'INSTAGRAM', svg: badge('url(#fxIg)') + '<rect x="-10" y="-10" width="20" height="20" rx="6" fill="none" stroke="#fff" stroke-width="2.4"/><circle r="4.6" fill="none" stroke="#fff" stroke-width="2.4"/><circle cx="6.6" cy="-6.6" r="1.4" fill="#fff"/>' },
@@ -134,7 +134,7 @@
     spawn((t) => {
       let o = 1;
       if (L.die !== null) { const d = (clock - L.die) / 240; if (d >= 1) { g.remove(); return true; } o = 1 - d; }
-      g.setAttribute('transform', `translate(${HUB[0]} ${HUB[1]}) scale(${1.15 * ease.back(Math.min(t / 380, 1))})`);
+      g.setAttribute('transform', `translate(${HUB[0]} ${HUB[1]}) scale(${1.2 * ease.back(Math.min(t / 380, 1))})`);
       g.setAttribute('opacity', o);
       return false;
     });
