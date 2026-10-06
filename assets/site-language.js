@@ -1358,6 +1358,55 @@
     Object.assign(t[lang], values);
   });
 
+  // Added 2026-10-06 when the company home page was made company-only.
+  const revamp2 = {
+  "fr": {
+    "We build investigator-first software that helps investigators understand a digital footprint: what is publicly visible, how it connects, and how to explain it to someone else.": "Nous concevons des logiciels pensés d’abord pour l’enquêteur, afin de l’aider à comprendre une empreinte numérique : ce qui est publiquement visible, comment tout se relie et comment l’expliquer à quelqu’un d’autre.",
+    "About us": "À propos de nous",
+    "Where evidence leads": "Là où mène la preuve",
+    "Our software keeps case data on the investigator's workstation or organization-controlled storage by default.": "Nos logiciels conservent par défaut les données du dossier sur le poste de l’enquêteur ou sur un stockage contrôlé par l’organisation.",
+    "Findings come with supporting context and links, so a reviewer can see why something was flagged instead of facing an unexplained result.": "Les constats sont accompagnés de contexte et de liens : un réviseur voit pourquoi un élément a été signalé, au lieu de faire face à un résultat inexpliqué.",
+    "Search, compare, and flag the material that matters to the investigation.": "Chercher, comparer et signaler le matériel qui compte pour l’enquête.",
+    "Link repeated identifiers, accounts, and media across the case.": "Relier les identifiants, comptes et médias récurrents dans l’ensemble du dossier.",
+    "Produce reports a reviewer can follow back to the original source.": "Produire des rapports qu’un réviseur peut suivre jusqu’à la source d’origine.",
+    "Audit trail": "Piste d’audit",
+    "Handling of the evidence is recorded": "Le traitement de la preuve est consigné",
+    "Every preserved file can be verified later": "Chaque fichier préservé peut être vérifié plus tard",
+    "Findings shown with their context and source": "Constats présentés avec leur contexte et leur source",
+    "Ask about public-source investigation workflows and how Nexus Forensics can help your team.": "Renseignez-vous sur les flux de travail d’enquête en sources publiques et sur la façon dont Nexus Forensics peut aider votre équipe.",
+    "General enquiries": "Demandes générales",
+    "Questions about our work, partnerships, or how we can help an investigation.": "Questions sur notre travail, des partenariats ou la façon dont nous pouvons soutenir une enquête.",
+    "Send an email": "Envoyer un courriel",
+    "Request a conversation": "Demander un entretien",
+    "Tell us about the kind of investigations you run and we will set up a time to talk.": "Parlez-nous du genre d’enquêtes que vous menez et nous fixerons un moment pour en discuter.",
+    "Talk to Nexus Forensics about public-source investigation workflows and how we can help your team.": "Parlez à Nexus Forensics des flux de travail d’enquête en sources publiques et de la façon dont nous pouvons aider votre équipe."
+  },
+  "es": {
+    "We build investigator-first software that helps investigators understand a digital footprint: what is publicly visible, how it connects, and how to explain it to someone else.": "Creamos software pensado primero para el investigador, para ayudarle a comprender una huella digital: qué es públicamente visible, cómo se conecta y cómo explicarlo a otra persona.",
+    "About us": "Sobre nosotros",
+    "Where evidence leads": "Hacia donde lleva la evidencia",
+    "Our software keeps case data on the investigator's workstation or organization-controlled storage by default.": "Nuestro software mantiene por defecto los datos del caso en la estación de trabajo del investigador o en un almacenamiento controlado por la organización.",
+    "Findings come with supporting context and links, so a reviewer can see why something was flagged instead of facing an unexplained result.": "Los hallazgos incluyen contexto y enlaces de respaldo, para que un revisor vea por qué se marcó algo en lugar de enfrentarse a un resultado sin explicación.",
+    "Search, compare, and flag the material that matters to the investigation.": "Buscar, comparar y marcar el material que importa para la investigación.",
+    "Link repeated identifiers, accounts, and media across the case.": "Vincular identificadores, cuentas y medios repetidos en todo el caso.",
+    "Produce reports a reviewer can follow back to the original source.": "Elaborar informes que un revisor pueda seguir hasta la fuente original.",
+    "Audit trail": "Rastro de auditoría",
+    "Handling of the evidence is recorded": "El manejo de la evidencia queda registrado",
+    "Every preserved file can be verified later": "Cada archivo preservado puede verificarse más adelante",
+    "Findings shown with their context and source": "Hallazgos mostrados con su contexto y su fuente",
+    "Ask about public-source investigation workflows and how Nexus Forensics can help your team.": "Consulte sobre flujos de trabajo de investigación con fuentes públicas y cómo Nexus Forensics puede ayudar a su equipo.",
+    "General enquiries": "Consultas generales",
+    "Questions about our work, partnerships, or how we can help an investigation.": "Preguntas sobre nuestro trabajo, alianzas o cómo podemos ayudar a una investigación.",
+    "Send an email": "Enviar un correo",
+    "Request a conversation": "Solicitar una conversación",
+    "Tell us about the kind of investigations you run and we will set up a time to talk.": "Cuéntenos qué tipo de investigaciones realiza y programaremos un momento para conversar.",
+    "Talk to Nexus Forensics about public-source investigation workflows and how we can help your team.": "Hable con Nexus Forensics sobre flujos de trabajo de investigación con fuentes públicas y cómo podemos ayudar a su equipo."
+  }
+};
+  Object.entries(revamp2).forEach(([lang, values]) => {
+    Object.assign(t[lang], values);
+  });
+
   function normalized(text) {
     return String(text || '').replace(/\s+/g, ' ').trim();
   }
