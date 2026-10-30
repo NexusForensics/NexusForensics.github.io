@@ -951,6 +951,23 @@ main section,
 }
 .visual-panel.icon-panel { background: var(--bg); }
 .visual-panel.icon-panel img { width: auto; max-width: min(430px, 86%); margin: 28px auto; }
+.seen-evidence-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  margin-bottom: 16px;
+}
+.seen-evidence-media {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  border-right: 1px solid var(--line);
+  background: radial-gradient(120% 90% at 50% 0%, var(--panel-3) 0%, var(--bg) 72%);
+}
+.seen-evidence-media img { width: 100%; max-width: 340px; border-radius: 14px; box-shadow: var(--shadow); }
+.seen-evidence-copy { display: grid; align-content: center; gap: 14px; padding: 32px 40px; }
+.seen-evidence-copy .kicker { margin: 0; }
+.seen-evidence-copy h3 { margin: 0; font-size: 24px; line-height: 1.25; }
+.seen-evidence-copy p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; }
 
 /* ---------- Product hero ---------- */
 .product-hero { min-height: 0; padding: 0; }
@@ -1434,6 +1451,10 @@ footer a:hover { color: var(--cyan); }
   h2 { font-size: 23px; }
   h3 { font-size: 14.5px; }
   .hero-slogan { font-size: 12.5px; letter-spacing: .18em; }
+  .seen-evidence-panel { grid-template-columns: 1fr; }
+  .seen-evidence-media { padding: 24px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .seen-evidence-copy { padding: 22px 20px 24px; }
+  .seen-evidence-copy h3 { font-size: 19px; }
   .hero-lede,
   .lead,
   .cta p { font-size: 16px; }
