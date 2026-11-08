@@ -656,6 +656,52 @@ main section,
   background: rgba(31, 142, 241, .08);
 }
 .home-workflow-result strong { color: var(--text); }
+
+/* small pictures at the foot of the methodology steps and audience cards */
+.home-workflow-step,
+.audience-grid .card { display: flex; flex-direction: column; }
+.clipart { margin-top: auto; padding-top: 22px; }
+.clipart svg { display: block; width: 100%; height: auto; }
+.home-workflow-step .clipart svg { max-width: 260px; }
+.audience-grid .clipart svg { max-width: 420px; }
+.clipart .bg { fill: #0b182c; stroke: rgba(110, 170, 235, .16); }
+.clipart .pn { fill: #10223c; stroke: rgba(110, 170, 235, .34); stroke-width: 1.2; }
+.clipart .pn2 { fill: #0d1d35; stroke: var(--cyan); stroke-width: 1.6; }
+.clipart .sep { fill: none; stroke: rgba(110, 170, 235, .34); stroke-width: 1.2; }
+.clipart .ln,
+.clipart .lnm { fill: none; stroke: var(--cyan); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.clipart .lnm { stroke: rgba(159, 179, 207, .55); }
+.clipart .lf { fill: rgba(92, 200, 255, .14); stroke: var(--cyan); stroke-width: 1.6; stroke-linejoin: round; }
+.clipart .sf { fill: rgba(92, 200, 255, .07); stroke: rgba(92, 200, 255, .35); stroke-width: 1; }
+.clipart .tx { fill: none; stroke: rgba(159, 179, 207, .5); stroke-width: 3; stroke-linecap: round; }
+.clipart .tx.sm { stroke: rgba(159, 179, 207, .32); stroke-width: 2.2; }
+.clipart .txw { fill: none; stroke: var(--text); stroke-width: 3.4; stroke-linecap: round; opacity: .85; }
+.clipart .dot { fill: rgba(159, 179, 207, .45); }
+.clipart .bar { fill: rgba(159, 179, 207, .14); }
+.clipart .cy { fill: var(--cyan); }
+.clipart .cyb { fill: var(--cyan); opacity: .75; }
+.clipart .win { fill: rgba(92, 200, 255, .32); }
+.clipart .sun { fill: rgba(243, 178, 60, .3); stroke: var(--amber); stroke-width: 1.2; }
+.clipart .live { fill: var(--green); }
+.clipart .gold { fill: var(--gold); }
+.clipart .ok { fill: none; stroke: var(--green); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.clipart .okf { fill: rgba(63, 212, 154, .12); stroke: var(--green); stroke-width: 1.6; }
+.clipart .okb { fill: #0d1d35; stroke: var(--green); stroke-width: 1.8; }
+.clipart .am { fill: rgba(243, 178, 60, .28); stroke: var(--amber); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.clipart .hl { fill: rgba(243, 178, 60, .1); stroke: rgba(243, 178, 60, .55); stroke-width: 1; }
+.clipart .rd { fill: none; stroke: var(--red); stroke-width: 2.2; stroke-linecap: round; }
+.clipart .frame { fill: none; stroke: var(--cyan-soft); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.clipart .glow { fill: none; stroke: rgba(92, 200, 255, .2); stroke-width: 7; stroke-linecap: round; }
+.clipart .scan { fill: none; stroke: var(--cyan-soft); stroke-width: 1.4; stroke-linecap: round; }
+.clipart .ring { fill: none; stroke: rgba(92, 200, 255, .3); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.clipart .link { fill: none; stroke: var(--cyan); stroke-width: 1.4; opacity: .7; }
+.clipart .dash { stroke-dasharray: 3 4; }
+.clipart .lens { fill: #0b1a30; stroke: var(--cyan); stroke-width: 2; }
+.clipart .handle { fill: none; stroke: var(--cyan); stroke-width: 5; stroke-linecap: round; }
+.clipart .glare { fill: none; stroke: rgba(232, 240, 252, .35); stroke-width: 1.6; stroke-linecap: round; }
+.clipart .nd { fill: #10223c; stroke: var(--cyan); stroke-width: 1.4; }
+.clipart .nd.off { stroke: rgba(159, 179, 207, .45); stroke-dasharray: 3 3; }
+.clipart .hdr { fill: rgba(92, 200, 255, .16); }
 .home-vision-note {
   display: grid;
   grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr);
