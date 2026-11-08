@@ -1612,6 +1612,21 @@
     Object.assign(t[lang], values);
   });
 
+  // Team Index (Collaboration) card beside Enterprise (2026-11-08).
+  const teamIndexStrings = {
+    "fr": {
+      "Team Index": "Index d’équipe",
+      "Team Index (Collaboration)": "Index d’équipe (Collaboration)"
+    },
+    "es": {
+      "Team Index": "Índice de equipo",
+      "Team Index (Collaboration)": "Índice de equipo (Colaboración)"
+    }
+  };
+  Object.entries(teamIndexStrings).forEach(([lang, values]) => {
+    Object.assign(t[lang], values);
+  });
+
   function normalized(text) {
     return String(text || '').replace(/\s+/g, ' ').trim();
   }
