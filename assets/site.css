@@ -672,6 +672,15 @@ main section,
 .home-workflow-step .clipart img { max-width: 300px; }
 .principle-grid .clipart img,
 .audience-grid .clipart img { max-width: 440px; }
+.feature-card:has(> .clipart),
+.timeline-card:has(> .clipart),
+.spec-card:has(> .clipart),
+.platform-support-card:has(> .clipart) { display: flex; flex-direction: column; }
+.feature-card .clipart img,
+.spec-card .clipart img,
+.platform-support-card .clipart img { max-width: 440px; }
+.timeline-card .clipart { padding-top: 16px; }
+.timeline-card .clipart img { max-width: 280px; }
 .home-vision-note {
   display: grid;
   grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr);
@@ -1111,7 +1120,7 @@ main section,
   gap: 10px;
   min-height: 30px;
   align-items: center;
-  margin: 0 120px 12px 0;
+  margin: 0 0 12px;
   font-size: 15px;
 }
 .platform-mark {
@@ -1128,7 +1137,7 @@ main section,
   line-height: 1;
   letter-spacing: 0;
 }
-.platform-mark.facebook { background: #1877f2; font-family: Arial, sans-serif; font-size: 16px; }
+.platform-mark.facebook { background: #0866ff; font-family: Arial, sans-serif; font-size: 16px; }
 .platform-mark.instagram {
   background: radial-gradient(circle at 30% 105%, #feda75 0 24%, #fa7e1e 35%, #d62976 56%, #962fbf 76%, #4f5bd5 100%);
   font-size: 18px;
@@ -1136,11 +1145,14 @@ main section,
 .platform-mark.threads { background: #050505; font-size: 16px; border: 1px solid var(--line); }
 .platform-mark.tiktok { background: #050505; color: #25f4ee; font-size: 16px; border: 1px solid var(--line); }
 .platform-mark.x-twitter { background: #050505; font-size: 13px; border: 1px solid var(--line); }
-.platform-mark.youtube { background: #ff0033; font-size: 12px; }
+.platform-mark.youtube { background: #fff; font-size: 12px; }
 .platform-mark.snapchat { color: #050505; background: #fffc00; font-size: 10px; }
 .platform-mark.linkedin { background: #0a66c2; font-family: Arial, sans-serif; font-size: 13px; }
 .platform-mark.reddit { background: #ff4500; font-size: 11px; }
 .platform-mark.marketplace { background: #1877f2; font-size: 13px; }
+.platform-mark.kijiji { background: #6d28d9; }
+.platform-mark.telegram { background: #229ed9; }
+.platform-mark svg { display: block; width: 74%; height: 74%; }
 .platform-support-card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
 .platform-support-card ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .platform-support-card li {

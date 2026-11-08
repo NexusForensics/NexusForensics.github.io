@@ -1523,6 +1523,95 @@
     Object.assign(t[lang], values);
   });
 
+  // Supported Platforms cards on the Nexus Social Recon page (rewritten 2026-11-08).
+  const platformStrings = {
+    "fr": {
+      "Each module captures public content as it appears on screen, through the platform's own pages. On every platform the investigator can also capture a scrolling page or a drawn area of the screen, and every saved file is hashed with SHA-256.": "Chaque module capture le contenu public tel qu’il apparaît à l’écran, dans les pages de la plateforme elle-même. Sur chaque plateforme, l’enquêteur peut aussi capturer une page défilante ou une zone tracée de l’écran, et chaque fichier enregistré reçoit une empreinte SHA-256.",
+      "Profile Capture, the About section, and check-ins, with the account's Facebook ID.": "Capture de profil, section À propos et lieux visités, avec l’identifiant Facebook du compte.",
+      "Posts with their comments and replies, plus single photos, carousels, videos, and reels.": "Publications avec leurs commentaires et réponses, ainsi que photos, carrousels, vidéos et reels.",
+      "Stories, recorded as they play.": "Stories, enregistrées pendant leur lecture.",
+      "Friends, followers, and reaction lists, with Friends In Common across people or cases.": "Listes d’amis, d’abonnés et de réactions, avec les amis en commun entre personnes ou dossiers.",
+      "Profile Capture with the account ID.": "Capture de profil avec l’identifiant du compte.",
+      "Posts, carousels, and reels, with their comments.": "Publications, carrousels et reels, avec leurs commentaires.",
+      "Stories and highlights.": "Stories et stories à la une.",
+      "Follower and following lists, with Followers In Common.": "Listes d’abonnés et d’abonnements, avec les abonnés en commun.",
+      "Profile Capture.": "Capture de profil.",
+      "Posts and carousels, with their replies.": "Publications et carrousels, avec leurs réponses.",
+      "Follower and following lists, saved row by row as the investigator scrolls.": "Listes d’abonnés et d’abonnements, enregistrées ligne par ligne pendant que l’enquêteur fait défiler la page.",
+      "Followers In Common between accounts.": "Abonnés en commun entre comptes.",
+      "Videos with their captions and comments, one comment or a whole range.": "Vidéos avec leurs légendes et commentaires, un seul commentaire ou toute une série.",
+      "Bulk capture of selected videos.": "Capture groupée des vidéos sélectionnées.",
+      "Follower, following, and friend lists, with People In Common.": "Listes d’abonnés, d’abonnements et d’amis, avec les personnes en commun.",
+      "Posts with their replies, one reply or a whole range.": "Publications avec leurs réponses, une seule réponse ou toute une série.",
+      "Scrolling capture of timelines and search results.": "Capture défilante des fils et des résultats de recherche.",
+      "Channel capture with the channel's details.": "Capture de chaîne avec ses détails.",
+      "Videos with their descriptions and comments, one comment or a whole range.": "Vidéos avec leurs descriptions et commentaires, un seul commentaire ou toute une série.",
+      "Bulk capture of selected videos from a channel.": "Capture groupée des vidéos sélectionnées d’une chaîne.",
+      "A video obtained elsewhere can be added to the case with its own hash.": "Une vidéo obtenue ailleurs peut être ajoutée au dossier avec sa propre empreinte.",
+      "Public profiles.": "Profils publics.",
+      "Public stories and highlights, every snap in them.": "Stories publiques et stories à la une, chaque snap compris.",
+      "Spotlight videos.": "Vidéos Spotlight.",
+      "Private snaps and chats are never captured.": "Les snaps et discussions privés ne sont jamais capturés.",
+      "Profile Capture, or one section at a time: experience, education, skills, licences, volunteering, and activity.": "Capture de profil, ou une section à la fois : expérience, formation, compétences, licences, bénévolat et activité.",
+      "Posts with their comments.": "Publications avec leurs commentaires.",
+      "The page text is kept beside each screenshot as a second record.": "Le texte de la page est conservé à côté de chaque capture d’écran comme second relevé.",
+      "Profile Capture of Reddit users.": "Capture de profil des utilisateurs Reddit.",
+      "Posts and galleries with their comments, one comment or a whole range.": "Publications et galeries avec leurs commentaires, un seul commentaire ou toute une série.",
+      "Community descriptions.": "Descriptions des communautés.",
+      "Uses the investigator's own Telegram account and API ID.": "Utilise le compte Telegram et l’identifiant API propres à l’enquêteur.",
+      "Profile, channel, and group details: name, username, bio, and main picture.": "Détails des profils, chaînes et groupes : nom, nom d’utilisateur, bio et image principale.",
+      "Posts with their media and comments, one post or every post in a date range.": "Publications avec leurs médias et commentaires, une seule publication ou toutes celles d’une période.",
+      "Chat sections and visible messages, with bookmarks for chats and channels.": "Sections de discussion et messages visibles, avec des signets pour les discussions et les chaînes.",
+      "Seller profiles. A Marketplace seller is linked to their Facebook ID.": "Profils de vendeurs. Un vendeur Marketplace est relié à son identifiant Facebook.",
+      "List a seller's ads, tick the ones that matter, and capture them together.": "Lister les annonces d’un vendeur, cocher celles qui comptent et les capturer ensemble.",
+      "Each ad with its photos, description, and price.": "Chaque annonce avec ses photos, sa description et son prix."
+    },
+    "es": {
+      "Each module captures public content as it appears on screen, through the platform's own pages. On every platform the investigator can also capture a scrolling page or a drawn area of the screen, and every saved file is hashed with SHA-256.": "Cada módulo captura el contenido público tal como aparece en pantalla, en las propias páginas de la plataforma. En todas las plataformas el investigador también puede capturar una página con desplazamiento o una zona dibujada de la pantalla, y cada archivo guardado recibe un hash SHA-256.",
+      "Profile Capture, the About section, and check-ins, with the account's Facebook ID.": "Captura de perfil, sección Información y visitas, con el ID de Facebook de la cuenta.",
+      "Posts with their comments and replies, plus single photos, carousels, videos, and reels.": "Publicaciones con sus comentarios y respuestas, además de fotos, carruseles, videos y reels.",
+      "Stories, recorded as they play.": "Historias, grabadas mientras se reproducen.",
+      "Friends, followers, and reaction lists, with Friends In Common across people or cases.": "Listas de amigos, seguidores y reacciones, con amigos en común entre personas o casos.",
+      "Profile Capture with the account ID.": "Captura de perfil con el ID de la cuenta.",
+      "Posts, carousels, and reels, with their comments.": "Publicaciones, carruseles y reels, con sus comentarios.",
+      "Stories and highlights.": "Historias e historias destacadas.",
+      "Follower and following lists, with Followers In Common.": "Listas de seguidores y seguidos, con seguidores en común.",
+      "Profile Capture.": "Captura de perfil.",
+      "Posts and carousels, with their replies.": "Publicaciones y carruseles, con sus respuestas.",
+      "Follower and following lists, saved row by row as the investigator scrolls.": "Listas de seguidores y seguidos, guardadas fila por fila mientras el investigador se desplaza.",
+      "Followers In Common between accounts.": "Seguidores en común entre cuentas.",
+      "Videos with their captions and comments, one comment or a whole range.": "Videos con sus descripciones y comentarios, un comentario o toda una serie.",
+      "Bulk capture of selected videos.": "Captura en lote de los videos seleccionados.",
+      "Follower, following, and friend lists, with People In Common.": "Listas de seguidores, seguidos y amigos, con personas en común.",
+      "Posts with their replies, one reply or a whole range.": "Publicaciones con sus respuestas, una respuesta o toda una serie.",
+      "Scrolling capture of timelines and search results.": "Captura con desplazamiento de cronologías y resultados de búsqueda.",
+      "Channel capture with the channel's details.": "Captura del canal con sus datos.",
+      "Videos with their descriptions and comments, one comment or a whole range.": "Videos con sus descripciones y comentarios, un comentario o toda una serie.",
+      "Bulk capture of selected videos from a channel.": "Captura en lote de los videos seleccionados de un canal.",
+      "A video obtained elsewhere can be added to the case with its own hash.": "Un video obtenido por otra vía puede añadirse al caso con su propio hash.",
+      "Public profiles.": "Perfiles públicos.",
+      "Public stories and highlights, every snap in them.": "Historias públicas y destacadas, con cada snap.",
+      "Spotlight videos.": "Videos de Spotlight.",
+      "Private snaps and chats are never captured.": "Los snaps y chats privados nunca se capturan.",
+      "Profile Capture, or one section at a time: experience, education, skills, licences, volunteering, and activity.": "Captura de perfil, o una sección a la vez: experiencia, educación, aptitudes, licencias, voluntariado y actividad.",
+      "Posts with their comments.": "Publicaciones con sus comentarios.",
+      "The page text is kept beside each screenshot as a second record.": "El texto de la página se guarda junto a cada captura de pantalla como un segundo registro.",
+      "Profile Capture of Reddit users.": "Captura de perfil de usuarios de Reddit.",
+      "Posts and galleries with their comments, one comment or a whole range.": "Publicaciones y galerías con sus comentarios, un comentario o toda una serie.",
+      "Community descriptions.": "Descripciones de las comunidades.",
+      "Uses the investigator's own Telegram account and API ID.": "Usa la cuenta de Telegram y el ID de API propios del investigador.",
+      "Profile, channel, and group details: name, username, bio, and main picture.": "Datos de perfiles, canales y grupos: nombre, nombre de usuario, biografía e imagen principal.",
+      "Posts with their media and comments, one post or every post in a date range.": "Publicaciones con sus archivos multimedia y comentarios, una publicación o todas las de un período.",
+      "Chat sections and visible messages, with bookmarks for chats and channels.": "Secciones de chat y mensajes visibles, con marcadores para chats y canales.",
+      "Seller profiles. A Marketplace seller is linked to their Facebook ID.": "Perfiles de vendedores. Un vendedor de Marketplace queda vinculado a su ID de Facebook.",
+      "List a seller's ads, tick the ones that matter, and capture them together.": "Listar los anuncios de un vendedor, marcar los que importan y capturarlos juntos.",
+      "Each ad with its photos, description, and price.": "Cada anuncio con sus fotos, descripción y precio."
+    }
+  };
+  Object.entries(platformStrings).forEach(([lang, values]) => {
+    Object.assign(t[lang], values);
+  });
+
   function normalized(text) {
     return String(text || '').replace(/\s+/g, ' ').trim();
   }
