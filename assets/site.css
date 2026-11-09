@@ -2262,8 +2262,8 @@ footer a:hover { color: var(--cyan); }
 }
 /* The window fills its box (2026-11-09: "make the window a bit bigger"). The frame shows the scene from x 3 to 261 and y 3 to 170 of
    320 x 180; the stage inside is still the whole 320 x 180 scene (and still the container), drawn 320/258 wider and shifted, so every
-   position inside stays in scene percentages. The frame carries the clipart's rounded corner and shadow; the tile is drawn at 0.8 of its size (the same pixels as before) with its corner at scene x 5, y 122. */
-.pf-live .pf-frame { position: relative; width: 100%; max-width: 440px; aspect-ratio: 258 / 167; overflow: hidden; border-radius: 8px; background: #122744; box-shadow: 0 0 0 1px rgba(110, 170, 235, .14), 0 10px 24px rgba(2, 8, 20, .3); }
+   position inside stays in scene percentages. The frame spans the card's full width (2026-11-09: no 440 px cap). The frame carries the clipart's rounded corner and shadow; the tile is drawn at 0.8 of its size (the same pixels as before) with its corner at scene x 5, y 122. */
+.pf-live .pf-frame { position: relative; width: 100%; max-width: none; aspect-ratio: 258 / 167; overflow: hidden; border-radius: 8px; background: #122744; box-shadow: 0 0 0 1px rgba(110, 170, 235, .14), 0 10px 24px rgba(2, 8, 20, .3); }
 .pf-live .pf-frame > .pf-stage { position: absolute; left: -1.1628%; top: -1.7964%; width: 124.031%; max-width: none; }
 .platform-support-card .pf-live .pf-stage img.pf-scene { border-radius: 0; box-shadow: none; }
 .pf-live img.pf-tile { left: -.4375%; top: 61.56%; width: 22%; }
