@@ -70,7 +70,7 @@
   document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-lightbox-src]");
     if (button) {
-      openLightbox(button.dataset.lightboxSrc, button.dataset.lightboxTitle || "");
+      openLightbox(button.dataset.lightboxSrc, getTitle(button));
       return;
     }
 

@@ -681,6 +681,7 @@ main section,
 .platform-support-card .clipart img { max-width: 440px; }
 .timeline-card .clipart { padding-top: 16px; }
 .timeline-card .clipart img { max-width: 280px; }
+.clipart.shot img { aspect-ratio: 16 / 9; object-fit: cover; object-position: top left; background: #f1f5f9; }
 .home-vision-note {
   display: grid;
   grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr);

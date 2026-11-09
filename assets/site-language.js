@@ -1627,6 +1627,27 @@
     Object.assign(t[lang], values);
   });
 
+  // Real screenshots from a demo case on the product page: their captions (alt text, shown in the image viewer), 2026-11-08.
+  const reportShotStrings = {
+    "fr": {
+      "Demo case: objects detected in a captured picture (zebra, giraffe, rhinoceros, ostrich)": "Dossier de démonstration : objets détectés dans une image capturée (zèbre, girafe, rhinocéros, autruche)",
+      "Demo case: Facebook Captured Posts index with thumbnails, capture times and source links": "Dossier de démonstration : index des publications Facebook capturées, avec miniatures, heures de capture et liens sources",
+      "Demo case: OCR text read from a post picture, with the captured comments": "Dossier de démonstration : texte OCR lu dans l’image d’une publication, avec les commentaires capturés",
+      "Demo case: post metadata with the media SHA-256 hash": "Dossier de démonstration : métadonnées de la publication avec l’empreinte SHA-256 du média",
+      "Demo case: Case Activity Report with its hash chain check": "Dossier de démonstration : rapport d’activité du dossier et vérification de sa chaîne de hachage"
+    },
+    "es": {
+      "Demo case: objects detected in a captured picture (zebra, giraffe, rhinoceros, ostrich)": "Caso de demostración: objetos detectados en una imagen capturada (cebra, jirafa, rinoceronte, avestruz)",
+      "Demo case: Facebook Captured Posts index with thumbnails, capture times and source links": "Caso de demostración: índice de publicaciones de Facebook capturadas, con miniaturas, horas de captura y enlaces de origen",
+      "Demo case: OCR text read from a post picture, with the captured comments": "Caso de demostración: texto OCR leído en la imagen de una publicación, con los comentarios capturados",
+      "Demo case: post metadata with the media SHA-256 hash": "Caso de demostración: metadatos de la publicación con el hash SHA-256 del medio",
+      "Demo case: Case Activity Report with its hash chain check": "Caso de demostración: informe de actividad del caso con la verificación de su cadena de hash"
+    }
+  };
+  Object.entries(reportShotStrings).forEach(([lang, values]) => {
+    Object.assign(t[lang], values);
+  });
+
   function normalized(text) {
     return String(text || '').replace(/\s+/g, ' ').trim();
   }
