@@ -1814,7 +1814,9 @@
       "Illustrated demo clip, read once a second": "Clip de démonstration illustré, lu une fois par seconde",
       "Video frame at 0:08": "Image vidéo à 0:08",
       "object 52%": "objet 52 %",
-      "86% of the box": "86 % du cadre"
+      "86% of the box": "86 % du cadre",
+      "Full-size avatar": "Avatar en pleine taille",
+      "A profile picture saved at full size by Profile Capture (demo case, AI generated)": "Une photo de profil enregistrée en pleine taille par la capture de profil (dossier de démonstration, générée par IA)"
     },
     "es": {
       "Post capture in action": "Captura de publicación en acción",
@@ -1920,7 +1922,9 @@
       "Illustrated demo clip, read once a second": "Clip de demostración ilustrado, leído una vez por segundo",
       "Video frame at 0:08": "Fotograma de vídeo en 0:08",
       "object 52%": "objeto 52 %",
-      "86% of the box": "86 % del recuadro"
+      "86% of the box": "86 % del recuadro",
+      "Full-size avatar": "Avatar a tamaño completo",
+      "A profile picture saved at full size by Profile Capture (demo case, AI generated)": "Una foto de perfil guardada a tamaño completo por la captura de perfil (caso de demostración, generada por IA)"
     }
   };
   Object.entries(captureDemoStrings).forEach(([lang, values]) => {

@@ -268,4 +268,30 @@
       steps,
     });
   });
+  // Facebook platform card: the real Profile Capture beside the drawn page pops out and types its SHA-256 when it comes into view.
+  document.querySelectorAll('[data-pf-capture]').forEach(card => {
+    const sha = card.querySelector('[data-pf-sha]');
+    const full = sha ? sha.dataset.pfSha : '';
+    if (reduceMotion || !sha) return;
+    let timers = [];
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
+    const run = () => {
+      clear();
+      card.classList.add('is-snap');
+      card.classList.remove('is-on');
+      sha.textContent = '';
+      void card.offsetWidth;
+      card.classList.remove('is-snap');
+      timers.push(setTimeout(() => card.classList.add('is-on'), 450));
+      for (let i = 1; i <= full.length; i += 2) timers.push(setTimeout(() => { sha.textContent = full.slice(0, i + 1); }, 1000 + i * 18));
+    };
+    card.classList.add('is-ready', 'is-on');
+    let seen = false;
+    new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !seen) { seen = true; run(); }
+        if (!entry.isIntersecting && seen) { seen = false; clear(); card.classList.add('is-on'); sha.textContent = full; }
+      });
+    }, { threshold: 0.6 }).observe(card);
+  });
 })();

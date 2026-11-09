@@ -1912,3 +1912,26 @@ footer a:hover { color: var(--cyan); }
 
 /* Demo bands jump back to their first frame without playing their fades backwards (assets/capture-demos.js). */
 .is-snap, .is-snap * { transition: none !important; animation: none !important; }
+
+/* Facebook platform card (2026-11-08): the drawn Facebook page with a real Profile Capture beside it, the full-size avatar saved from the
+   demo case with its size and SHA-256. The card pops out of the page and its hash types itself when seen (assets/capture-demos.js). */
+.clipart.pf-capture { position: relative; container-type: inline-size; }
+.pf-capture-card { position: absolute; right: 2.4cqi; bottom: 3.4cqi; width: 28cqi; margin: 0; padding: 1.6cqi; box-sizing: border-box; border-radius: 2.2cqi; background: #fff; color: #0f172a; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .5), 0 0 0 .5cqi rgba(34, 197, 94, .9); transform-origin: 20% 30%; transition: opacity .35s ease, transform .55s cubic-bezier(.3, 1.5, .5, 1); }
+.clipart .pf-capture-card img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 1.4cqi; box-shadow: none; }
+.pf-capture-badge { position: absolute; left: 3cqi; top: 3cqi; padding: .6cqi 1.6cqi; border-radius: 99px; background: rgba(15, 23, 42, .82); color: #fff; font: 800 max(8px, 2.2cqi)/1.3 var(--font-body); white-space: nowrap; }
+.pf-capture-card figcaption { margin-top: 1.2cqi; font-size: max(8px, 2.2cqi); line-height: 1.35; }
+.pf-capture-card figcaption b { font-weight: 800; }
+.pf-capture-card figcaption span { display: block; color: #64748b; font-weight: 700; white-space: nowrap; }
+.pf-capture-card figcaption em { display: block; margin-top: .6cqi; color: #64748b; font-style: normal; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: max(7px, 1.8cqi); }
+.pf-capture-card figcaption code { display: block; min-height: 3.9em; color: #1e3a5f; font: 600 max(7px, 1.75cqi)/1.3 var(--font-mono); word-break: break-all; }
+.pf-capture-card figcaption .pf-sha-short { display: none; min-height: 0; }
+/* A narrow card has no room for the full hash at a readable size: it shows the first and last characters. */
+@container (max-width: 440px) {
+  .pf-capture-card { width: 38cqi; }
+  .pf-capture-card figcaption code[data-pf-sha] { display: none; }
+  .pf-capture-card figcaption .pf-sha-short { display: block; }
+}
+.pf-capture.is-ready:not(.is-on) .pf-capture-card { opacity: 0; transform: translateX(-6cqi) scale(.7); }
+@media (prefers-reduced-motion: reduce) {
+  .pf-capture-card { transition: none; }
+}
