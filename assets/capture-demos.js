@@ -92,8 +92,10 @@
       classes,
       loopMs: 14500,
       replay: '[data-fm-replay]',
+      // The still frame (reduced motion) is the covered face with the search done: the story ends covered (investigator, 2026-11-08:
+      // "when it ends, the last frame should be masked").
       finish: () => {
-        demo.classList.add('is-face', 'is-covered', 'is-comparing', 'is-found', 'is-unmasking', 'is-matched');
+        demo.classList.add('is-face', 'is-covered', 'is-comparing', 'is-found');
         steps.forEach(step => step.classList.add('on'));
       },
       restAtStart: () => steps.forEach(step => step.classList.remove('on')),
