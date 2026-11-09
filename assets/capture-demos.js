@@ -272,7 +272,7 @@
   document.querySelectorAll('[data-pf-capture]').forEach(card => {
     const sha = card.querySelector('[data-pf-sha]');
     const full = sha ? sha.dataset.pfSha : '';
-    if (reduceMotion || !sha) return;
+    if (reduceMotion || !sha || card.hasAttribute('data-pf-scroll')) return;
     let timers = [];
     const clear = () => { timers.forEach(clearTimeout); timers = []; };
     const run = () => {
@@ -291,6 +291,48 @@
       entries.forEach(entry => {
         if (entry.isIntersecting && !seen) { seen = true; run(); }
         if (!entry.isIntersecting && seen) { seen = false; clear(); card.classList.add('is-on'); sha.textContent = full; }
+      });
+    }, { threshold: 0.6 }).observe(card);
+  });
+  // TikTok platform card: a simulated Scrolling Content capture. The TOP marker is set, the feed scrolls through the capture area while the
+  // post count climbs, the BOTTOM marker appears where the capture ends, then the hash types. Reduced motion shows the finished capture.
+  document.querySelectorAll('[data-pf-scroll]').forEach(card => {
+    const SCROLL_MS = 4200;
+    const sha = card.querySelector('[data-pf-sha]');
+    const full = sha ? sha.dataset.pfSha : '';
+    const count = card.querySelector('[data-pf-count]');
+    const total = Number(count?.dataset.pfTotal) || 0;
+    card.style.setProperty('--pf-scroll-ms', `${SCROLL_MS}ms`);
+    const finished = () => {
+      card.classList.add('is-ready', 'is-on', 'is-scrolling', 'is-done');
+      card.classList.remove('is-armed');
+      if (count) count.textContent = String(total);
+      if (sha) sha.textContent = full;
+    };
+    if (reduceMotion) { finished(); return; }
+    let timers = [];
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
+    const run = () => {
+      clear();
+      card.classList.add('is-snap', 'is-ready', 'is-armed');
+      card.classList.remove('is-on', 'is-scrolling', 'is-done');
+      if (count) count.textContent = '0';
+      if (sha) sha.textContent = '';
+      void card.offsetWidth;
+      card.classList.remove('is-snap');
+      timers.push(setTimeout(() => card.classList.add('is-on'), 400));
+      timers.push(setTimeout(() => { card.classList.remove('is-armed'); card.classList.add('is-scrolling'); }, 1300));
+      // Two posts a row come into the capture as it scrolls.
+      for (let n = 2; n <= total; n += 2) timers.push(setTimeout(() => { if (count) count.textContent = String(n); }, 1300 + (n / total) * SCROLL_MS));
+      timers.push(setTimeout(() => card.classList.add('is-done'), 1300 + SCROLL_MS + 100));
+      for (let i = 1; i <= full.length; i += 2) timers.push(setTimeout(() => { if (sha) sha.textContent = full.slice(0, i + 1); }, 1300 + SCROLL_MS + 500 + i * 16));
+    };
+    finished();
+    let seen = false;
+    new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !seen) { seen = true; run(); }
+        if (!entry.isIntersecting && seen) { seen = false; clear(); finished(); }
       });
     }, { threshold: 0.6 }).observe(card);
   });

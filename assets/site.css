@@ -1968,3 +1968,28 @@ footer a:hover { color: var(--cyan); }
   .platform-support-card .pf-ig-side .pf-ig-comments li:nth-child(n+2),
   .pf-ig .pf-capture-badge { display: none; }
 }
+/* TikTok platform card (2026-11-09): a simulated Scrolling Content capture. A feed of demo videos scrolls between the green TOP and BOTTOM
+   markers (the app's see-through marker bar with its white edge line), the post count climbs, then the hash types (assets/capture-demos.js). */
+.pf-capture-card.pf-tt { width: 27cqi; background: #121212; color: #f5f5f5; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), -.35cqi -.35cqi 0 .2cqi rgba(37, 244, 238, .9), .35cqi .35cqi 0 .2cqi rgba(254, 44, 85, .9); }
+.pf-tt-view { position: relative; height: 26cqi; overflow: hidden; border-radius: 1cqi; background: #000; }
+.pf-tt-reel { position: absolute; left: 0; right: 0; top: 0; transform: translateY(0); }
+.pf-capture.is-scrolling .pf-tt-reel { transform: translateY(calc(-100% + 26cqi)); transition: transform var(--pf-scroll-ms, 4200ms) cubic-bezier(.45, .05, .55, .95); }
+.clipart .pf-tt-reel img { display: block; width: 100%; height: auto; aspect-ratio: 368 / 1960; border-radius: 0; box-shadow: none; }
+.pf-tt-mark { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; height: 3.4cqi; margin: 0; padding: 0 .8cqi; background: rgba(34, 197, 94, .38); }
+.pf-tt-mark:before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, .55); }
+.pf-tt-mark i { position: relative; padding: .2cqi 1cqi; border-radius: 99px; background: #16a34a; color: #fff; font: 800 max(6px, 1.5cqi)/1.2 var(--font-body); font-style: normal; letter-spacing: .06em; }
+.pf-tt-mark b { position: relative; display: grid; place-items: center; width: 3cqi; height: 3cqi; border-radius: 50%; background: #16a34a; color: #fff; border: 2px solid #fff; box-sizing: border-box; font: 900 max(6px, 1.6cqi)/1 var(--font-body); }
+.pf-tt-mark.is-bottom { opacity: 1; transition: opacity .3s ease; }
+.pf-capture.is-ready.is-scrolling:not(.is-done) .pf-tt-mark.is-bottom, .pf-capture.is-ready.is-armed .pf-tt-mark.is-bottom { opacity: 0; }
+.pf-tt-count { position: absolute; z-index: 3; right: 1cqi; top: 4.4cqi; padding: .5cqi 1.4cqi; border-radius: 99px; background: rgba(0, 0, 0, .78); color: #fff; font: 700 max(7px, 1.8cqi)/1.3 var(--font-body); }
+.pf-tt-count b { color: #25f4ee; font-weight: 900; }
+.pf-tt figcaption { color: #e4e4e7; }
+.pf-tt figcaption span, .pf-tt figcaption em { color: #a1a1aa; }
+.pf-tt figcaption code { color: #67e8f9; min-height: 3.9em; }
+@container (max-width: 440px) {
+  .pf-capture-card.pf-tt { width: 34cqi; }
+  .pf-tt .pf-capture-badge { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-capture.is-scrolling .pf-tt-reel { transition: none; }
+}

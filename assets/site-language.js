@@ -1824,7 +1824,14 @@
       "Where is this? 😍": "C’est où ? 😍",
       "Saving this 🔥": "Je garde ça 🔥",
       "Post and 3 comments": "Publication et 3 commentaires",
-      "362 × 362 · demo": "362 × 362 · démo"
+      "362 × 362 · demo": "362 × 362 · démo",
+      "Scrolling Content": "Contenu défilant",
+      "Scrolling capture": "Capture défilante",
+      "TOP": "HAUT",
+      "BOTTOM": "BAS",
+      "posts": "publications",
+      "12 posts · demo": "12 publications · démo",
+      "A simulated TikTok scrolling capture: a feed of twelve videos (AI generated pictures, made-up view counts) captured between a top and a bottom marker": "Une capture défilante TikTok simulée : un fil de douze vidéos (images générées par IA, nombres de vues inventés) capturé entre un repère haut et un repère bas"
     },
     "es": {
       "Post capture in action": "Captura de publicación en acción",
@@ -1940,7 +1947,14 @@
       "Where is this? 😍": "¿Dónde es? 😍",
       "Saving this 🔥": "Me lo guardo 🔥",
       "Post and 3 comments": "Publicación y 3 comentarios",
-      "362 × 362 · demo": "362 × 362 · demo"
+      "362 × 362 · demo": "362 × 362 · demo",
+      "Scrolling Content": "Contenido con desplazamiento",
+      "Scrolling capture": "Captura con desplazamiento",
+      "TOP": "ARRIBA",
+      "BOTTOM": "ABAJO",
+      "posts": "publicaciones",
+      "12 posts · demo": "12 publicaciones · demo",
+      "A simulated TikTok scrolling capture: a feed of twelve videos (AI generated pictures, made-up view counts) captured between a top and a bottom marker": "Una captura con desplazamiento de TikTok simulada: un feed de doce vídeos (imágenes generadas por IA, visualizaciones inventadas) capturado entre un marcador superior y uno inferior"
     }
   };
   Object.entries(captureDemoStrings).forEach(([lang, values]) => {
