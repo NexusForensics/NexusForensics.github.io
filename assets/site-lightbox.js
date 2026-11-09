@@ -2,7 +2,7 @@
   const OPEN_CLASS = "lightbox-open";
   const TRIGGER_CLASS = "lightbox-trigger";
   // Platform capture demos (.pf-capture) play on hover; their pictures are parts of the animation, never opened on their own.
-  const SKIP_SELECTOR = ".brand img, .product-card img, .ocr-demo img, .pf-capture img";
+  const SKIP_SELECTOR = ".brand img, .product-card img, .ocr-demo img, .pf-capture img, .vd-demo img";
 
   const getTitle = (element) =>
     element.dataset.lightboxTitle ||

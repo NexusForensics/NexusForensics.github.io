@@ -465,4 +465,100 @@
       });
     }, { threshold: 0.6 }).observe(card);
   });
+  // Encrypted case vaults card (2026-11-09: "Can we get the animation we created for the vault closing there and locking for this?"):
+  // the promo's closing scene, same timings. Evidence flies into the case, Close Case is pressed, the case shuts and sinks into the
+  // vault, the door swings shut and slams, the wheel spins, the eight bolts lock out, the padlock snaps shut, then the AES-256 badge.
+  // At rest the card shows the locked vault; with a mouse it plays while hovered (play button), touch screens play it in view.
+  document.querySelectorAll('[data-vault-demo]').forEach(card => {
+    const box = card.querySelector('.vd-box');
+    const scene = card.querySelector('.vd-scene');
+    if (!box || !scene) return;
+    const q = sel => card.querySelector(sel);
+    const c = {
+      vault: q('.vd-vault'), frame: q('.vd-frame'), ring: q('.vd-ring'), fold: q('.vd-fold'), front: q('.vd-fold-front'), door: q('.vd-door'),
+      btn: q('.vd-btn'), stat: q('.vd-stat'), badge: q('.vd-badge'), wheel: q('.vd-wheel'), shackle: q('.vd-shackle'),
+      bolts: Array.from(card.querySelectorAll('.vd-bolt')),
+      chips: Array.from(card.querySelectorAll('.vd-chip')).map(el => ({ el, x: Number(el.dataset.x), y: Number(el.dataset.y) })),
+    };
+    const CX = 588, CY = 331, END = 3.6;
+    const clamp = (x, a = 0, b = 1) => (x < a ? a : x > b ? b : x);
+    const P = (t, s, d) => clamp((t - s) / d);
+    const lerp = (a, b, x) => a + (b - a) * x;
+    const eOut = x => 1 - Math.pow(1 - x, 3);
+    const eIn = x => x * x * x;
+    const eIO = x => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+    const eBack = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+    const draw = u => {
+      // the open case and its Close Case button
+      const fp = eOut(P(u, 0.02, 0.35)), into = eIO(P(u, 1.35, 0.42));
+      c.fold.style.opacity = fp * (1 - P(u, 1.68, 0.1));
+      c.fold.style.transform = `translateY(${(1 - fp) * 50 + into * 5}px) scale(${lerp(0.94, 1, fp) * lerp(1, 0.4, into)})`;
+      c.front.style.transform = `perspective(900px) rotateX(${lerp(-42, 0, eIO(P(u, 1.05, 0.28)))}deg)`;
+      const press = Math.sin(P(u, 1.0, 0.16) * Math.PI);
+      c.btn.style.opacity = clamp(P(u, 0.15, 0.25)) * (1 - P(u, 1.3, 0.2));
+      c.btn.style.transform = `scale(${1 - 0.07 * press})`;
+      c.btn.style.boxShadow = `0 0 0 ${12 * press}px rgba(240,200,120,${0.35 * press}),0 12px 30px rgba(0,0,0,.4)`;
+      // evidence flies into the case
+      c.chips.forEach((o, i) => {
+        const ts = 0.35 + i * 0.1, a = P(u, ts, 0.4), m = eIn(P(u, ts + 0.12, 0.34));
+        o.el.style.opacity = clamp(a * 4) * (1 - P(u, ts + 0.4, 0.06));
+        o.el.style.transform = `translate(${lerp(o.x, CX, m)}px,${lerp(o.y, CY - 40, m)}px) translate(-50%,-50%) scale(${lerp(0.6, 1, eBack(clamp(a * 2.5))) * lerp(1, 0.35, m)})`;
+      });
+      // the vault opens behind, the door swings shut and slams
+      const vf = eOut(P(u, 1.2, 0.35));
+      c.frame.style.opacity = vf;
+      c.frame.style.transform = `scale(${lerp(0.82, 1, vf)})`;
+      const dr = P(u, 1.7, 0.45);
+      c.door.style.opacity = clamp(dr * 5);
+      c.door.style.transform = `perspective(1600px) rotateY(${lerp(-100, 0, eIn(dr))}deg)`;
+      const sl = P(u, 2.15, 0.3);
+      c.vault.style.transform = sl > 0 && sl < 1 ? `translate(${Math.sin(sl * 42) * (1 - sl) * 7}px,${Math.cos(sl * 37) * (1 - sl) * 3}px)` : 'none';
+      // wheel spins, bolts lock out, padlock snaps shut
+      c.wheel.setAttribute('transform', `rotate(${-300 * eIO(P(u, 2.2, 0.45))} 210 210)`);
+      const bo = eOut(P(u, 2.45, 0.15));
+      c.bolts.forEach(b => b.setAttribute('transform', `translate(${26 * bo},0)`));
+      c.shackle.setAttribute('transform', `translate(0,${-9 * (1 - eOut(P(u, 2.68, 0.12)))})`);
+      const g = eOut(P(u, 2.72, 0.3));
+      c.door.style.filter = g > 0 ? `drop-shadow(0 0 ${34 * g}px rgba(240,200,120,${0.55 * g}))` : 'none';
+      const rp = P(u, 2.72, 0.8), R = lerp(215, 330, eOut(rp));
+      Object.assign(c.ring.style, { left: `${CX - R}px`, top: `${CY - R}px`, width: `${2 * R}px`, height: `${2 * R}px`, opacity: rp > 0 ? (1 - rp) * 0.85 : 0 });
+      // status, badge
+      c.stat.style.opacity = clamp(P(u, 1.1, 0.2));
+      const bd = P(u, 2.85, 0.32);
+      c.badge.style.opacity = clamp(bd * 3);
+      c.badge.style.transform = `translateX(-50%) scale(${lerp(0.5, 1, eBack(bd))})`;
+    };
+    const fit = () => { scene.style.transform = `scale(${box.clientWidth / 1176})`; };
+    fit();
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(box);
+    let raf = 0;
+    const stop = () => { if (raf) cancelAnimationFrame(raf); raf = 0; };
+    const rest = () => { stop(); draw(END + 1); };
+    const play = () => {
+      stop();
+      const t0 = performance.now();
+      const step = now => { const u = (now - t0) / 1000; draw(u); raf = u < END ? requestAnimationFrame(step) : 0; };
+      draw(0);
+      raf = requestAnimationFrame(step);
+    };
+    rest();
+    if (reduceMotion) return;
+    if (hoverPlay) {
+      const button = document.createElement('span');
+      button.className = 'pf-play';
+      button.setAttribute('aria-hidden', 'true');
+      box.appendChild(button);
+      card.classList.add('is-idle');
+      box.addEventListener('mouseenter', () => { card.classList.remove('is-idle'); play(); });
+      box.addEventListener('mouseleave', () => { rest(); card.classList.add('is-idle'); });
+      return;
+    }
+    let seen = false;
+    new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !seen) { seen = true; play(); }
+        if (!entry.isIntersecting && seen) { seen = false; rest(); }
+      });
+    }, { threshold: 0.6 }).observe(box);
+  });
 })();

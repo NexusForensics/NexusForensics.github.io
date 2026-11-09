@@ -2309,3 +2309,33 @@ footer a:hover { color: var(--cyan); }
 .pf-live .pf-play { position: absolute; z-index: 8; left: 50%; top: 50%; width: 13%; aspect-ratio: 1; border-radius: 50%; background: rgba(8, 15, 30, .72); box-shadow: 0 0 0 2px rgba(255, 255, 255, .85), 0 6px 18px rgba(2, 8, 20, .45); transform: translate(-50%, -50%) scale(.85); opacity: 0; transition: opacity .25s ease, transform .3s ease; pointer-events: none; }
 .pf-live .pf-play:before { content: ""; position: absolute; left: 38%; top: 28%; width: 34%; height: 44%; background: #fff; clip-path: polygon(0 0, 100% 50%, 0 100%); }
 .pf-live.is-idle .pf-play { opacity: 1; transform: translate(-50%, -50%); }
+/* Encrypted case vaults card (2026-11-09): the promo's closing scene. The scene keeps the promo's own pixel layout (1176 x 662, the vault
+   at 588, 331) and is scaled to the card by assets/capture-demos.js; the box carries the clipart's corner, shadow and background. */
+.vd-demo .vd-box { position: relative; width: 100%; max-width: 440px; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; background: radial-gradient(ellipse 78% 78% at 50% 36%, #21426b, #122744 55%, #0a1628); box-shadow: 0 0 0 1px rgba(110, 170, 235, .14), 0 10px 24px rgba(2, 8, 20, .3); }
+.vd-demo .vd-scene { position: absolute; left: 0; top: 0; width: 1176px; height: 662px; transform-origin: 0 0; transform: scale(.374); }
+.vd-demo .vd-vault { position: absolute; inset: 0; }
+.vd-demo .vd-frame { position: absolute; left: 338px; top: 81px; width: 500px; height: 500px; }
+.vd-demo .vd-door { position: absolute; left: 378px; top: 121px; width: 420px; height: 420px; transform-origin: 0 50%; }
+.vd-demo .vd-frame svg, .vd-demo .vd-door svg { display: block; overflow: visible; }
+.vd-demo .vd-ring { position: absolute; border: 3px solid #f0c878; border-radius: 50%; opacity: 0; }
+.vd-demo .vd-fold { position: absolute; left: 398px; top: 181px; width: 380px; height: 290px; transform-origin: 50% 50%; }
+.vd-demo .vd-fold-tab { position: absolute; left: 0; top: 0; width: 180px; height: 34px; box-sizing: border-box; padding-left: 16px; border-radius: 12px 12px 0 0; background: #22406c; color: #e3b562; font: 700 13px/34px var(--font-mono); letter-spacing: .16em; }
+.vd-demo .vd-fold-back { position: absolute; left: 0; right: 0; top: 30px; bottom: 0; border-radius: 0 14px 14px 14px; background: linear-gradient(#22406c, #14284a); box-shadow: 0 30px 70px rgba(0, 0, 0, .5); }
+.vd-demo .vd-fold-paper { position: absolute; width: 320px; height: 200px; box-sizing: border-box; padding: 14px 16px; overflow: hidden; border-radius: 6px; background: #f4f7fb; box-shadow: 0 4px 14px rgba(0, 0, 0, .25); }
+.vd-demo .vd-fold-paper i { display: block; height: 20px; margin: -14px -16px 12px; background: #0b1a33; }
+.vd-demo .vd-fold-paper span { display: block; height: 8px; margin: 7px 0; background: #d3dbe7; }
+.vd-demo .vd-fold-front { position: absolute; left: 0; right: 0; bottom: 0; height: 206px; box-sizing: border-box; padding: 22px 24px; border-top: 3px solid #cf9b45; border-radius: 10px 10px 14px 14px; background: linear-gradient(180deg, #2c4e83, #16294a); box-shadow: 0 -8px 24px rgba(0, 0, 0, .35); transform-origin: 50% 100%; }
+.vd-demo .vd-fold-front b { display: block; color: #f0c878; font: 700 18px/1 var(--font-mono); letter-spacing: .18em; }
+.vd-demo .vd-fold-front small { display: block; margin-top: 10px; color: #9fb3cf; font: 600 13px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+.spec-card .vd-demo .vd-fold-front img { position: absolute; right: 20px; bottom: 18px; width: 64px; height: 64px; max-width: none; border-radius: 0; box-shadow: none; opacity: .9; }
+.vd-demo .vd-btn { position: absolute; left: 478px; top: 513px; display: flex; align-items: center; gap: 12px; padding: 15px 28px 15px 22px; border-radius: 999px; background: #f0c878; color: #0a1424; font: 800 22px/1 var(--font-body); white-space: nowrap; opacity: 0; }
+.vd-demo .vd-btn svg, .vd-demo .vd-badge svg { width: 22px; height: 22px; flex: 0 0 auto; }
+.vd-demo .vd-chip { position: absolute; left: 0; top: 0; padding: 15px 26px 15px 22px; border-radius: 999px; background: rgba(17, 35, 61, .95); border: 1.5px solid rgba(110, 170, 235, .38); color: #e8f0fc; font: 650 25px/1 var(--font-body); white-space: nowrap; box-shadow: 0 14px 34px rgba(0, 0, 0, .4); opacity: 0; }
+.vd-demo .vd-chip em { margin-right: 12px; color: #f0c878; font-style: normal; font-weight: 800; }
+.vd-demo .vd-stat { position: absolute; left: 588px; top: 39px; transform: translateX(-50%); color: #f0c878; font: 700 18px/1 var(--font-mono); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; }
+.vd-demo .vd-stat i { font-style: normal; }
+.vd-demo .vd-badge { position: absolute; left: 588px; top: 579px; display: flex; align-items: center; gap: 16px; padding: 16px 30px; border: 2.5px solid #f0c878; border-radius: 999px; background: rgba(240, 200, 120, .12); box-shadow: 0 0 40px rgba(240, 200, 120, .35); color: #f0c878; font: 800 30px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transform: translateX(-50%); transform-origin: 50% 50%; }
+.vd-demo .vd-badge svg { width: 28px; height: 28px; }
+.vd-demo .pf-play { position: absolute; z-index: 8; left: 50%; top: 50%; width: 13%; aspect-ratio: 1; border-radius: 50%; background: rgba(8, 15, 30, .72); box-shadow: 0 0 0 2px rgba(255, 255, 255, .85), 0 6px 18px rgba(2, 8, 20, .45); transform: translate(-50%, -50%) scale(.85); opacity: 0; transition: opacity .25s ease, transform .3s ease; pointer-events: none; }
+.vd-demo .pf-play:before { content: ""; position: absolute; left: 38%; top: 28%; width: 34%; height: 44%; background: #fff; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.vd-demo.is-idle .pf-play { opacity: 1; transform: translate(-50%, -50%); }
