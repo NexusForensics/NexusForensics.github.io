@@ -465,69 +465,197 @@
       });
     }, { threshold: 0.6 }).observe(card);
   });
-  // Encrypted case vaults card (2026-11-09: "Can we get the animation we created for the vault closing there and locking for this?"):
-  // the promo's closing scene, same timings. Evidence flies into the case, Close Case is pressed, the case shuts and sinks into the
-  // vault, the door swings shut and slams, the wheel spins, the eight bolts lock out, the padlock snaps shut, then the AES-256 badge.
-  // At rest the card shows the locked vault; with a mouse it plays while hovered (play button), touch screens play it in view.
-  document.querySelectorAll('[data-vault-demo]').forEach(card => {
+  // Encryption cards (2026-11-09): four scenes in the promo's style, each drawn at the promo's own pixel layout (1176 x 662) and scaled to
+  // its card. vault — the promo's closing scene ("Can we get the animation we created for the vault closing there and locking for this?"):
+  // evidence into the case, Close Case, the case into the vault, the door slams, wheel, bolts, padlock, the AES-256 badge. keys — the
+  // passphrase is typed, scrypt and AES-256-GCM unwrap the master key, the key opens the vault (Touch ID and the recovery key are the
+  // other ways in). index — records go into the encrypted local index, the file on disk scrambles to ciphertext and a search for the phone
+  // number finds nothing. export — report, media and hashes go into the zip, a password locks it, and the password is kept encrypted
+  // through the Keychain in the export log. Each rests on its finished picture; with a mouse it plays while hovered (play button), touch
+  // screens play it in view, reduced motion shows the finished picture.
+  const sClamp = (x, a = 0, b = 1) => (x < a ? a : x > b ? b : x);
+  const sP = (t, s0, d) => sClamp((t - s0) / d);
+  const sLerp = (a, b, x) => a + (b - a) * x;
+  const sOut = x => 1 - Math.pow(1 - x, 3);
+  const sIn = x => x * x * x;
+  const sIO = x => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const sBack = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+  const sBump = (u, at, d) => Math.sin(sP(u, at, d) * Math.PI);
+  const at = (el, x, y, scale = 1) => { el.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%) scale(${scale})`; };
+  const PRESS = press => `0 0 0 ${12 * press}px rgba(240,200,120,${0.35 * press}),0 12px 30px rgba(0,0,0,.4)`;
+  const SCENES = {
+    vault(card, k, all) {
+      const c = { vault: k('.vd-vault'), frame: k('.vd-frame'), ring: k('.vd-ring'), fold: k('.vd-fold'), front: k('.vd-fold-front'), door: k('.vd-door'), btn: k('.vd-btn'), stat: k('.vd-stat'), badge: k('.vd-badge'), wheel: k('[data-k="wheel"]'), shackle: k('[data-k="shackle"]'), bolts: all('[data-k="bolt"]'), chips: all('.vd-chip').map(el => ({ el, x: Number(el.dataset.x), y: Number(el.dataset.y) })) };
+      const CX = 588, CY = 331;
+      return { END: 3.6, draw(u) {
+        const fp = sOut(sP(u, 0.02, 0.35)), into = sIO(sP(u, 1.35, 0.42));
+        c.fold.style.opacity = fp * (1 - sP(u, 1.68, 0.1));
+        c.fold.style.transform = `translateY(${(1 - fp) * 50 + into * 5}px) scale(${sLerp(0.94, 1, fp) * sLerp(1, 0.4, into)})`;
+        c.front.style.transform = `perspective(900px) rotateX(${sLerp(-42, 0, sIO(sP(u, 1.05, 0.28)))}deg)`;
+        const press = Math.sin(sP(u, 1.0, 0.16) * Math.PI);
+        c.btn.style.opacity = sClamp(sP(u, 0.15, 0.25)) * (1 - sP(u, 1.3, 0.2));
+        c.btn.style.transform = `scale(${1 - 0.07 * press})`;
+        c.btn.style.boxShadow = PRESS(press);
+        c.chips.forEach((o, i) => {
+          const ts = 0.35 + i * 0.1, a = sP(u, ts, 0.4), m = sIn(sP(u, ts + 0.12, 0.34));
+          o.el.style.opacity = sClamp(a * 4) * (1 - sP(u, ts + 0.4, 0.06));
+          at(o.el, sLerp(o.x, CX, m), sLerp(o.y, CY - 40, m), sLerp(0.6, 1, sBack(sClamp(a * 2.5))) * sLerp(1, 0.35, m));
+        });
+        const vf = sOut(sP(u, 1.2, 0.35));
+        c.frame.style.opacity = vf;
+        c.frame.style.transform = `scale(${sLerp(0.82, 1, vf)})`;
+        const dr = sP(u, 1.7, 0.45);
+        c.door.style.opacity = sClamp(dr * 5);
+        c.door.style.transform = `perspective(1600px) rotateY(${sLerp(-100, 0, sIn(dr))}deg)`;
+        const sl = sP(u, 2.15, 0.3);
+        c.vault.style.transform = sl > 0 && sl < 1 ? `translate(${Math.sin(sl * 42) * (1 - sl) * 7}px,${Math.cos(sl * 37) * (1 - sl) * 3}px)` : 'none';
+        c.wheel.setAttribute('transform', `rotate(${-300 * sIO(sP(u, 2.2, 0.45))} 210 210)`);
+        const bo = sOut(sP(u, 2.45, 0.15));
+        c.bolts.forEach(b => b.setAttribute('transform', `translate(${26 * bo},0)`));
+        c.shackle.setAttribute('transform', `translate(0,${-9 * (1 - sOut(sP(u, 2.68, 0.12)))})`);
+        const g = sOut(sP(u, 2.72, 0.3));
+        c.door.style.filter = g > 0 ? `drop-shadow(0 0 ${34 * g}px rgba(240,200,120,${0.55 * g}))` : 'none';
+        const rp = sP(u, 2.72, 0.8), R = sLerp(215, 330, sOut(rp));
+        Object.assign(c.ring.style, { left: `${CX - R}px`, top: `${CY - R}px`, width: `${2 * R}px`, height: `${2 * R}px`, opacity: rp > 0 ? (1 - rp) * 0.85 : 0 });
+        c.stat.style.opacity = sClamp(sP(u, 1.1, 0.2));
+        const bd = sP(u, 2.85, 0.32);
+        c.badge.style.opacity = sClamp(bd * 3);
+        c.badge.style.transform = `translateX(-50%) scale(${sLerp(0.5, 1, sBack(bd))})`;
+      } };
+    },
+    keys(card, k, all) {
+      const c = { panel: k('[data-k="panel"]'), field: k('[data-k="field"]'), dots: all('[data-k="dot"]'), caret: k('[data-k="caret"]'), btn: k('[data-k="btn"]'), kdf: k('[data-k="kdf"]'), env: k('[data-k="env"]'), flap: k('[data-k="flap"]'), keylabel: k('[data-k="keylabel"]'), key: k('[data-k="key"]'), door: k('[data-k="door"]'), inside: k('[data-k="inside"]'), wheel: k('[data-k="wheel"]'), shackle: k('[data-k="shackle"]'), bolts: all('[data-k="bolt"]'), locked: k('[data-k="locked"]'), open: k('[data-k="open"]') };
+      return { END: 4.6, draw(u) {
+        const pa = sOut(sP(u, 0, 0.35));
+        c.panel.style.opacity = pa;
+        c.panel.style.transform = `translateY(${(1 - pa) * 24}px)`;
+        c.field.style.borderColor = u > 0.25 && u < 1.45 ? '#5cc8ff' : '#2b4066';
+        c.dots.forEach((d, i) => { d.style.opacity = u > 0.4 + i * 0.065 ? 1 : 0; });
+        c.caret.style.opacity = u > 0.25 && u < 1.3 && Math.floor(u * 3.2) % 2 === 0 ? 1 : 0;
+        const press = Math.sin(sP(u, 1.3, 0.16) * Math.PI);
+        c.btn.style.transform = `scale(${1 - 0.07 * press})`;
+        c.btn.style.boxShadow = PRESS(press);
+        const kd = sP(u, 1.45, 0.3);
+        c.kdf.style.opacity = sClamp(kd * 3);
+        at(c.kdf, 606, 222, sLerp(0.6, 1, sBack(kd)));
+        const ev = sOut(sP(u, 1.7, 0.25));
+        c.env.style.opacity = ev;
+        c.env.style.transform = `translateY(${(1 - ev) * 20}px)`;
+        c.flap.style.transform = `perspective(400px) rotateX(${sLerp(0, 180, sIO(sP(u, 2.0, 0.3)))}deg)`;
+        c.flap.style.zIndex = u > 2.15 ? 0 : 2;
+        // the master key rises out of its envelope, then goes to the vault
+        const rise = sOut(sP(u, 2.2, 0.3)), fly = sIO(sP(u, 2.55, 0.45));
+        c.key.style.opacity = sClamp(sP(u, 2.2, 0.08)) * (1 - sP(u, 3.0, 0.12));
+        at(c.key, sLerp(606, 930, fly), sLerp(sLerp(334, 276, rise), 331, fly), sLerp(1, 0.55, fly));
+        c.key.style.zIndex = 3;
+        c.keylabel.style.opacity = sClamp(sP(u, 2.3, 0.2)) * (1 - sP(u, 2.6, 0.2));
+        // the padlock opens, the bolts pull back, the wheel turns and the door swings open on the case
+        c.shackle.setAttribute('transform', `translate(0,${-9 * sOut(sP(u, 3.0, 0.15))})`);
+        const g = Math.sin(sP(u, 3.0, 0.6) * Math.PI);
+        c.door.style.filter = g > 0 ? `drop-shadow(0 0 ${34 * g}px rgba(240,200,120,${0.55 * g}))` : 'none';
+        const bo = 1 - sOut(sP(u, 3.15, 0.2));
+        c.bolts.forEach(b => b.setAttribute('transform', `translate(${26 * bo},0)`));
+        c.wheel.setAttribute('transform', `rotate(${300 * sIO(sP(u, 3.2, 0.45))} 210 210)`);
+        c.door.style.transform = `perspective(1600px) rotateY(${sLerp(0, -72, sIO(sP(u, 3.65, 0.55)))}deg)`;
+        c.inside.style.opacity = sClamp(sP(u, 3.8, 0.3));
+        c.locked.style.opacity = 1 - sP(u, 3.7, 0.15);
+        c.open.style.opacity = sClamp(sP(u, 3.9, 0.2));
+      } };
+    },
+    index(card, k, all) {
+      const c = { recs: all('[data-k="rec"]'), db: k('[data-k="db"]'), flash: k('[data-k="flash"]'), badge: k('[data-k="badge"]'), disk: k('[data-k="disk"]'), hex: all('[data-k="hex"]'), search: k('[data-k="search"]'), query: k('[data-k="query"]'), qcaret: k('[data-k="qcaret"]'), result: k('[data-k="result"]') };
+      const SPOTS = [[250, 150], [250, 240], [250, 330], [250, 420]];
+      const HEX = '0123456789abcdef';
+      const hexRow = seed => { let x = (seed * 2654435761) >>> 0, out = ''; for (let i = 0; i < 24; i += 1) { x = (x * 1103515245 + 12345) >>> 0; out += HEX[(x >>> 16) & 15]; if (i % 4 === 3 && i < 23) out += ' '; } return out; };
+      const QUERY = '613-555-0147';
+      return { END: 4.3, draw(u) {
+        const dbIn = sOut(sP(u, 0.3, 0.35));
+        c.db.style.opacity = dbIn;
+        c.db.style.transform = `scale(${sLerp(0.85, 1, dbIn)})`;
+        const dk = sOut(sP(u, 0.2, 0.35));
+        c.disk.style.opacity = dk;
+        c.disk.style.transform = `translateY(${(1 - dk) * 20}px)`;
+        let flash = 0;
+        c.recs.forEach((el, i) => {
+          const a = sP(u, 0.1 + i * 0.12, 0.3), t0 = 1.0 + i * 0.22, m = sIn(sP(u, t0, 0.4));
+          el.style.opacity = sClamp(a * 3) * (1 - sP(u, t0 + 0.36, 0.06));
+          at(el, sLerp(SPOTS[i][0], 588, m), sLerp(SPOTS[i][1], 250, m), sLerp(sLerp(0.7, 1, sBack(a)), 0.25, m));
+          flash = Math.max(flash, sBump(u, t0 + 0.34, 0.3));
+        });
+        c.flash.style.opacity = flash;
+        // the file on disk only ever holds ciphertext: it churns while the records go in, then settles
+        const tick = u < 1.0 ? 0 : u < 2.4 ? Math.floor(u * 14) : 99;
+        c.hex.forEach((row, i) => {
+          row.textContent = hexRow(i * 977 + tick * 31 + 7);
+          const lit = c.recs.some((_, j) => { const t = 1.36 + j * 0.22; return j % 8 === i % 8 && u > t && u < t + 0.35; }) || (i >= 4 && u > 1.36 + (i - 4) * 0.22 && u < 1.71 + (i - 4) * 0.22);
+          row.style.color = lit ? '#f0c878' : '#4f6f9a';
+        });
+        c.search.style.opacity = sClamp(sP(u, 2.5, 0.2));
+        const typed = Math.floor(sP(u, 2.7, 0.6) * QUERY.length);
+        c.query.textContent = QUERY.slice(0, typed);
+        c.qcaret.style.opacity = u > 2.6 && u < 3.45 && Math.floor(u * 3.2) % 2 === 0 ? 1 : 0;
+        const rs = sP(u, 3.45, 0.3);
+        c.result.style.opacity = sClamp(rs * 3);
+        c.result.style.transform = `translateX(-50%) scale(${sLerp(0.6, 1, sBack(rs))})`;
+        const bd = sP(u, 3.75, 0.32);
+        c.badge.style.opacity = sClamp(bd * 3);
+        c.badge.style.transform = `translateX(-50%) scale(${sLerp(0.5, 1, sBack(bd))})`;
+      } };
+    },
+    export(card, k, all) {
+      const c = { files: all('[data-k="file"]'), box: k('[data-k="box"]'), lid: k('[data-k="lid"]'), lock: k('[data-k="lock"]'), lshackle: k('[data-k="lshackle"]'), ring: k('[data-k="ring"]'), name: k('[data-k="name"]'), pass: k('[data-k="pass"]'), dots: all('[data-k="dot"]'), ok: k('[data-k="ok"]'), chain: k('[data-k="chain"]'), log: k('[data-k="log"]'), row: k('[data-k="row"]'), fly: k('[data-k="fly"]'), flydots: k('[data-k="flydots"]'), flylock: k('[data-k="flylock"]') };
+      const SPOTS = [[170, 170], [170, 300], [170, 430]];
+      const BX = 520, BY = 240;
+      return { END: 4.5, draw(u) {
+        const bi = sOut(sP(u, 0.25, 0.35));
+        c.box.style.opacity = bi;
+        c.box.style.transform = `scale(${sLerp(0.88, 1, bi)})`;
+        c.name.style.opacity = sClamp(sP(u, 0.4, 0.3));
+        const li = sOut(sP(u, 0.3, 0.35));
+        c.log.style.opacity = li;
+        c.log.style.transform = `translateY(${(1 - li) * 20}px)`;
+        c.chain.style.opacity = sClamp(sP(u, 0.45, 0.3));
+        c.files.forEach((el, i) => {
+          const a = sP(u, 0.1 + i * 0.12, 0.3), t0 = 0.85 + i * 0.18, m = sIn(sP(u, t0, 0.38));
+          el.style.opacity = sClamp(a * 3) * (1 - sP(u, t0 + 0.34, 0.06));
+          at(el, sLerp(SPOTS[i][0], BX, m), sLerp(SPOTS[i][1], BY - 10, m), sLerp(sLerp(0.7, 1, sBack(a)), 0.3, m));
+        });
+        c.lid.style.transform = `perspective(700px) rotateX(${sLerp(-120, 0, sIO(sP(u, 1.55, 0.3)))}deg)`;
+        c.pass.style.opacity = sClamp(sP(u, 1.75, 0.25));
+        c.dots.forEach((d, i) => { d.style.opacity = u > 1.95 + i * 0.06 ? 1 : 0; });
+        const lp = sOut(sP(u, 2.65, 0.25));
+        c.lock.style.opacity = sClamp(lp * 3);
+        c.lock.style.transform = `translateY(${sLerp(-70, 0, lp)}px)`;
+        c.lshackle.setAttribute('transform', `translate(0,${-8 * (1 - sOut(sP(u, 2.92, 0.12)))})`);
+        const g = sOut(sP(u, 2.95, 0.3));
+        c.lock.style.filter = g > 0 ? `drop-shadow(0 0 ${22 * g}px rgba(240,200,120,${0.6 * g}))` : 'none';
+        const rp = sP(u, 2.95, 0.7), R = sLerp(130, 230, sOut(rp));
+        Object.assign(c.ring.style, { left: `${BX - R}px`, top: `${BY - R}px`, width: `${2 * R}px`, height: `${2 * R}px`, opacity: rp > 0 ? (1 - rp) * 0.8 : 0 });
+        const ok = sP(u, 3.05, 0.3);
+        c.ok.style.opacity = sClamp(ok * 3);
+        c.ok.style.transform = `translateX(-50%) scale(${sLerp(0.6, 1, sBack(ok))})`;
+        // the password goes through the Keychain (it comes out encrypted) into the export log
+        const f1 = sIO(sP(u, 3.15, 0.35)), f2 = sIO(sP(u, 3.55, 0.35));
+        const fx = f2 > 0 ? sLerp(930, 932, f2) : sLerp(BX, 930, f1), fy = f2 > 0 ? sLerp(80, 300, f2) : sLerp(430, 80, f1);
+        c.fly.style.opacity = sClamp(sP(u, 3.1, 0.08)) * (1 - sP(u, 3.88, 0.08));
+        at(c.fly, fx, fy, sLerp(1, 0.8, f2));
+        const enc = sP(u, 3.45, 0.12);
+        c.flydots.style.opacity = 1 - enc;
+        c.flylock.style.opacity = enc;
+        const cb = sBump(u, 3.4, 0.35);
+        c.chain.style.boxShadow = cb > 0 ? `0 0 0 ${10 * cb}px rgba(240,200,120,${0.3 * cb})` : 'none';
+        const rw = sOut(sP(u, 3.85, 0.35));
+        c.row.style.opacity = rw;
+        c.row.style.transform = `translateY(${(1 - rw) * 16}px)`;
+      } };
+    },
+  };
+  document.querySelectorAll('[data-scene-demo]').forEach(card => {
     const box = card.querySelector('.vd-box');
     const scene = card.querySelector('.vd-scene');
-    if (!box || !scene) return;
-    const q = sel => card.querySelector(sel);
-    const c = {
-      vault: q('.vd-vault'), frame: q('.vd-frame'), ring: q('.vd-ring'), fold: q('.vd-fold'), front: q('.vd-fold-front'), door: q('.vd-door'),
-      btn: q('.vd-btn'), stat: q('.vd-stat'), badge: q('.vd-badge'), wheel: q('.vd-wheel'), shackle: q('.vd-shackle'),
-      bolts: Array.from(card.querySelectorAll('.vd-bolt')),
-      chips: Array.from(card.querySelectorAll('.vd-chip')).map(el => ({ el, x: Number(el.dataset.x), y: Number(el.dataset.y) })),
-    };
-    const CX = 588, CY = 331, END = 3.6;
-    const clamp = (x, a = 0, b = 1) => (x < a ? a : x > b ? b : x);
-    const P = (t, s, d) => clamp((t - s) / d);
-    const lerp = (a, b, x) => a + (b - a) * x;
-    const eOut = x => 1 - Math.pow(1 - x, 3);
-    const eIn = x => x * x * x;
-    const eIO = x => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
-    const eBack = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
-    const draw = u => {
-      // the open case and its Close Case button
-      const fp = eOut(P(u, 0.02, 0.35)), into = eIO(P(u, 1.35, 0.42));
-      c.fold.style.opacity = fp * (1 - P(u, 1.68, 0.1));
-      c.fold.style.transform = `translateY(${(1 - fp) * 50 + into * 5}px) scale(${lerp(0.94, 1, fp) * lerp(1, 0.4, into)})`;
-      c.front.style.transform = `perspective(900px) rotateX(${lerp(-42, 0, eIO(P(u, 1.05, 0.28)))}deg)`;
-      const press = Math.sin(P(u, 1.0, 0.16) * Math.PI);
-      c.btn.style.opacity = clamp(P(u, 0.15, 0.25)) * (1 - P(u, 1.3, 0.2));
-      c.btn.style.transform = `scale(${1 - 0.07 * press})`;
-      c.btn.style.boxShadow = `0 0 0 ${12 * press}px rgba(240,200,120,${0.35 * press}),0 12px 30px rgba(0,0,0,.4)`;
-      // evidence flies into the case
-      c.chips.forEach((o, i) => {
-        const ts = 0.35 + i * 0.1, a = P(u, ts, 0.4), m = eIn(P(u, ts + 0.12, 0.34));
-        o.el.style.opacity = clamp(a * 4) * (1 - P(u, ts + 0.4, 0.06));
-        o.el.style.transform = `translate(${lerp(o.x, CX, m)}px,${lerp(o.y, CY - 40, m)}px) translate(-50%,-50%) scale(${lerp(0.6, 1, eBack(clamp(a * 2.5))) * lerp(1, 0.35, m)})`;
-      });
-      // the vault opens behind, the door swings shut and slams
-      const vf = eOut(P(u, 1.2, 0.35));
-      c.frame.style.opacity = vf;
-      c.frame.style.transform = `scale(${lerp(0.82, 1, vf)})`;
-      const dr = P(u, 1.7, 0.45);
-      c.door.style.opacity = clamp(dr * 5);
-      c.door.style.transform = `perspective(1600px) rotateY(${lerp(-100, 0, eIn(dr))}deg)`;
-      const sl = P(u, 2.15, 0.3);
-      c.vault.style.transform = sl > 0 && sl < 1 ? `translate(${Math.sin(sl * 42) * (1 - sl) * 7}px,${Math.cos(sl * 37) * (1 - sl) * 3}px)` : 'none';
-      // wheel spins, bolts lock out, padlock snaps shut
-      c.wheel.setAttribute('transform', `rotate(${-300 * eIO(P(u, 2.2, 0.45))} 210 210)`);
-      const bo = eOut(P(u, 2.45, 0.15));
-      c.bolts.forEach(b => b.setAttribute('transform', `translate(${26 * bo},0)`));
-      c.shackle.setAttribute('transform', `translate(0,${-9 * (1 - eOut(P(u, 2.68, 0.12)))})`);
-      const g = eOut(P(u, 2.72, 0.3));
-      c.door.style.filter = g > 0 ? `drop-shadow(0 0 ${34 * g}px rgba(240,200,120,${0.55 * g}))` : 'none';
-      const rp = P(u, 2.72, 0.8), R = lerp(215, 330, eOut(rp));
-      Object.assign(c.ring.style, { left: `${CX - R}px`, top: `${CY - R}px`, width: `${2 * R}px`, height: `${2 * R}px`, opacity: rp > 0 ? (1 - rp) * 0.85 : 0 });
-      // status, badge
-      c.stat.style.opacity = clamp(P(u, 1.1, 0.2));
-      const bd = P(u, 2.85, 0.32);
-      c.badge.style.opacity = clamp(bd * 3);
-      c.badge.style.transform = `translateX(-50%) scale(${lerp(0.5, 1, eBack(bd))})`;
-    };
+    const setup = SCENES[card.dataset.sceneDemo];
+    if (!box || !scene || !setup) return;
+    const { END, draw } = setup(card, sel => card.querySelector(sel), sel => Array.from(card.querySelectorAll(sel)));
     const fit = () => { scene.style.transform = `scale(${box.clientWidth / 1176})`; };
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(box);
