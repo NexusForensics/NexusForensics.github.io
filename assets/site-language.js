@@ -1816,7 +1816,15 @@
       "object 52%": "objet 52 %",
       "86% of the box": "86 % du cadre",
       "Full-size avatar": "Avatar en pleine taille",
-      "A profile picture saved at full size by Profile Capture (demo case, AI generated)": "Une photo de profil enregistrée en pleine taille par la capture de profil (dossier de démonstration, générée par IA)"
+      "A profile picture saved at full size by Profile Capture (demo case, AI generated)": "Une photo de profil enregistrée en pleine taille par la capture de profil (dossier de démonstration, générée par IA)",
+      "Post Capture": "Capture de publication",
+      "A simulated Instagram post captured with its comments: a flower market picture (AI generated) and made-up comments": "Une publication Instagram simulée, capturée avec ses commentaires : une image de marché aux fleurs (générée par IA) et des commentaires inventés",
+      "Saturday market colours 🌷": "Les couleurs du marché du samedi 🌷",
+      "🌸🌸 so pretty": "🌸🌸 trop joli",
+      "Where is this? 😍": "C’est où ? 😍",
+      "Saving this 🔥": "Je garde ça 🔥",
+      "Post and 3 comments": "Publication et 3 commentaires",
+      "362 × 362 · demo": "362 × 362 · démo"
     },
     "es": {
       "Post capture in action": "Captura de publicación en acción",
@@ -1924,7 +1932,15 @@
       "object 52%": "objeto 52 %",
       "86% of the box": "86 % del recuadro",
       "Full-size avatar": "Avatar a tamaño completo",
-      "A profile picture saved at full size by Profile Capture (demo case, AI generated)": "Una foto de perfil guardada a tamaño completo por la captura de perfil (caso de demostración, generada por IA)"
+      "A profile picture saved at full size by Profile Capture (demo case, AI generated)": "Una foto de perfil guardada a tamaño completo por la captura de perfil (caso de demostración, generada por IA)",
+      "Post Capture": "Captura de publicación",
+      "A simulated Instagram post captured with its comments: a flower market picture (AI generated) and made-up comments": "Una publicación de Instagram simulada, capturada con sus comentarios: una imagen de un mercado de flores (generada por IA) y comentarios inventados",
+      "Saturday market colours 🌷": "Los colores del mercado del sábado 🌷",
+      "🌸🌸 so pretty": "🌸🌸 qué bonito",
+      "Where is this? 😍": "¿Dónde es? 😍",
+      "Saving this 🔥": "Me lo guardo 🔥",
+      "Post and 3 comments": "Publicación y 3 comentarios",
+      "362 × 362 · demo": "362 × 362 · demo"
     }
   };
   Object.entries(captureDemoStrings).forEach(([lang, values]) => {
