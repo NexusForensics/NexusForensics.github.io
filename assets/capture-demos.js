@@ -294,45 +294,106 @@
       });
     }, { threshold: 0.6 }).observe(card);
   });
-  // TikTok platform card: a simulated Scrolling Content capture. The TOP marker is set, the feed scrolls through the capture area while the
-  // post count climbs, the BOTTOM marker appears where the capture ends, then the hash types. Reduced motion shows the finished capture.
+  // Platform cards with a simulated capture (2026-11-09): one engine, four kinds (data-pf-mode).
+  //   scroll  — TikTok, Threads, X, YouTube, Reddit, Telegram: the TOP marker, the feed scrolls through the capture area while the count
+  //             climbs, the BOTTOM marker where it ends, then the hash types.
+  //   story   — Snapchat: the highlight plays snap by snap (progress bars), every snap counted, then the hash.
+  //   section — LinkedIn: the Experience section is outlined and read, its page text appears beside it as the second record, then the hash.
+  //   ads     — Marketplace then Kijiji: the listings scroll to an ad, it is ticked, its page opens as captured, then the hash; the tabs
+  //             switch between the two afterwards.
+  // Reduced motion and off-screen show the finished capture.
   document.querySelectorAll('[data-pf-scroll]').forEach(card => {
-    const SCROLL_MS = 4200;
-    const sha = card.querySelector('[data-pf-sha]');
-    const full = sha ? sha.dataset.pfSha : '';
+    const mode = card.dataset.pfMode || 'scroll';
+    const SCROLL_MS = mode === 'ads' ? 2600 : 4200;
+    card.style.setProperty('--pf-scroll-ms', `${SCROLL_MS}ms`);
     const count = card.querySelector('[data-pf-count]');
     const total = Number(count?.dataset.pfTotal) || 0;
-    card.style.setProperty('--pf-scroll-ms', `${SCROLL_MS}ms`);
+    const reel = card.querySelector('.pf-tt-reel');
+    const frames = Number(reel?.dataset.pfFrames) || 0;
+    const bars = Array.from(card.querySelectorAll('.pf-st-bars i'));
+    const sites = Array.from(card.querySelectorAll('[data-pf-site-panel]'));
+    const tabs = Array.from(card.querySelectorAll('[data-pf-site]'));
+    let timers = [];
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
+    const at = (ms, step) => timers.push(setTimeout(step, ms));
+    const typeSha = (code, startMs) => {
+      const full = code ? code.dataset.pfSha : '';
+      if (!code) return;
+      code.textContent = '';
+      for (let i = 1; i <= full.length; i += 2) at(startMs + i * 16, () => { code.textContent = full.slice(0, i + 1); });
+    };
+    const shaIn = scope => scope.querySelector('[data-pf-sha]');
+    const fillSha = scope => scope.querySelectorAll('[data-pf-sha]').forEach(code => { code.textContent = code.dataset.pfSha; });
+    const showFrame = k => {
+      if (!reel || !frames) return;
+      reel.style.transform = `translateY(-${(100 * k) / frames}%)`;
+      bars.forEach((bar, i) => { bar.classList.toggle('done', i < k); bar.classList.toggle('on', i === k); });
+      if (count) count.textContent = String(k + 1);
+    };
+    const selectSite = (index, state = 'done') => {
+      sites.forEach((panel, i) => {
+        // Stacked, never hidden: a hidden panel's lazy pictures would not load until it is shown.
+        panel.classList.toggle('is-shown', i === index);
+        panel.classList.toggle('is-scrolling', i === index && state !== 'start');
+        panel.classList.toggle('is-picked', i === index && (state === 'picked' || state === 'done'));
+        panel.classList.toggle('is-opened', i === index && state === 'done');
+      });
+      card.querySelectorAll('[data-pf-site-cap]').forEach(cap => { cap.hidden = Number(cap.dataset.pfSiteCap) !== index; });
+      tabs.forEach(tab => tab.setAttribute('aria-selected', String(Number(tab.dataset.pfSite) === index)));
+    };
     const finished = () => {
+      clear();
       card.classList.add('is-ready', 'is-on', 'is-scrolling', 'is-done');
       card.classList.remove('is-armed');
       if (count) count.textContent = String(total);
-      if (sha) sha.textContent = full;
+      if (mode === 'story') showFrame(frames - 1);
+      if (mode === 'story') bars.forEach(bar => bar.classList.add('done'));
+      if (mode === 'ads') selectSite(sites.length - 1);
+      fillSha(card);
     };
+    tabs.forEach(tab => tab.addEventListener('click', () => { if (card.classList.contains('is-done')) selectSite(Number(tab.dataset.pfSite)); }));
     if (reduceMotion) { finished(); return; }
-    let timers = [];
-    const clear = () => { timers.forEach(clearTimeout); timers = []; };
     const run = () => {
       clear();
       card.classList.add('is-snap', 'is-ready', 'is-armed');
       card.classList.remove('is-on', 'is-scrolling', 'is-done');
       if (count) count.textContent = '0';
-      if (sha) sha.textContent = '';
+      card.querySelectorAll('[data-pf-sha]').forEach(code => { code.textContent = ''; });
+      if (mode === 'story') { showFrame(0); bars.forEach(bar => bar.classList.remove('done', 'on')); if (count) count.textContent = '0'; }
+      if (mode === 'ads') selectSite(0, 'start');
       void card.offsetWidth;
       card.classList.remove('is-snap');
-      timers.push(setTimeout(() => card.classList.add('is-on'), 400));
-      timers.push(setTimeout(() => { card.classList.remove('is-armed'); card.classList.add('is-scrolling'); }, 1300));
-      // Two posts a row come into the capture as it scrolls.
-      for (let n = 2; n <= total; n += 2) timers.push(setTimeout(() => { if (count) count.textContent = String(n); }, 1300 + (n / total) * SCROLL_MS));
-      timers.push(setTimeout(() => card.classList.add('is-done'), 1300 + SCROLL_MS + 100));
-      for (let i = 1; i <= full.length; i += 2) timers.push(setTimeout(() => { if (sha) sha.textContent = full.slice(0, i + 1); }, 1300 + SCROLL_MS + 500 + i * 16));
+      at(400, () => card.classList.add('is-on'));
+      if (mode === 'scroll' || mode === 'section') {
+        at(1300, () => { card.classList.remove('is-armed'); card.classList.add('is-scrolling'); });
+        for (let n = 1; n <= total; n += 1) at(1300 + (n / total) * SCROLL_MS, () => { if (count) count.textContent = String(n); });
+        at(1300 + SCROLL_MS + 100, () => card.classList.add('is-done'));
+        typeSha(shaIn(card), 1300 + SCROLL_MS + (mode === 'section' ? 1300 : 500));
+      } else if (mode === 'story') {
+        const SNAP_MS = 1100;
+        for (let k = 0; k < frames; k += 1) at(1000 + k * SNAP_MS, () => showFrame(k));
+        at(1000 + frames * SNAP_MS, () => { bars.forEach(bar => { bar.classList.remove('on'); bar.classList.add('done'); }); card.classList.add('is-done'); });
+        typeSha(shaIn(card), 1000 + frames * SNAP_MS + 300);
+      } else if (mode === 'ads') {
+        card.classList.remove('is-armed');
+        const SITE_MS = 9000;
+        sites.forEach((panel, i) => {
+          const t0 = 1100 + i * SITE_MS;
+          at(t0, () => selectSite(i, 'start'));
+          at(t0 + 150, () => selectSite(i, 'scrolling'));
+          at(t0 + 150 + SCROLL_MS + 200, () => selectSite(i, 'picked'));
+          at(t0 + 150 + SCROLL_MS + 1300, () => selectSite(i, 'done'));
+          typeSha(shaIn(card.querySelector(`[data-pf-site-cap="${i}"]`)), t0 + 150 + SCROLL_MS + 1800);
+        });
+        at(1100 + sites.length * SITE_MS - 2000, () => card.classList.add('is-done'));
+      }
     };
     finished();
     let seen = false;
     new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !seen) { seen = true; run(); }
-        if (!entry.isIntersecting && seen) { seen = false; clear(); finished(); }
+        if (!entry.isIntersecting && seen) { seen = false; finished(); }
       });
     }, { threshold: 0.6 }).observe(card);
   });

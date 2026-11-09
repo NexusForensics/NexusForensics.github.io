@@ -1993,3 +1993,103 @@ footer a:hover { color: var(--cyan); }
 @media (prefers-reduced-motion: reduce) {
   .pf-capture.is-scrolling .pf-tt-reel { transition: none; }
 }
+
+/* Simulated captures on the other platform cards (2026-11-09), on the TikTok card's frame (.pf-tt): each platform's own colours, plus
+   the Snapchat story bars, the LinkedIn page-text record and the Marketplace / Kijiji ad pick. assets/capture-demos.js plays them. */
+.pf-capture-card.pf-tt.pf-th-threads { background: #101010; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), 0 0 0 .5cqi rgba(243, 245, 247, .85); }
+.pf-capture-card.pf-tt.pf-th-x { background: #000; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), 0 0 0 .5cqi rgba(231, 233, 234, .85); }
+.pf-capture-card.pf-tt.pf-th-youtube { background: #0f0f0f; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), 0 0 0 .5cqi rgba(255, 0, 0, .9); }
+.pf-capture-card.pf-tt.pf-th-snapchat { background: #111; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), 0 0 0 .5cqi rgba(255, 252, 0, .95); }
+.pf-capture-card.pf-tt.pf-th-reddit { background: #0b1416; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), 0 0 0 .5cqi rgba(255, 69, 0, .9); }
+.pf-capture-card.pf-tt.pf-th-telegram { background: #0e1621; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), 0 0 0 .5cqi rgba(42, 171, 238, .9); }
+.pf-capture-card.pf-tt.pf-th-linkedin { background: #fff; color: #191919; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), 0 0 0 .5cqi rgba(10, 102, 194, .95); }
+.pf-capture-card.pf-tt.pf-th-market { background: #fff; color: #050505; box-shadow: 0 1.6cqi 4cqi rgba(2, 8, 20, .55), -.35cqi -.35cqi 0 .2cqi rgba(24, 119, 242, .95), .35cqi .35cqi 0 .2cqi rgba(55, 51, 115, .95); }
+.pf-tt.pf-th-threads .pf-tt-count b { color: #fff; }
+.pf-tt.pf-th-threads figcaption code { color: #e5e7eb; }
+.pf-tt.pf-th-x .pf-tt-count b, .pf-tt.pf-th-x figcaption code { color: #1d9bf0; }
+.pf-tt.pf-th-youtube .pf-tt-count b { color: #ff4e45; }
+.pf-tt.pf-th-youtube figcaption code { color: #fca5a5; }
+.pf-tt.pf-th-snapchat .pf-tt-count b, .pf-tt.pf-th-snapchat figcaption code { color: #fde047; }
+.pf-tt.pf-th-reddit .pf-tt-count b { color: #ff4500; }
+.pf-tt.pf-th-reddit figcaption code { color: #fdba74; }
+.pf-tt.pf-th-telegram .pf-tt-count b, .pf-tt.pf-th-telegram figcaption code { color: #7dd3fc; }
+.pf-th-telegram .pf-tt-mark { background: rgba(42, 171, 238, .38); }
+.pf-th-telegram .pf-tt-mark i, .pf-th-telegram .pf-tt-mark b { background: #2aabee; }
+.pf-tt.pf-th-linkedin figcaption, .pf-tt.pf-th-market figcaption { color: #191919; }
+.pf-tt.pf-th-linkedin figcaption span, .pf-tt.pf-th-linkedin figcaption em, .pf-tt.pf-th-market figcaption span, .pf-tt.pf-th-market figcaption em { color: #64748b; }
+.pf-tt.pf-th-linkedin figcaption code, .pf-tt.pf-th-linkedin .pf-tt-count b { color: #0a66c2; }
+.pf-tt.pf-th-market figcaption code { color: #1d4ed8; }
+
+/* Snapchat: one snap fills the view; the bars fill as each snap plays. */
+.pf-capture-card.pf-tt.pf-story { width: 22cqi; }
+.pf-story .pf-tt-view { height: auto; aspect-ratio: 300 / 533; }
+.pf-capture .pf-story .pf-tt-reel { transition: transform .45s ease; }
+.pf-st-bars { position: absolute; z-index: 3; left: 1cqi; right: 1cqi; top: 1cqi; display: flex; gap: .5cqi; }
+.pf-st-bars i { position: relative; flex: 1; height: .55cqi; min-height: 2px; overflow: hidden; border-radius: 99px; background: rgba(255, 255, 255, .35); }
+.pf-st-bars i:after { content: ""; position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
+.pf-st-bars i.done:after { transform: scaleX(1); }
+.pf-st-bars i.on:after { transform: scaleX(1); transition: transform 1.05s linear; }
+.pf-story .pf-tt-count { top: 3cqi; }
+
+/* LinkedIn: the section is outlined and read, then its page text slides in as the second record. */
+.pf-capture-card.pf-tt.pf-section { width: 34cqi; }
+.pf-section .pf-tt-count { top: 1cqi; }
+.pf-capture.is-scrolling:not(.is-done) .pf-section .pf-tt-view { outline: .4cqi dashed #0a66c2; outline-offset: -.4cqi; }
+.pf-li-scan { position: absolute; z-index: 2; left: 0; right: 0; top: 0; height: 14%; opacity: 0; pointer-events: none; background: linear-gradient(180deg, rgba(10, 102, 194, 0), rgba(10, 102, 194, .22)); border-bottom: 2px solid #0a66c2; }
+.pf-capture.is-scrolling:not(.is-done) .pf-li-scan { opacity: 1; animation: pfLiScan 1.4s linear infinite; }
+@keyframes pfLiScan { from { transform: translateY(-100%); } to { transform: translateY(620%); } }
+.pf-li-text { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; padding: 1.2cqi 1.4cqi; background: rgba(243, 246, 248, .97); border-top: .35cqi solid #0a66c2; transform: translateY(102%); transition: transform .5s cubic-bezier(.3, 1.2, .5, 1); }
+.pf-capture.is-done .pf-li-text { transform: none; }
+.pf-li-text em { display: block; margin-bottom: .6cqi; color: #0a66c2; font: 800 max(7px, 1.5cqi)/1.2 var(--font-body); font-style: normal; letter-spacing: .08em; text-transform: uppercase; }
+.platform-support-card .pf-li-text ul { display: grid; gap: .5cqi; margin: 0; padding: 0; list-style: none; }
+.platform-support-card .pf-li-text li { min-height: 0; margin: 0; padding: 0; color: #191919; font-size: max(7px, 1.6cqi); line-height: 1.25; }
+.platform-support-card .pf-li-text li:before { content: none; display: none; }
+.pf-li-text li b { display: block; font-weight: 800; }
+.pf-li-text li span { display: block; color: #555; }
+
+/* Marketplace and Kijiji: the listings scroll to the ad, it is ticked, then its page opens as captured. */
+.pf-capture-card.pf-tt.pf-ads { width: 31cqi; }
+.pf-ad-tabs { display: flex; gap: .6cqi; margin-bottom: 1cqi; }
+.pf-ad-tabs button { flex: 1; padding: .5cqi 0; border: 0; border-radius: 99px; background: #e4e6eb; color: #334155; font: 800 max(7px, 1.7cqi)/1.3 var(--font-body); cursor: pointer; }
+.pf-ad-tabs button[aria-selected="true"] { background: #1877f2; color: #fff; }
+.pf-ad-tabs button[data-pf-site="1"][aria-selected="true"] { background: #373373; }
+.pf-capture.is-scrolling .pf-ads .pf-tt-reel { transform: translateY(0); }
+.pf-capture .pf-ads .pf-ad-site.is-scrolling .pf-tt-reel { transform: translateY(calc(-1 * var(--pf-pick-centre) + 13cqi)); transition: transform var(--pf-scroll-ms, 2600ms) cubic-bezier(.45, .05, .55, .95); }
+.pf-ad-pick { position: absolute; z-index: 2; box-sizing: border-box; border: .5cqi solid #22c55e; border-radius: 1cqi; opacity: 0; transition: opacity .3s ease; }
+.pf-ad-site.is-picked .pf-ad-pick { opacity: 1; box-shadow: 0 0 0 .5cqi rgba(34, 197, 94, .35); }
+.pf-ad-pick i { position: absolute; right: .6cqi; top: .6cqi; display: grid; place-items: center; width: 3.4cqi; height: 3.4cqi; border-radius: 50%; background: #22c55e; color: #fff; font: 900 max(7px, 2cqi)/1 var(--font-body); font-style: normal; transform: scale(0); transition: transform .35s cubic-bezier(.3, 1.6, .5, 1); }
+.pf-ad-site.is-picked .pf-ad-pick i { transform: none; }
+.clipart .pf-capture-card img.pf-ad-page { position: absolute; z-index: 3; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; object-position: top; border-radius: 0; transform: translateX(102%); transition: transform .5s cubic-bezier(.3, 1, .5, 1); }
+.pf-ad-site.is-opened img.pf-ad-page { transform: none; }
+.pf-ads figcaption [hidden] { display: none; }
+
+@container (max-width: 440px) {
+  .pf-capture-card.pf-tt.pf-story { width: 28cqi; }
+  .pf-capture-card.pf-tt.pf-section { width: 44cqi; }
+  .pf-capture-card.pf-tt.pf-ads { width: 40cqi; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-capture .pf-story .pf-tt-reel, .pf-li-text, .pf-ad-pick, .pf-ad-pick i, .clipart .pf-capture-card img.pf-ad-page, .pf-capture .pf-ads .pf-ad-site.is-scrolling .pf-tt-reel { transition: none; }
+  .pf-capture.is-scrolling:not(.is-done) .pf-li-scan { animation: none; }
+}
+/* Shorter cards, so none rises over the card's own text; captions wrap inside the card. */
+.pf-tt figcaption span { white-space: normal; }
+.pf-capture-card.pf-tt.pf-story { width: 18cqi; }
+.pf-ads .pf-tt-view, .pf-section .pf-tt-view { height: 22cqi; }
+.pf-capture .pf-ads .pf-ad-site.is-scrolling .pf-tt-reel { transform: translateY(calc(-1 * var(--pf-pick-centre) + 11cqi)); }
+.pf-capture.is-scrolling .pf-section .pf-tt-reel { transform: translateY(calc(-100% + 22cqi)); }
+@container (max-width: 440px) {
+  .pf-capture-card.pf-tt.pf-story { width: 24cqi; }
+}
+.pf-tt-view { height: 24cqi; }
+.pf-story .pf-tt-view { height: auto; }
+.pf-ads .pf-tt-view, .pf-section .pf-tt-view { height: 22cqi; }
+.pf-capture.is-scrolling .pf-section .pf-tt-reel { transform: translateY(calc(-100% + 22cqi)); }
+.pf-capture.is-scrolling .pf-ads .pf-tt-reel { transform: translateY(0); }
+.pf-capture .pf-ads .pf-ad-site.is-scrolling .pf-tt-reel { transform: translateY(calc(-1 * var(--pf-pick-centre) + 11cqi)); }
+.pf-capture.is-scrolling .pf-tt-reel { transform: translateY(calc(-100% + 24cqi)); }
+.pf-capture.is-done .pf-section .pf-tt-count { opacity: 0; transition: opacity .3s ease; }
+/* Marketplace and Kijiji panels share one place; the one not shown stays laid out (its pictures load) but invisible. */
+.pf-ad-sites { display: grid; }
+.pf-ad-sites > .pf-ad-site { grid-area: 1 / 1; }
+.pf-ad-sites > .pf-ad-site:not(.is-shown) { visibility: hidden; }
