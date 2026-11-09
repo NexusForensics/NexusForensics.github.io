@@ -345,6 +345,11 @@
         panel.classList.toggle('is-opened', i === index && state === 'done');
       });
       card.querySelectorAll('[data-pf-site-cap]').forEach(cap => { cap.hidden = Number(cap.dataset.pfSiteCap) !== index; });
+      // Inside the drawn browser (pf-live): the address shows the site, Kijiji's page covers the drawn one, the notice shows once captured.
+      const url = card.querySelector('[data-pf-url]');
+      if (url && sites[index]?.dataset.pfUrl) url.textContent = sites[index].dataset.pfUrl;
+      card.dataset.pfSite = String(index);
+      card.classList.toggle('is-opened', state === 'done');
       tabs.forEach(tab => tab.setAttribute('aria-selected', String(Number(tab.dataset.pfSite) === index)));
     };
     const finished = () => {

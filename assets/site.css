@@ -2158,3 +2158,105 @@ footer a:hover { color: var(--cyan); }
 @media (prefers-reduced-motion: reduce) {
   .pf-step, .pf-hl, .pf-web-pick, .pf-web-page, .pf-capture.is-whole .pf-web-page img, .pf-capture.is-scrolling .pf-duo .pf-tt-reel, .pf-capture.is-scrolling .pf-th-web .pf-tt-reel { transition: none; }
 }
+/* Platform captures inside the drawn browser (2026-11-09). The stage is the scene's own box (it is the container, so cqi = scene width);
+   the pane is the browser's content area (scene x 12-252, y 24-161 of 320 x 180); each capture column sits over the drawn page's main
+   column; the "captured" notice and its hash appear in the window's corner; the tile stays on top. */
+.pf-live .pf-stage { position: relative; width: 100%; max-width: 440px; container-type: inline-size; }
+.platform-support-card .pf-live .pf-stage img.pf-scene { width: 100%; max-width: none; }
+.platform-support-card .pf-live .pf-pane img, .platform-support-card .pf-live img.pf-tile { max-width: none; border-radius: 0; box-shadow: none; }
+.pf-live img.pf-tile { position: absolute; z-index: 6; left: -2.5%; top: 52.22%; width: 27.5%; height: auto; pointer-events: none; }
+.pf-live .pf-pane { position: absolute; left: 3.75%; top: 13.333%; width: 75%; height: 76.19%; margin: 0; overflow: hidden; border-radius: 0 0 2.2cqi 2.2cqi; }
+.pf-live .pf-pane .pf-tt-view { position: absolute; height: auto; overflow: hidden; border-radius: 0; background: transparent; transition: opacity .4s ease; }
+.pf-live.is-ready:not(.is-on) .pf-pane .pf-tt-view, .pf-live.is-ready:not(.is-on) .pf-live-panel { opacity: 0; }
+.platform-support-card .pf-live .pf-pane .pf-tt-reel img { display: block; width: 100%; height: auto; }
+.pf-live.is-scrolling .pf-pane .pf-tt-reel { transform: translateY(calc(-100% + var(--pf-col-h))); transition: transform var(--pf-scroll-ms, 4200ms) cubic-bezier(.45, .05, .55, .95); }
+.pf-live .pf-tt-mark { height: 3cqi; }
+.pf-live .pf-tt-count { right: 1.2cqi; top: 3.8cqi; }
+.pf-pane.pf-th-threads .pf-tt-count b { color: #fff; }
+.pf-pane.pf-th-youtube .pf-tt-count b { color: #ff4e45; }
+.pf-pane.pf-th-reddit .pf-tt-count b { color: #ff7a45; }
+.pf-pane.pf-th-telegram .pf-tt-count b { color: #7dd3fc; }
+.pf-pane.pf-th-snapchat .pf-tt-count b { color: #fde047; }
+.pf-pane.pf-th-linkedin .pf-tt-count b { color: #7cc0ff; }
+.pf-pane.pf-th-x .pf-tt-count b { color: #1d9bf0; }
+/* Snapchat: the highlight opens in a viewer over the dimmed profile, snap by snap. */
+.pf-live .pf-dim { position: absolute; inset: 0; background: rgba(0, 0, 0, .62); opacity: 0; transition: opacity .4s ease; }
+.pf-live.is-on .pf-dim { opacity: 1; }
+.pf-live .pf-live-story .pf-tt-reel, .pf-live.is-scrolling .pf-pane.pf-live-story .pf-tt-reel { transition: transform .45s ease; }
+.pf-live .pf-live-story .pf-tt-view { border-radius: 1.2cqi; }
+.pf-live .pf-live-story .pf-tt-count { top: 2.6cqi; }
+/* LinkedIn: the section is outlined while it is read. */
+.pf-live.is-scrolling:not(.is-done) .pf-live-section .pf-tt-view { outline: .4cqi dashed #0a66c2; outline-offset: -.4cqi; }
+/* Marketplace and Kijiji: each site in its own column; Kijiji's page covers the drawn Marketplace page; the address changes. */
+.pf-live .pf-live-ads .pf-ad-sites { position: absolute; inset: 0; display: block; }
+.pf-live .pf-live-ads .pf-ad-site { position: absolute; inset: 0; }
+.pf-live .pf-live-ads .pf-ad-site:not(.is-shown) { visibility: hidden; }
+.pf-live .pf-pane.pf-live-ads .pf-tt-reel { transform: translateY(0); }
+.pf-live .pf-pane.pf-live-ads .pf-ad-site.is-scrolling .pf-tt-reel { transform: translateY(calc(-1 * var(--pf-pick-centre) + var(--pf-col-h) / 2)); transition: transform var(--pf-scroll-ms, 2600ms) cubic-bezier(.45, .05, .55, .95); }
+.platform-support-card .pf-live .pf-pane img.pf-ad-page { position: absolute; z-index: 3; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transform: translateX(102%); transition: transform .5s cubic-bezier(.3, 1, .5, 1); }
+.pf-live .pf-ad-site.is-opened img.pf-ad-page { transform: none; }
+.pf-live .pf-ad-cover { position: absolute; inset: 0; background: #f4f4f7; opacity: 0; transition: opacity .3s ease; }
+.pf-live[data-pf-site="1"] .pf-ad-cover { opacity: 1; }
+.pf-live .pf-url { position: absolute; z-index: 2; left: 16.25%; top: 7.94%; width: 57%; box-sizing: border-box; padding-left: .5cqi; height: 4.11%; display: flex; align-items: center; background: #fff; border-radius: 0 1.2cqi 1.2cqi 0; color: #4b5260; font: 400 1.5625cqi/1 var(--font-body); white-space: nowrap; overflow: hidden; }
+.pf-live .pf-url i { font-style: normal; }
+.pf-live .pf-url .is-b, .pf-live.is-opened .pf-url .is-a { display: none; }
+.pf-live.is-opened .pf-url .is-b { display: inline; }
+/* LeoList and Web: the page column, and what Nexus found in a panel beside it. */
+.pf-live .pf-live-panel { position: absolute; box-sizing: border-box; display: flex; flex-direction: column; gap: .9cqi; padding: 1.4cqi; border-radius: 1.2cqi; transition: opacity .4s ease; }
+.pf-live .pf-live-leo .pf-live-panel { background: #1b1e27; border: 1px solid #2c2f3c; color: #e8e9ee; }
+.pf-live .pf-live-web .pf-live-panel { background: #fff; border: 1px solid #eaecf0; color: #101828; }
+.pf-pane.pf-th-leolist .pf-duo-value { color: #fbbf24; }
+.pf-pane.pf-th-web .pf-duo-side em { color: #667085; }
+.pf-pane.pf-th-web .pf-duo-value { color: #0e7490; font-size: max(7px, 1.8cqi); }
+.pf-live .pf-live-panel .pf-seen span { white-space: normal; }
+.pf-live .pf-web-cover { position: absolute; inset: 0; background: #fff; opacity: 0; transition: opacity .4s ease; }
+.pf-live.is-on .pf-web-cover { opacity: 1; }
+.pf-live.is-scrolling .pf-pane.pf-live-web .pf-tt-reel { transform: translateY(calc(-1 * var(--pf-pick-centre) + var(--pf-col-h) / 2)); transition: transform 1.4s cubic-bezier(.45, .05, .55, .95); }
+.platform-support-card .pf-live .pf-pane .pf-web-page img { width: 100%; height: auto; transform: translateY(0); transition: transform 1.2s ease; }
+.pf-live.is-whole .pf-pane .pf-web-page img { transform: translateY(calc(-100% + var(--pf-col-h))); transition: transform 3s cubic-bezier(.45, .05, .55, .95); }
+.pf-live.is-whole:not(.is-done) .pf-live-web .pf-tt-view { outline: .4cqi dashed #0e7490; outline-offset: -.4cqi; }
+/* The "captured" notice: what was saved and its SHA-256, in the window's lower right corner. */
+.pf-live .pf-toast { position: absolute; z-index: 5; right: 1.6%; bottom: 2.6%; width: 50%; box-sizing: border-box; margin: 0; padding: 1cqi 1.4cqi; border-radius: 1.4cqi; background: rgba(8, 15, 30, .94); border: 1px solid rgba(34, 197, 94, .7); box-shadow: 0 1cqi 3cqi rgba(0, 0, 0, .35); color: #e2e8f0; font: 700 max(6.5px, 1.9cqi)/1.35 var(--font-body); opacity: 0; transform: translateY(2cqi); transition: opacity .35s ease, transform .45s cubic-bezier(.3, 1.4, .5, 1); }
+.pf-live .pf-toast.is-side { width: 33%; }
+.pf-live .pf-toast.is-panel { position: static; width: auto; margin-top: auto; }
+.pf-live.is-done .pf-toast, .pf-live[data-pf-mode="ads"].is-opened .pf-toast { opacity: 1; transform: none; }
+.pf-live .pf-toast b { color: #fff; font-weight: 800; }
+.pf-live .pf-toast b:before { content: "✓"; display: inline-grid; place-items: center; width: 2.3cqi; height: 2.3cqi; min-width: 9px; min-height: 9px; margin-right: .6cqi; border-radius: 50%; background: #22c55e; color: #fff; font-size: max(6px, 1.4cqi); vertical-align: .05em; }
+.pf-live .pf-toast span { display: inline; color: #94a3b8; white-space: normal; }
+.pf-live .pf-toast span:before { content: " · "; }
+.pf-live .pf-toast em { display: block; margin-top: .4cqi; color: #94a3b8; font: 800 max(6px, 1.4cqi)/1.2 var(--font-body); font-style: normal; letter-spacing: .06em; text-transform: uppercase; }
+.pf-live .pf-toast code { display: block; min-height: 2.6em; color: #67e8f9; font: 600 max(6.5px, 1.6cqi)/1.3 var(--font-mono); word-break: break-all; }
+.pf-live .pf-toast code.pf-sha-short { display: none; min-height: 0; }
+.pf-live .pf-toast [hidden] { display: none; }
+.pf-live .pf-toast .pf-ad-tabs { margin-bottom: .8cqi; }
+.pf-live .pf-toast .pf-ad-tabs button { padding: .3cqi 0; font-size: max(6.5px, 1.6cqi); }
+@container (max-width: 400px) {
+  .pf-live .pf-toast code[data-pf-sha] { display: none; }
+  .pf-live .pf-toast code.pf-sha-short { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-live .pf-pane .pf-tt-view, .pf-live .pf-toast, .pf-live .pf-dim, .pf-live .pf-ad-cover, .pf-live .pf-web-cover, .pf-live.is-scrolling .pf-pane .pf-tt-reel, .platform-support-card .pf-live .pf-pane img.pf-ad-page, .platform-support-card .pf-live .pf-pane .pf-web-page img { transition: none; }
+}
+.platform-support-card .pf-live .pf-live-panel .pf-seen img { flex: 0 0 auto; width: 4.6cqi; height: 4.6cqi; min-width: 18px; min-height: 18px; aspect-ratio: 1; object-fit: cover; border-radius: .8cqi; }
+.pf-live .pf-live-panel .pf-seen-lock { min-width: 18px; min-height: 18px; }
+/* LeoList and Web: the notice is a bar along the window's foot, from the page column to the right edge, under the findings panel. */
+.pf-live .pf-toast.is-bar { left: 16.43%; right: 1.07%; bottom: 1.6%; width: auto; }
+.pf-live .pf-toast.is-bar em { display: inline; margin: 0 0 0 1em; }
+.pf-live .pf-toast.is-bar code[data-pf-sha] { display: block; min-height: 1.3em; font-size: max(6px, 1.45cqi); }
+.pf-live.is-done .pf-pane .pf-web-page img { transform: translateY(-17%); }
+.pf-live .pf-live-panel { top: 2.5% !important; height: auto !important; max-height: 73%; gap: .7cqi; padding: 1.2cqi; }
+.pf-live .pf-live-panel .pf-inline em { display: inline-block; margin-right: .8cqi; vertical-align: middle; }
+.pf-live .pf-live-panel .pf-inline .pf-duo-alert { margin-top: 0; vertical-align: middle; }
+.pf-live .pf-live-panel .pf-flags i, .pf-live .pf-live-panel div.pf-step > span { display: inline-block; }
+.pf-live .pf-live-panel div.pf-step > span.pf-flags { display: flex; }
+.pf-live .pf-live-panel .pf-trail span, .pf-live .pf-live-panel div.pf-step > span:not(.pf-flags) { display: block; }
+@container (max-width: 400px) {
+  .pf-live .pf-toast.is-bar code[data-pf-sha] { display: none; }
+  .pf-live .pf-toast.is-bar code.pf-sha-short { display: block; }
+}
+/* A small scene keeps the essentials: the earlier ads on one line each, the way to the page, and a wider notice. */
+@container (max-width: 400px) {
+  .pf-live .pf-toast.is-side { width: 46%; }
+  .pf-live .pf-live-panel .pf-seen span, .pf-live .pf-live-panel .pf-seen span b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pf-live .pf-live-leo .pf-live-panel > .pf-step:last-child, .pf-live .pf-live-web .pf-live-panel > .pf-step { display: none; }
+}
