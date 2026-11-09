@@ -305,6 +305,8 @@
   //             ads) and the indicators fill in beside it, one line at a time, then the hash.
   //   web     — Web: the search, result 3 ticked, the page opens and is captured whole (it scrolls to the bottom and back), the way to
   //             the page and what was saved fill in beside it, then the hash.
+  //   open    — Facebook, Instagram: a click on the avatar or the post, the picture opens the way the platform shows it (photo viewer,
+  //             post window), the comments read one by one, then the hash.
   // Reduced motion and off-screen show the finished capture.
   document.querySelectorAll('[data-pf-scroll]').forEach(card => {
     const mode = card.dataset.pfMode || 'scroll';
@@ -423,6 +425,15 @@
         at(8300, on(4));
         at(8900, () => { card.classList.remove('is-whole'); card.classList.add('is-done'); });
         typeSha(shaIn(card), 9100);
+      } else if (mode === 'open') {
+        const STEP_MS = 650;
+        card.classList.remove('is-armed');
+        at(1000, () => card.classList.add('is-picked'));
+        at(1900, () => card.classList.add('is-opened'));
+        steps.forEach((step, k) => at(2800 + k * STEP_MS, () => step.classList.add('on')));
+        const end = 2800 + steps.length * STEP_MS;
+        at(end, () => card.classList.add('is-done'));
+        typeSha(shaIn(card), end + 200);
       }
     };
     finished();
