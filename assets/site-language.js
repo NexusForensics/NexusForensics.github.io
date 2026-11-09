@@ -1683,6 +1683,37 @@
     Object.assign(t[lang], values);
   });
 
+  // Cross-platform match picture in the Social Recon hero (roadmap, 2026-11-08): the app's own reason and strength words.
+  const heroMatchStrings = {
+    "fr": {
+      "Linked": "Liés",
+      "Linked to the same person in this case": "Liés à la même personne dans ce dossier",
+      "Strong lead": "Piste forte",
+      "Same username: sample.subject": "Même nom d’utilisateur : sample.subject",
+      "Same profile picture: 97% alike": "Même photo de profil : ressemblance 97 %",
+      "Possible": "Possible",
+      "Same profile picture: 91% alike": "Même photo de profil : ressemblance 91 %",
+      "Person in this case": "Personne du dossier",
+      "People In Common, Across Platforms: each account that may belong to the same person comes with the reason it was found. The investigator validates or ignores every match.": "Personnes en commun, entre plateformes : chaque compte qui pourrait appartenir à la même personne est présenté avec la raison pour laquelle il a été trouvé. L’enquêteur valide ou ignore chaque correspondance.",
+      "One person in the case, linked to a Facebook account and matched with an Instagram and a TikTok account, each with the reason it was found": "Une personne du dossier, liée à un compte Facebook et rapprochée d’un compte Instagram et d’un compte TikTok, chacun avec la raison pour laquelle il a été trouvé"
+    },
+    "es": {
+      "Linked": "Vinculadas",
+      "Linked to the same person in this case": "Vinculadas a la misma persona en este caso",
+      "Strong lead": "Pista fuerte",
+      "Same username: sample.subject": "Mismo nombre de usuario: sample.subject",
+      "Same profile picture: 97% alike": "Misma foto de perfil: parecido 97 %",
+      "Possible": "Posible",
+      "Same profile picture: 91% alike": "Misma foto de perfil: parecido 91 %",
+      "Person in this case": "Persona del caso",
+      "People In Common, Across Platforms: each account that may belong to the same person comes with the reason it was found. The investigator validates or ignores every match.": "Personas en común, entre plataformas: cada cuenta que podría pertenecer a la misma persona viene con el motivo por el que se encontró. El investigador valida o ignora cada coincidencia.",
+      "One person in the case, linked to a Facebook account and matched with an Instagram and a TikTok account, each with the reason it was found": "Una persona del caso, vinculada a una cuenta de Facebook y relacionada con una cuenta de Instagram y otra de TikTok, cada una con el motivo por el que se encontró"
+    }
+  };
+  Object.entries(heroMatchStrings).forEach(([lang, values]) => {
+    Object.assign(t[lang], values);
+  });
+
   function normalized(text) {
     return String(text || '').replace(/\s+/g, ' ').trim();
   }

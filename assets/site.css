@@ -1589,3 +1589,34 @@ footer a:hover { color: var(--cyan); }
   .ocr-demo-stage, .ocr-box, .ocr-lines li, .ocr-lines li span, .ocr-kw, .ocr-result { transition: none; }
   .ocr-demo.is-scanning .ocr-scan { animation: none; opacity: 0; }
 }
+
+/* Cross-platform match picture in the Social Recon hero (roadmap, November 8, 2026). Reasons and strengths are the app's own. */
+.hero-match { margin: 34px auto 0; max-width: 1060px; padding: 18px 20px 14px; border-radius: 16px; background: rgba(8, 18, 34, .66); border: 1px solid var(--line); text-align: left; }
+.hero-match-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.hero-match-art { display: block; width: 100%; height: auto; overflow: visible; }
+.hero-match-tall { display: none; }
+.hero-match text { font-family: var(--font-body); }
+.xpm-person-label { font-size: 13px; font-weight: 800; fill: #9fdcff; letter-spacing: .02em; }
+.xpm-chip { font-size: 12px; font-weight: 800; }
+.xpm-reason { font-size: 13px; font-weight: 600; fill: #e8f0fc; }
+.xpm-name { font-size: 15px; font-weight: 800; fill: #0f172a; }
+.xpm-handle { font-size: 12px; font-weight: 600; fill: #475569; }
+.hero-match figcaption { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.5; text-align: center; }
+.xpm-person { animation: xpmIn .6s ease-out both; }
+.xpm-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: xpmDraw .9s ease-out forwards; }
+.xpm-card, .xpm-pill { opacity: 0; animation: xpmIn .5s ease-out forwards; }
+.xpm-line-0 { animation-delay: .5s; } .xpm-card-0 { animation-delay: 1.2s; } .xpm-pill-0 { animation-delay: 1.4s; }
+.xpm-line-1 { animation-delay: 1.6s; } .xpm-card-1 { animation-delay: 2.3s; } .xpm-pill-1 { animation-delay: 2.5s; }
+.xpm-line-2 { animation-delay: 2.7s; } .xpm-card-2 { animation-delay: 3.4s; } .xpm-pill-2 { animation-delay: 3.6s; }
+@keyframes xpmDraw { to { stroke-dashoffset: 0; } }
+@keyframes xpmIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (max-width: 700px) {
+  .hero-match { padding: 14px 10px 10px; }
+  .hero-match-wide { display: none; }
+  .hero-match-tall { display: block; max-width: 440px; margin: 0 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xpm-person, .xpm-card, .xpm-pill { opacity: 1; animation: none; }
+  .xpm-line { stroke-dashoffset: 0; animation: none; }
+  .xpm-dot { display: none; }
+}
