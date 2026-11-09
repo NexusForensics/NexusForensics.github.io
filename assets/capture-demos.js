@@ -301,10 +301,14 @@
   //   section — LinkedIn: the Experience section is outlined and read, its page text appears beside it as the second record, then the hash.
   //   ads     — Marketplace then Kijiji: the listings scroll to an ad, it is ticked, its page opens as captured, then the hash; the tabs
   //             switch between the two afterwards.
+  //   leo     — LeoList: the ad scrolls by, the two places with its phone number are boxed, then the number, "Seen before" (two earlier
+  //             ads) and the indicators fill in beside it, one line at a time, then the hash.
+  //   web     — Web: the search, result 3 ticked, the page opens and is captured whole (it scrolls to the bottom and back), the way to
+  //             the page and what was saved fill in beside it, then the hash.
   // Reduced motion and off-screen show the finished capture.
   document.querySelectorAll('[data-pf-scroll]').forEach(card => {
     const mode = card.dataset.pfMode || 'scroll';
-    const SCROLL_MS = mode === 'ads' ? 2600 : 4200;
+    const SCROLL_MS = mode === 'ads' ? 2600 : mode === 'leo' ? 3000 : 4200;
     card.style.setProperty('--pf-scroll-ms', `${SCROLL_MS}ms`);
     const count = card.querySelector('[data-pf-count]');
     const total = Number(count?.dataset.pfTotal) || 0;
@@ -313,6 +317,8 @@
     const bars = Array.from(card.querySelectorAll('.pf-st-bars i'));
     const sites = Array.from(card.querySelectorAll('[data-pf-site-panel]'));
     const tabs = Array.from(card.querySelectorAll('[data-pf-site]'));
+    const steps = Array.from(card.querySelectorAll('.pf-step'));
+    const STAGES = ['is-read', 'is-picked', 'is-opened', 'is-whole'];
     let timers = [];
     const clear = () => { timers.forEach(clearTimeout); timers = []; };
     const at = (ms, step) => timers.push(setTimeout(step, ms));
@@ -349,6 +355,9 @@
       if (mode === 'story') showFrame(frames - 1);
       if (mode === 'story') bars.forEach(bar => bar.classList.add('done'));
       if (mode === 'ads') selectSite(sites.length - 1);
+      card.classList.add('is-read', 'is-picked', 'is-opened');
+      card.classList.remove('is-whole');
+      steps.forEach(step => step.classList.add('on'));
       fillSha(card);
     };
     tabs.forEach(tab => tab.addEventListener('click', () => { if (card.classList.contains('is-done')) selectSite(Number(tab.dataset.pfSite)); }));
@@ -356,7 +365,8 @@
     const run = () => {
       clear();
       card.classList.add('is-snap', 'is-ready', 'is-armed');
-      card.classList.remove('is-on', 'is-scrolling', 'is-done');
+      card.classList.remove('is-on', 'is-scrolling', 'is-done', ...STAGES);
+      steps.forEach(step => step.classList.remove('on'));
       if (count) count.textContent = '0';
       card.querySelectorAll('[data-pf-sha]').forEach(code => { code.textContent = ''; });
       if (mode === 'story') { showFrame(0); bars.forEach(bar => bar.classList.remove('done', 'on')); if (count) count.textContent = '0'; }
@@ -386,6 +396,28 @@
           typeSha(shaIn(card.querySelector(`[data-pf-site-cap="${i}"]`)), t0 + 150 + SCROLL_MS + 1800);
         });
         at(1100 + sites.length * SITE_MS - 2000, () => card.classList.add('is-done'));
+      } else if (mode === 'leo') {
+        const STEP_MS = 700;
+        at(1300, () => { card.classList.remove('is-armed'); card.classList.add('is-scrolling'); });
+        at(1300 + SCROLL_MS, () => card.classList.add('is-read'));
+        steps.forEach((step, k) => at(1300 + SCROLL_MS + 400 + k * STEP_MS, () => step.classList.add('on')));
+        const end = 1300 + SCROLL_MS + 400 + steps.length * STEP_MS;
+        at(end, () => card.classList.add('is-done'));
+        typeSha(shaIn(card), end + 200);
+      } else if (mode === 'web') {
+        const on = k => () => { if (steps[k]) steps[k].classList.add('on'); };
+        card.classList.remove('is-armed');
+        at(900, on(0));
+        at(1300, () => card.classList.add('is-scrolling'));
+        at(2900, () => card.classList.add('is-picked'));
+        at(2900, on(1));
+        at(3900, () => card.classList.add('is-opened'));
+        at(4500, () => card.classList.add('is-whole'));
+        at(4500, on(2));
+        at(7700, on(3));
+        at(8300, on(4));
+        at(8900, () => { card.classList.remove('is-whole'); card.classList.add('is-done'); });
+        typeSha(shaIn(card), 9100);
       }
     };
     finished();
