@@ -308,6 +308,7 @@
   //   open    — Facebook, Instagram: a click on the avatar or the post, the picture opens the way the platform shows it (photo viewer,
   //             post window), the comments read one by one, then the hash.
   // Reduced motion and off-screen show the finished capture.
+  const hoverPlay = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   document.querySelectorAll('[data-pf-scroll]').forEach(card => {
     const mode = card.dataset.pfMode || 'scroll';
     const SCROLL_MS = mode === 'ads' ? 2600 : mode === 'leo' ? 3000 : 4200;
@@ -369,7 +370,8 @@
     };
     tabs.forEach(tab => tab.addEventListener('click', () => { if (card.classList.contains('is-done')) selectSite(Number(tab.dataset.pfSite)); }));
     if (reduceMotion) { finished(); return; }
-    const run = () => {
+    // The start: the drawn page, nothing captured yet.
+    const reset = () => {
       clear();
       card.classList.add('is-snap', 'is-ready', 'is-armed');
       card.classList.remove('is-on', 'is-scrolling', 'is-done', ...STAGES);
@@ -380,6 +382,9 @@
       if (mode === 'ads') selectSite(0, 'start');
       void card.offsetWidth;
       card.classList.remove('is-snap');
+    };
+    const run = () => {
+      reset();
       at(400, () => card.classList.add('is-on'));
       if (mode === 'scroll' || mode === 'section') {
         at(1300, () => { card.classList.remove('is-armed'); card.classList.add('is-scrolling'); });
@@ -436,6 +441,21 @@
         typeSha(shaIn(card), end + 200);
       }
     };
+    // With a mouse (2026-11-09: "make the video preview appear as the mouse is hovering over"): the card waits on its drawn page with a
+    // play button, plays while the pointer is over the window, and goes back to the start when it leaves. Touch screens play it when the
+    // card comes into view.
+    if (hoverPlay) {
+      const frame = card.querySelector('.pf-frame') || card;
+      const play = document.createElement('span');
+      play.className = 'pf-play';
+      play.setAttribute('aria-hidden', 'true');
+      frame.appendChild(play);
+      const idle = () => { reset(); card.classList.add('is-idle'); };
+      frame.addEventListener('mouseenter', () => { card.classList.remove('is-idle'); run(); });
+      frame.addEventListener('mouseleave', idle);
+      idle();
+      return;
+    }
     finished();
     let seen = false;
     new IntersectionObserver(entries => {

@@ -2305,3 +2305,7 @@ footer a:hover { color: var(--cyan); }
   .pf-live .pf-click, .pf-live .pf-open-dim, .pf-live .pf-igm, .platform-support-card .pf-live .pf-pane img.pf-open-pic, .platform-support-card .pf-live .pf-pane img.pf-open-bg { transition: none; animation: none; }
 }
 .pf-live .pf-toast em { white-space: nowrap; }
+/* With a mouse the platform cards wait on their drawn page with a play button and play while hovered (assets/capture-demos.js). */
+.pf-live .pf-play { position: absolute; z-index: 8; left: 50%; top: 50%; width: 13%; aspect-ratio: 1; border-radius: 50%; background: rgba(8, 15, 30, .72); box-shadow: 0 0 0 2px rgba(255, 255, 255, .85), 0 6px 18px rgba(2, 8, 20, .45); transform: translate(-50%, -50%) scale(.85); opacity: 0; transition: opacity .25s ease, transform .3s ease; pointer-events: none; }
+.pf-live .pf-play:before { content: ""; position: absolute; left: 38%; top: 28%; width: 34%; height: 44%; background: #fff; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.pf-live.is-idle .pf-play { opacity: 1; transform: translate(-50%, -50%); }
