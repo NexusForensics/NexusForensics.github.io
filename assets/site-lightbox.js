@@ -1,7 +1,7 @@
 (() => {
   const OPEN_CLASS = "lightbox-open";
   const TRIGGER_CLASS = "lightbox-trigger";
-  const SKIP_SELECTOR = ".brand img, .product-card img";
+  const SKIP_SELECTOR = ".brand img, .product-card img, .ocr-demo img";
 
   const getTitle = (element) =>
     element.dataset.lightboxTitle ||

@@ -1648,6 +1648,41 @@
     Object.assign(t[lang], values);
   });
 
+  // OCR in action band on the product page (roadmap, 2026-11-08).
+  const ocrDemoStrings = {
+    "fr": {
+      "OCR in action": "L’OCR en action",
+      "Words in a picture become searchable evidence.": "Les mots d’une image deviennent des preuves consultables.",
+      "Nexus reads the text in every captured picture on the investigator's own computer and checks it against the case keywords. Each hit is boxed where it appears in the picture.": "Nexus lit le texte de chaque image capturée sur l’ordinateur même de l’enquêteur et le compare aux mots-clés du dossier. Chaque correspondance est encadrée là où elle apparaît dans l’image.",
+      "Demo case picture: a house with a For Sale sign, its text boxed as Nexus reads it": "Image du dossier de démonstration : une maison avec un panneau À vendre, son texte encadré tel que Nexus le lit",
+      "Demo case picture (AI generated). Each box is a line of text Nexus read.": "Image du dossier de démonstration (générée par IA). Chaque cadre est une ligne de texte lue par Nexus.",
+      "Replay": "Rejouer",
+      "OCR text": "Texte OCR",
+      "Text found in 1 picture": "Texte trouvé dans 1 image",
+      "Case keywords": "Mots-clés du dossier",
+      "Keyword hit": "Mot-clé trouvé",
+      "3 keyword hits in 1 picture": "3 mots-clés trouvés dans 1 image",
+      "Captured picture SHA-256": "SHA-256 de l’image capturée"
+    },
+    "es": {
+      "OCR in action": "OCR en acción",
+      "Words in a picture become searchable evidence.": "Las palabras de una imagen se convierten en evidencia consultable.",
+      "Nexus reads the text in every captured picture on the investigator's own computer and checks it against the case keywords. Each hit is boxed where it appears in the picture.": "Nexus lee el texto de cada imagen capturada en el propio ordenador del investigador y lo compara con las palabras clave del caso. Cada coincidencia se enmarca donde aparece en la imagen.",
+      "Demo case picture: a house with a For Sale sign, its text boxed as Nexus reads it": "Imagen del caso de demostración: una casa con un cartel de En venta, su texto enmarcado tal como Nexus lo lee",
+      "Demo case picture (AI generated). Each box is a line of text Nexus read.": "Imagen del caso de demostración (generada por IA). Cada recuadro es una línea de texto que Nexus leyó.",
+      "Replay": "Repetir",
+      "OCR text": "Texto OCR",
+      "Text found in 1 picture": "Texto encontrado en 1 imagen",
+      "Case keywords": "Palabras clave del caso",
+      "Keyword hit": "Palabra clave encontrada",
+      "3 keyword hits in 1 picture": "3 palabras clave encontradas en 1 imagen",
+      "Captured picture SHA-256": "SHA-256 de la imagen capturada"
+    }
+  };
+  Object.entries(ocrDemoStrings).forEach(([lang, values]) => {
+    Object.assign(t[lang], values);
+  });
+
   function normalized(text) {
     return String(text || '').replace(/\s+/g, ' ').trim();
   }

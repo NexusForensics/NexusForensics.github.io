@@ -1538,3 +1538,54 @@ footer a:hover { color: var(--cyan); }
   .cta h2 { font-size: 23px; }
   .lens-feature-grid { grid-template-columns: 1fr; }
 }
+
+/* OCR in action (roadmap, November 8, 2026): a demo picture read line by line, keyword hits boxed in amber. assets/ocr-demo.js runs it. */
+.ocr-demo { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; align-items: start; margin-top: 30px; }
+.ocr-demo-photo { margin: 0; }
+.ocr-demo-frame { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 10px; border: 1px solid var(--line-strong); background: #000; box-shadow: var(--shadow); }
+.ocr-demo-stage { position: absolute; inset: 0; transform-origin: 100% 84%; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.ocr-demo.is-zoomed .ocr-demo-stage { transform: scale(2); }
+.ocr-demo-stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ocr-box { position: absolute; border: 1.5px solid var(--cyan); border-radius: 3px; background: rgba(92, 200, 255, .14); box-shadow: 0 0 0 1px rgba(0, 0, 0, .25); opacity: 0; transform: scale(.94); transition: opacity .25s ease, transform .25s ease, border-color .35s ease, background .35s ease, box-shadow .35s ease; }
+.ocr-box.on { opacity: 1; transform: none; }
+.ocr-demo.is-hits .ocr-box.hit { border-color: var(--amber); background: rgba(243, 178, 60, .24); box-shadow: 0 0 0 2px rgba(243, 178, 60, .28), 0 0 14px rgba(243, 178, 60, .55); }
+.ocr-tag { position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 4px; padding: 2px 4px; border-radius: 3px; background: var(--amber); color: #1d1400; font: 800 7px/1 var(--font-body); letter-spacing: .02em; white-space: nowrap; opacity: 0; transition: opacity .3s ease; }
+.ocr-demo.is-hits .ocr-box.hit .ocr-tag { opacity: 1; }
+.ocr-demo.is-hits .ocr-box:not(.hit) { opacity: .4; }
+.ocr-scan { position: absolute; left: 0; right: 0; top: 0; height: 18%; pointer-events: none; opacity: 0; transform: translateY(-100%); background: linear-gradient(180deg, rgba(92, 200, 255, 0), rgba(92, 200, 255, .22) 80%, rgba(159, 220, 255, .75)); border-bottom: 2px solid var(--cyan-soft); }
+.ocr-demo.is-scanning .ocr-scan { opacity: 1; animation: ocrDemoScan var(--ocr-scan-ms, 2400ms) linear forwards; }
+@keyframes ocrDemoScan { from { transform: translateY(-100%); } to { transform: translateY(556%); } }
+.ocr-demo-photo figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; color: var(--dim); font-size: 13px; }
+.ocr-replay { flex: 0 0 auto; border: 1px solid var(--line-strong); border-radius: 999px; background: transparent; color: var(--cyan-soft); font: 700 12px/1 var(--font-body); padding: 7px 12px; cursor: pointer; }
+.ocr-replay:hover, .ocr-replay:focus-visible { border-color: var(--cyan); color: var(--text); outline: none; }
+.ocr-panel { border-radius: 12px; background: #f6f9fd; color: #0f172a; padding: 18px; box-shadow: var(--shadow); }
+.ocr-panel-head { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.ocr-panel-icon { flex: 0 0 38px; height: 38px; display: grid; place-items: center; border-radius: 10px; background: #1b3a6b; color: #fff; }
+.ocr-panel-icon svg { width: 20px; height: 20px; }
+.ocr-panel-head b { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #475569; }
+.ocr-panel-head span { display: block; font-size: 15px; font-weight: 800; }
+.ocr-lines { list-style: none; margin: 0; padding: 12px 14px; border: 1px solid #a7f3d0; border-radius: 10px; background: #ecfdf5; min-height: 252px; font: 600 14px/1.7 var(--font-body); }
+.ocr-lines li { opacity: 0; transform: translateY(3px); transition: opacity .25s ease, transform .25s ease; }
+.ocr-lines li.on { opacity: 1; transform: none; }
+.ocr-lines li span { padding: 1px 4px; margin: 0 -4px; border-radius: 4px; transition: background .35s ease, box-shadow .35s ease; }
+.ocr-demo.is-hits .ocr-lines li.hit span { background: #fde68a; box-shadow: inset 0 -2px 0 #f3b23c; }
+.ocr-keywords { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 12px; }
+.ocr-keywords-label { width: 100%; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #64748b; }
+.ocr-kw { border: 1px solid #cbd5e1; border-radius: 999px; background: #fff; padding: 4px 10px; font-size: 12.5px; font-weight: 700; color: #334155; transition: background .35s ease, border-color .35s ease, color .35s ease; }
+.ocr-demo.is-hits .ocr-kw { border-color: #f3b23c; background: #fef3c7; color: #7c4a03; }
+.ocr-result { margin: 12px 0 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: #475569; opacity: .35; transition: opacity .35s ease; }
+.ocr-result b { font-size: 15px; color: #0f172a; }
+.ocr-result code { font: 600 12px var(--font-mono); color: #334155; }
+.ocr-demo.is-hits .ocr-result { opacity: 1; }
+@media (max-width: 900px) {
+  .ocr-demo { grid-template-columns: 1fr; }
+  .ocr-lines { min-height: 0; }
+}
+/* A narrow picture has no room beside the sign for the tags until it zooms in; the amber boxes and the panel still mark the hits. */
+@media (max-width: 600px) {
+  .ocr-demo.is-hits:not(.is-zoomed) .ocr-box.hit .ocr-tag { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ocr-demo-stage, .ocr-box, .ocr-lines li, .ocr-lines li span, .ocr-kw, .ocr-result { transition: none; }
+  .ocr-demo.is-scanning .ocr-scan { animation: none; opacity: 0; }
+}
