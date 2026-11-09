@@ -1909,3 +1909,6 @@ footer a:hover { color: var(--cyan); }
   .ct-demo.is-added .ct-target, .ct-hit.on .ct-obj, .ct-hit.on .ct-txt { animation: none; }
   .ct-demo.is-scanning .ct-scan { animation: none; opacity: 0; }
 }
+
+/* Demo bands jump back to their first frame without playing their fades backwards (assets/capture-demos.js). */
+.is-snap, .is-snap * { transition: none !important; animation: none !important; }

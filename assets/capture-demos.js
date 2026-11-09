@@ -4,28 +4,36 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function sequence(demo, { classes, steps, loopMs, finish, replay }) {
+  function sequence(demo, { classes, steps, loopMs, finish, replay, restAtStart = null }) {
     let timers = [];
     let running = false;
     const clear = () => { timers.forEach(clearTimeout); timers = []; };
-    const reset = () => demo.classList.remove(...classes);
-    const finished = () => { clear(); reset(); finish(); };
-    const run = () => {
-      clear();
-      reset();
+    // Jumping back to the first frame never plays the fades backwards (investigator, 2026-11-08: the face band went unmasked, masked,
+    // unmasked as it started): is-snap turns transitions off for the reset only.
+    const reset = (snap = false) => {
+      if (snap) demo.classList.add('is-snap');
+      demo.classList.remove(...classes);
       void demo.offsetWidth;
-      steps.forEach(([ms, step]) => timers.push(setTimeout(step, ms)));
-      timers.push(setTimeout(run, loopMs));
+      if (snap) requestAnimationFrame(() => requestAnimationFrame(() => demo.classList.remove('is-snap')));
     };
-    finished();
-    if (reduceMotion) return;
+    const finished = () => { clear(); reset(true); finish(); };
+    // A band whose story only reads from its first frame (the covered face) rests on that frame, not the finished one.
+    const rest = () => { if (!restAtStart) return finished(); clear(); reset(true); restAtStart(); };
+    const run = ({ snap = false } = {}) => {
+      clear();
+      reset(snap);
+      steps.forEach(([ms, step]) => timers.push(setTimeout(step, ms)));
+      timers.push(setTimeout(() => run(), loopMs));
+    };
+    if (reduceMotion) { finished(); return; }
+    rest();
     new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !running) { running = true; run(); }
-        if (!entry.isIntersecting && running) { running = false; finished(); }
+        if (entry.isIntersecting && !running) { running = true; run({ snap: true }); }
+        if (!entry.isIntersecting && running) { running = false; rest(); }
       });
     }, { threshold: 0.35 }).observe(demo);
-    demo.querySelector(replay)?.addEventListener('click', () => { running = true; run(); });
+    demo.querySelector(replay)?.addEventListener('click', () => { running = true; run({ snap: true }); });
   }
 
   // Post capture: right-click Capture Post, the shutter, a zoom on the author, the Captured stamp, then the details box fills row by row.
@@ -88,6 +96,7 @@
         demo.classList.add('is-face', 'is-covered', 'is-comparing', 'is-found', 'is-unmasking', 'is-matched');
         steps.forEach(step => step.classList.add('on'));
       },
+      restAtStart: () => steps.forEach(step => step.classList.remove('on')),
       steps: [
         [0, () => steps.forEach(step => step.classList.remove('on'))],
         [250, add('is-scanning')],
@@ -101,6 +110,8 @@
         }],
         [4500, add('is-unmasking')],
         [6500, add('is-matched')],
+        // Before the next round, the matched picture fades back to the covered one, so the round starts covered again.
+        [11800, () => demo.classList.remove('is-matched', 'is-unmasking', 'is-face', 'is-covered')],
       ],
     });
   });
