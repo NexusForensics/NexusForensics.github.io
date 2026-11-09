@@ -1620,3 +1620,20 @@ footer a:hover { color: var(--cyan); }
   .xpm-line { stroke-dashoffset: 0; animation: none; }
   .xpm-dot { display: none; }
 }
+/* The Social Recon compass in the product hero (roadmap, November 8, 2026): the app's own logo; assets/sr-compass.js spins its needle. */
+.hero-compass { width: 132px; height: 132px; margin: 0 auto 10px; cursor: pointer; transition: transform .3s ease; }
+.hero-compass.is-searching { transform: scale(1.06); }
+.sr-compass-art { display: block; width: 100%; height: 100%; overflow: visible; }
+#srCompassNeedle { transform-origin: 100px 100px; transform: rotate(0deg); }
+#srCompassNeedle.idle-drift { animation: srCompassDrift 6s ease-in-out infinite; }
+@keyframes srCompassDrift { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+#srCompassRingGlow { opacity: 0; transform-origin: 100px 100px; }
+#srCompassRingGlow.pulse { animation: srCompassRingPulse 2.4s ease-out 1; }
+@keyframes srCompassRingPulse { 0% { opacity: 0; } 35% { opacity: .9; } 100% { opacity: 0; } }
+#srCompassFingerprint.glow { animation: srCompassFingerprintGlow 1.4s ease-in-out infinite; }
+@keyframes srCompassFingerprintGlow { 0%, 100% { filter: drop-shadow(0 0 0 transparent); } 50% { filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 5px #e3c069); } }
+@media (max-width: 700px) { .hero-compass { width: 104px; height: 104px; } }
+@media (prefers-reduced-motion: reduce) {
+  #srCompassNeedle.idle-drift, #srCompassFingerprint.glow, #srCompassRingGlow.pulse { animation: none; }
+  .hero-compass, .hero-compass.is-searching { transform: none; transition: none; }
+}

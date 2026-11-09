@@ -33,7 +33,11 @@
       demo.classList.add('is-scanning');
       tops.forEach((top, index) => at(250 + (Number(top) / 100) * SCAN_MS, () => lines(index).forEach(element => element.classList.add('on'))));
       at(SCAN_MS + 250, () => { demo.classList.remove('is-scanning'); demo.classList.add('is-read'); });
-      at(SCAN_MS + 800, () => demo.classList.add('is-hits'));
+      at(SCAN_MS + 800, () => {
+        demo.classList.add('is-hits');
+        // Keyword hits are evidence found: the compass in the hero searches (assets/sr-compass.js).
+        document.dispatchEvent(new CustomEvent('nexus:evidence-found', { detail: { source: 'ocr-demo' } }));
+      });
       at(SCAN_MS + 1700, () => demo.classList.add('is-zoomed'));
       at(SCAN_MS + 6400, () => demo.classList.remove('is-zoomed'));
       at(SCAN_MS + 8600, run);
