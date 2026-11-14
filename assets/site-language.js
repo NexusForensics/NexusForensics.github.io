@@ -2165,6 +2165,33 @@
     Object.assign(t[lang], values);
   });
 
+  // Mockup layout strings (2026-11-11).
+  const layoutStrings = {
+    "fr": {
+      "Quick links": "Liens rapides",
+      "Products": "Produits",
+      "Company": "Entreprise",
+      "© 2026 Nexus Forensics Inc. All rights reserved.": "© 2026 Nexus Forensics Inc. Tous droits réservés.",
+      "3 platform modules": "3 modules de plateforme",
+      "5 platform modules": "5 modules de plateforme",
+      "10 platform modules": "10 modules de plateforme",
+      "Facebook, Instagram, TikTok, YouTube, Threads, X, Snapchat, LinkedIn, Reddit, Telegram, Marketplace, Kijiji, LeoList and the web, each linked to the Nexus Forensics compass": "Facebook, Instagram, TikTok, YouTube, Threads, X, Snapchat, LinkedIn, Reddit, Telegram, Marketplace, Kijiji, LeoList et le Web, chacun relié à la boussole Nexus Forensics",
+      "Core: Facebook, Instagram and TikTok. Pro adds YouTube and Threads. Enterprise adds Telegram, Snapchat, LinkedIn, Reddit and X.": "Core : Facebook, Instagram et TikTok. Pro ajoute YouTube et Threads. Enterprise ajoute Telegram, Snapchat, LinkedIn, Reddit et X."
+    },
+    "es": {
+      "Quick links": "Enlaces rápidos",
+      "Products": "Productos",
+      "Company": "Empresa",
+      "© 2026 Nexus Forensics Inc. All rights reserved.": "© 2026 Nexus Forensics Inc. Todos los derechos reservados.",
+      "3 platform modules": "3 módulos de plataforma",
+      "5 platform modules": "5 módulos de plataforma",
+      "10 platform modules": "10 módulos de plataforma",
+      "Facebook, Instagram, TikTok, YouTube, Threads, X, Snapchat, LinkedIn, Reddit, Telegram, Marketplace, Kijiji, LeoList and the web, each linked to the Nexus Forensics compass": "Facebook, Instagram, TikTok, YouTube, Threads, X, Snapchat, LinkedIn, Reddit, Telegram, Marketplace, Kijiji, LeoList y la web, cada uno unido a la brújula de Nexus Forensics",
+      "Core: Facebook, Instagram and TikTok. Pro adds YouTube and Threads. Enterprise adds Telegram, Snapchat, LinkedIn, Reddit and X.": "Core: Facebook, Instagram y TikTok. Pro añade YouTube y Threads. Enterprise añade Telegram, Snapchat, LinkedIn, Reddit y X."
+    }
+  };
+  Object.entries(layoutStrings).forEach(([lang, values]) => { Object.assign(t[lang], values); });
+
   function normalized(text) {
     return String(text || '').replace(/\s+/g, ' ').trim();
   }
@@ -2235,13 +2262,14 @@
     const select = wrap.querySelector('select');
     select.value = current;
     select.addEventListener('change', () => {
-      localStorage.setItem(STORAGE_KEY, select.value);
+      try { localStorage.setItem(STORAGE_KEY, select.value); } catch (error) { /* not remembered */ }
       applyLanguage(select.value);
     });
     nav.appendChild(wrap);
   }
 
-  const saved = localStorage.getItem(STORAGE_KEY);
+  let saved = null;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch (error) { saved = null; }
   const browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
   const current = languages[saved] ? saved : (languages[browserLang] ? browserLang : 'en');
   document.addEventListener('DOMContentLoaded', () => {
