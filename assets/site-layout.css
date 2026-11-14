@@ -462,6 +462,27 @@ main section,
 .pricing-card .button.dark { color: #ffffff; background: var(--v2-navy); border-color: var(--v2-navy); }
 .pricing-card .button.dark:hover { color: #ffffff; background: var(--v2-navy-2); }
 .pricing-card.addon { border: 0; box-shadow: inset 0 0 0 2px rgba(15, 39, 71, .18), var(--v2-card-shadow); }
+/* Introductory price (2026-11-14): a red tag sitting on the top edge of the Core and Pro cards. */
+.pricing-card { position: relative; }
+.price-tag-intro {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  transform: translateY(-50%);
+  max-width: calc(100% - 48px);
+  padding: 6px 14px;
+  color: #ffffff;
+  background: #c8363c;
+  border-radius: var(--v2-pill);
+  box-shadow: 0 6px 14px rgba(200, 54, 60, .32);
+  font: 800 11.5px/1.2 var(--font-body);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pricing-grid { padding-top: 14px; }
 .pricing-list li { color: var(--v2-body); }
 .pricing-list li:before { color: var(--v2-gold); background: var(--v2-gold); }
 .purchase-note { color: var(--v2-soft); }
@@ -757,7 +778,6 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 .v2-tier b span { display: block; margin-top: 2px; color: var(--v2-gold-bright); font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .v2-tier-icons { display: flex; flex-wrap: wrap; gap: 10px; }
 .v2-tier-icons img { width: 52px; height: 52px; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
-.v2-tier-icons img.is-earlier { opacity: .38; filter: grayscale(.4); }
 @media (max-width: 520px) { .v2-tier { grid-template-columns: minmax(0, 1fr); } .v2-tier-icons img { width: 44px; height: 44px; } }
 
 /* The pricing pane (2026-11-14): tabs switch it between the tiers and the add-on modules. Both views share one grid cell,

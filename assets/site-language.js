@@ -2177,7 +2177,8 @@
       "10 platform modules": "10 modules de plateforme",
       "Facebook, Instagram, TikTok, YouTube, Threads, X, Snapchat, LinkedIn, Reddit, Telegram, Marketplace, Kijiji, LeoList and the web, each linked to the Nexus Forensics compass": "Facebook, Instagram, TikTok, YouTube, Threads, X, Snapchat, LinkedIn, Reddit, Telegram, Marketplace, Kijiji, LeoList et le Web, chacun relié à la boussole Nexus Forensics",
       "Core: Facebook, Instagram and TikTok. Pro adds YouTube and Threads. Enterprise adds Telegram, Snapchat, LinkedIn, Reddit and X.": "Core : Facebook, Instagram et TikTok. Pro ajoute YouTube et Threads. Enterprise ajoute Telegram, Snapchat, LinkedIn, Reddit et X.",
-      "Licensing tiers": "Niveaux de licence"
+      "Licensing tiers": "Niveaux de licence",
+      "Introductory price": "Prix de lancement"
     },
     "es": {
       "Quick links": "Enlaces rápidos",
@@ -2189,7 +2190,8 @@
       "10 platform modules": "10 módulos de plataforma",
       "Facebook, Instagram, TikTok, YouTube, Threads, X, Snapchat, LinkedIn, Reddit, Telegram, Marketplace, Kijiji, LeoList and the web, each linked to the Nexus Forensics compass": "Facebook, Instagram, TikTok, YouTube, Threads, X, Snapchat, LinkedIn, Reddit, Telegram, Marketplace, Kijiji, LeoList y la web, cada uno unido a la brújula de Nexus Forensics",
       "Core: Facebook, Instagram and TikTok. Pro adds YouTube and Threads. Enterprise adds Telegram, Snapchat, LinkedIn, Reddit and X.": "Core: Facebook, Instagram y TikTok. Pro añade YouTube y Threads. Enterprise añade Telegram, Snapchat, LinkedIn, Reddit y X.",
-      "Licensing tiers": "Niveles de licencia"
+      "Licensing tiers": "Niveles de licencia",
+      "Introductory price": "Precio de lanzamiento"
     }
   };
   Object.entries(layoutStrings).forEach(([lang, values]) => { Object.assign(t[lang], values); });
