@@ -281,12 +281,17 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
   text-transform: uppercase;
 }
 
-/* The home hero picture: the platforms Nexus captures from, each sending its evidence to the compass. */
+/* The home hero picture: the platforms Nexus captures from, each sending its evidence to the compass.
+   2026-11-14: one platform at a time, 3.5 s each (13 platforms = 45.5 s loop). Its line lights up, then a capture card for
+   that platform pops out of the compass (what was saved, its demo picture, the result) and drops back in.
+   Slot timeline: tile pops 0-0.6 s, pulse 0.1-1.1 s, card in 1.1-1.45 s, picture flash and scan 1.2-2.35 s,
+   result 2.3 s, card out 3.0-3.35 s. Percentages below are of the 45.5 s loop (1 s = 2.198%). */
 .v2-footprint {
   position: relative;
   width: min(88%, 600px);
   aspect-ratio: 1 / 1;
   margin-block: 40px 56px;
+  container-type: inline-size;
 }
 .v2-footprint svg.fp-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .fp-orbit { fill: none; stroke: rgba(217, 180, 90, .2); stroke-width: .25; stroke-dasharray: .8 1.2; }
@@ -299,14 +304,14 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
   stroke-dasharray: 9 120;
   stroke-dashoffset: 9;
   opacity: 0;
-  animation: fp-pulse 13s linear infinite;
-  animation-delay: calc(var(--i) * 1s);
+  animation: fp-pulse 45.5s linear infinite both;
+  animation-delay: calc(var(--i) * 3.5s);
 }
 @keyframes fp-pulse {
   0% { stroke-dashoffset: 9; opacity: 0; }
-  1% { opacity: 1; }
-  7% { stroke-dashoffset: -100; opacity: 1; }
-  7.5%, 100% { stroke-dashoffset: -100; opacity: 0; }
+  0.22% { stroke-dashoffset: 9; opacity: 1; }
+  2.42% { stroke-dashoffset: -100; opacity: 1; }
+  2.64%, 100% { stroke-dashoffset: -100; opacity: 0; }
 }
 .fp-compass {
   position: absolute;
@@ -315,8 +320,15 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
   width: 34%;
   transform: translate(-50%, -50%);
   filter: drop-shadow(0 18px 30px rgba(0, 0, 0, .45));
+  animation: fp-compass 3.5s ease-in-out infinite;
 }
 .fp-compass img { width: 100%; height: auto; }
+/* the compass steps back while a card is out */
+@keyframes fp-compass {
+  0%, 31.4% { opacity: 1; }
+  41.4%, 85.7% { opacity: .22; }
+  95.7%, 100% { opacity: 1; }
+}
 .fp-ring {
   position: absolute;
   left: 50%;
@@ -327,21 +339,130 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
   border: 2px solid var(--v2-gold-bright);
   border-radius: 50%;
   opacity: 0;
-  animation: fp-ring 1s ease-out infinite;
-  animation-delay: .9s;
+  animation: fp-ring 3.5s ease-out infinite;
+  animation-delay: 1.1s;
 }
 @keyframes fp-ring {
-  0% { opacity: .55; transform: translate(-50%, -50%) scale(.92); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.18); }
+  0% { opacity: .6; transform: translate(-50%, -50%) scale(.92); }
+  28.6%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
 }
 .fp-tile {
   position: absolute;
   width: 13%;
   transform: translate(-50%, -50%);
-  animation: fp-tile 13s ease-out infinite;
-  animation-delay: calc(var(--i) * 1s);
+  animation: fp-tile 45.5s ease-out infinite;
+  animation-delay: calc(var(--i) * 3.5s);
 }
-.fp-tile img { width: 100%; height: auto; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .35)); }
+.fp-tile img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .35)) drop-shadow(0 0 0 rgba(217, 180, 90, 0));
+  animation: fp-tile-glow 45.5s ease-out infinite;
+  animation-delay: calc(var(--i) * 3.5s);
+}
+/* the platform whose card is out keeps a gold glow */
+@keyframes fp-tile-glow {
+  0% { filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .35)) drop-shadow(0 0 0 rgba(217, 180, 90, 0)); }
+  0.6%, 6.6% { filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .35)) drop-shadow(0 0 2.2cqi rgba(217, 180, 90, .9)); }
+  7.4%, 100% { filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .35)) drop-shadow(0 0 0 rgba(217, 180, 90, 0)); }
+}
+
+/* The capture card: platform, demo picture, what was saved, and the result. Sized in cqi (the picture's own width). */
+.fp-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 4;
+  width: 54cqi;
+  display: grid;
+  grid-template-columns: 19cqi minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  gap: 0 3cqi;
+  padding: 2.8cqi;
+  color: #101828;
+  background: #ffffff;
+  border-radius: 3cqi;
+  box-shadow: 0 2.4cqi 6cqi rgba(0, 0, 0, .5), 0 0 0 .3cqi rgba(217, 180, 90, .55);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.6);
+  pointer-events: none;
+  animation: fp-card 45.5s infinite both;
+  animation-delay: calc(var(--i) * 3.5s);
+}
+@keyframes fp-card {
+  0%, 2.42% { opacity: 0; transform: translate(-50%, -50%) scale(.6); animation-timing-function: cubic-bezier(.2, .9, .3, 1.25); }
+  3.19%, 6.59% { opacity: 1; transform: translate(-50%, -50%) scale(1); animation-timing-function: ease-in; }
+  7.36%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(.3); }
+}
+.fp-card-head { grid-column: 1 / -1; display: flex; align-items: center; gap: 1.6cqi; margin-bottom: 2.2cqi; font: 800 max(10px, 3cqi)/1.1 var(--font-body); }
+.fp-card-head img { width: 5.4cqi; height: 5.4cqi; flex: 0 0 auto; }
+.fp-shot {
+  grid-row: 2 / span 2;
+  position: relative;
+  width: 19cqi;
+  height: 19cqi;
+  overflow: hidden;
+  background: #e6ebf2;
+  border-radius: 1.8cqi;
+}
+.fp-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+/* the shutter flash, then a gold line scans the picture */
+.fp-shot:before,
+.fp-shot:after { content: ""; position: absolute; left: 0; right: 0; pointer-events: none; animation-duration: 45.5s; animation-iteration-count: infinite; animation-fill-mode: both; }
+.fp-shot:before { top: 0; bottom: 0; z-index: 2; background: #ffffff; animation-name: fp-flash; animation-delay: calc(var(--i) * 3.5s + 1.2s); }
+.fp-shot:after { top: 0; z-index: 3; height: .6cqi; background: var(--v2-gold-bright); box-shadow: 0 0 2cqi 1cqi rgba(217, 180, 90, .55); animation-name: fp-scan; animation-delay: calc(var(--i) * 3.5s + 1.35s); }
+@keyframes fp-flash { 0% { opacity: .95; } 1.1%, 100% { opacity: 0; } }
+@keyframes fp-scan {
+  0% { top: -2%; opacity: 1; }
+  2.2% { top: 100%; opacity: 1; }
+  2.4%, 100% { top: 100%; opacity: 0; }
+}
+.fp-card.is-round .fp-shot { border-radius: 50%; }
+.fp-card.is-snapchat .fp-shot { box-shadow: 0 0 0 .8cqi #fffc00; animation: fp-snap 45.5s infinite both; animation-delay: calc(var(--i) * 3.5s + 1.3s); }
+@keyframes fp-snap {
+  0%, 1.5% { box-shadow: 0 0 0 .8cqi #fffc00, 0 0 0 .8cqi rgba(255, 252, 0, .6); }
+  2.6%, 100% { box-shadow: 0 0 0 .8cqi #fffc00, 0 0 0 3.2cqi rgba(255, 252, 0, 0); }
+}
+.fp-play { position: absolute; left: 50%; top: 50%; z-index: 1; width: 7cqi; height: 7cqi; display: grid; place-items: center; transform: translate(-50%, -50%); background: rgba(16, 24, 40, .62); border-radius: 50%; }
+.fp-play:before { content: ""; margin-left: .6cqi; border-left: 2.4cqi solid #ffffff; border-top: 1.5cqi solid transparent; border-bottom: 1.5cqi solid transparent; }
+/* X and the web: the capture scrolls the whole page */
+.fp-card.is-scroll .fp-shot img { height: auto; object-fit: initial; animation: fp-scroll 45.5s ease-in-out infinite both; animation-delay: calc(var(--i) * 3.5s + 1.3s); }
+@keyframes fp-scroll { 0% { transform: translateY(0); } 3.3%, 100% { transform: translateY(-58%); } }
+.fp-card-text { display: flex; flex-direction: column; gap: .9cqi; min-width: 0; }
+.fp-card-text b { font: 800 max(10px, 3.2cqi)/1.2 var(--font-body); overflow-wrap: anywhere; }
+.fp-card-text span { color: #475467; font: 500 max(9px, 2.5cqi)/1.35 var(--font-body); }
+/* LeoList: the phone number is boxed once it is read */
+.fp-card-text .fp-number {
+  align-self: flex-start;
+  padding: .4cqi 1.2cqi;
+  color: #101828;
+  font: 700 max(9px, 2.6cqi)/1.3 var(--font-mono);
+  border-radius: 1cqi;
+  animation: fp-number 45.5s infinite both;
+  animation-delay: calc(var(--i) * 3.5s + 1.6s);
+}
+@keyframes fp-number {
+  0% { background: transparent; box-shadow: 0 0 0 0 rgba(168, 106, 0, 0); }
+  0.9%, 100% { background: #fff1c2; box-shadow: 0 0 0 .4cqi #d9a53f; }
+}
+.fp-card-done {
+  align-self: end;
+  display: flex;
+  align-items: center;
+  gap: 1.4cqi;
+  color: #127a4d;
+  font: 800 max(9px, 2.6cqi)/1.2 var(--font-body);
+  animation: fp-done 45.5s infinite both;
+  animation-delay: calc(var(--i) * 3.5s + 2.3s);
+}
+.fp-card-done i { flex: 0 0 auto; width: 4.4cqi; height: 4.4cqi; display: grid; place-items: center; background: #18a05e; border-radius: 50%; }
+.fp-card-done i:before { content: ""; width: 1.1cqi; height: 2cqi; margin-top: -.4cqi; border: solid #ffffff; border-width: 0 .55cqi .55cqi 0; transform: rotate(45deg); }
+.fp-card.is-detect .fp-card-done { color: #8a6326; }
+.fp-card.is-detect .fp-card-done i { background: #d9a53f; }
+@keyframes fp-done {
+  0% { opacity: 0; transform: translateY(1cqi); }
+  0.7%, 100% { opacity: 1; transform: none; }
+}
 .fp-tile b {
   position: absolute;
   left: 50%;
@@ -358,11 +479,12 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
 }
 @keyframes fp-tile {
   0% { transform: translate(-50%, -50%) scale(1); }
-  2% { transform: translate(-50%, -50%) scale(1.14); }
-  6%, 100% { transform: translate(-50%, -50%) scale(1); }
+  0.55% { transform: translate(-50%, -50%) scale(1.14); }
+  1.32%, 100% { transform: translate(-50%, -50%) scale(1); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fp-pulse, .fp-ring, .fp-tile { animation: none; }
+  .fp-pulse, .fp-ring, .fp-tile, .fp-tile img, .fp-compass, .fp-card, .fp-card *, .fp-shot:before, .fp-shot:after { animation: none; }
+  .fp-card { display: none; }
 }
 
 /* ---------- Overview strip under the home hero ---------- */
