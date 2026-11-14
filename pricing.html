@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css?v=20261114-01" />
-  <link rel="stylesheet" href="assets/site-layout.css?v=20261114-01" />
+  <link rel="stylesheet" href="assets/site-layout.css?v=20261114-02" />
 </head>
 <body>
   <header class="site-header">
@@ -50,10 +50,58 @@
       </div>
     </div>
     <div class="v2-hero-art">
-      <div class="v2-tiers" role="img" aria-label="Core: Facebook, Instagram and TikTok. Pro adds YouTube and Threads. Enterprise adds Telegram, Snapchat, LinkedIn, Reddit and X.">
+      <!-- The pane shows the tiers or the add-on modules; the hero's "Add-on modules" button switches it (assets/pricing-pane.js). -->
+      <div class="v2-pane" data-pricing-pane>
+        <div class="v2-pane-tabs" role="tablist" aria-label="Pricing">
+          <button type="button" role="tab" id="pane-tab-tiers" aria-controls="pane-tiers" aria-selected="true">Licensing tiers</button>
+          <button type="button" role="tab" id="pane-tab-addons" aria-controls="pane-addons" aria-selected="false" tabindex="-1">Add-on modules</button>
+        </div>
+        <div class="v2-pane-views">
+      <div class="v2-tiers" id="pane-tiers" role="tabpanel" aria-labelledby="pane-tab-tiers">
+      <div class="v2-tier-rows" role="img" aria-label="Core: Facebook, Instagram and TikTok. Pro adds YouTube and Threads. Enterprise adds Telegram, Snapchat, LinkedIn, Reddit and X.">
         <div class="v2-tier"><b>Core<span>3 platform modules</span></b><span class="v2-tier-icons"><img src="assets/illustrations/platform-facebook-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-instagram-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-tiktok-tile.svg" alt="" width="52" height="52" /></span></div>
         <div class="v2-tier"><b>Pro<span>5 platform modules</span></b><span class="v2-tier-icons"><img class="is-earlier" src="assets/illustrations/platform-facebook-tile.svg" alt="" width="52" height="52" /><img class="is-earlier" src="assets/illustrations/platform-instagram-tile.svg" alt="" width="52" height="52" /><img class="is-earlier" src="assets/illustrations/platform-tiktok-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-youtube-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-threads-tile.svg" alt="" width="52" height="52" /></span></div>
         <div class="v2-tier"><b>Enterprise<span>10 platform modules</span></b><span class="v2-tier-icons"><img class="is-earlier" src="assets/illustrations/platform-facebook-tile.svg" alt="" width="52" height="52" /><img class="is-earlier" src="assets/illustrations/platform-instagram-tile.svg" alt="" width="52" height="52" /><img class="is-earlier" src="assets/illustrations/platform-tiktok-tile.svg" alt="" width="52" height="52" /><img class="is-earlier" src="assets/illustrations/platform-youtube-tile.svg" alt="" width="52" height="52" /><img class="is-earlier" src="assets/illustrations/platform-threads-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-telegram-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-snapchat-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-linkedin-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-reddit-tile.svg" alt="" width="52" height="52" /><img src="assets/illustrations/platform-x-tile.svg" alt="" width="52" height="52" /></span></div>
+      </div>
+      </div>
+      <div class="v2-addons" id="pane-addons" role="tabpanel" aria-labelledby="pane-tab-addons" hidden>
+        <p class="v2-addons-lead">Add-ons unlock a single capability without moving to a higher tier.</p>
+        <article class="v2-addon">
+          <span class="v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><path d="M17.5 14v7M14 17.5h7"/></svg></span>
+          <h3>Extra platform module</h3>
+          <p class="v2-addon-where">Core, Pro, Enterprise</p>
+          <b class="v2-addon-price">$399 CAD / seat / year</b>
+        </article>
+        <article class="v2-addon">
+          <span class="v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M8 9h8M8 12h8M8 15h5"/></svg></span>
+          <h3>OCR</h3>
+          <p class="v2-addon-where">Core (included in Pro and Enterprise)</p>
+          <b class="v2-addon-price">$999 CAD / seat / year</b>
+        </article>
+        <article class="v2-addon">
+          <span class="v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><circle cx="12" cy="10.5" r="3"/><path d="M7.5 17c1-2 2.6-3 4.5-3s3.5 1 4.5 3"/></svg></span>
+          <h3>Facial Match / Objects recognition</h3>
+          <p class="v2-addon-where">Core, Pro (included in Enterprise)</p>
+          <b class="v2-addon-price">$1,500 CAD / seat / year</b>
+        </article>
+        <article class="v2-addon">
+          <span class="v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 19c.8-3 3-4.5 6-4.5s5.2 1.5 6 4.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5c2.3.1 4 1.4 4.8 4"/></svg></span>
+          <h3>Team Index (Collaboration)</h3>
+          <p class="v2-addon-where">Enterprise licence only</p>
+          <b class="v2-addon-price">Contact sales</b>
+          <p class="v2-addon-more">Work as a team on a project and stop collecting evidence that has already been captured.</p>
+          <ul class="v2-addon-chips">
+            <li>Central index sharing</li>
+            <li>Central statistics</li>
+            <li>Central backup</li>
+            <li>AES-256 encryption</li>
+            <li>Administrator portal (managing users)</li>
+            <li>Audit log (line hashing)</li>
+            <li>Evidence remains on site</li>
+          </ul>
+        </article>
+      </div>
+        </div>
       </div>
     </div>
   </section>
@@ -252,7 +300,8 @@
     </div>
     <div class="v2-footer-bar">© 2026 Nexus Forensics Inc. All rights reserved.</div>
   </footer>
-  <script src="assets/site-language.js?v=20261114-01" defer></script>
+  <script src="assets/site-language.js?v=20261114-02" defer></script>
   <script src="assets/site-lightbox.js?v=20261114-01" defer></script>
+  <script src="assets/pricing-pane.js?v=20261114-01" defer></script>
 </body>
 </html>

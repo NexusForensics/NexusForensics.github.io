@@ -760,6 +760,79 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 .v2-tier-icons img.is-earlier { opacity: .38; filter: grayscale(.4); }
 @media (max-width: 520px) { .v2-tier { grid-template-columns: minmax(0, 1fr); } .v2-tier-icons img { width: 44px; height: 44px; } }
 
+/* The pricing pane (2026-11-14): tabs switch it between the tiers and the add-on modules. Both views share one grid cell,
+   so the pane keeps the height of the taller one and the hero never jumps when it switches. */
+.v2-pane { display: flex; flex-direction: column; gap: 20px; width: min(88%, 600px); padding-block: 44px; }
+.v2-pane-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--v2-pill);
+  background: rgba(255, 255, 255, .07);
+  box-shadow: inset 0 0 0 1px rgba(159, 200, 255, .18);
+}
+.v2-pane-tabs button {
+  min-height: 44px;
+  padding: 0 20px;
+  color: #c9d6ea;
+  background: transparent;
+  border: 0;
+  border-radius: var(--v2-pill);
+  font: 700 14px/1 var(--font-body);
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+.v2-pane-tabs button:hover { color: #ffffff; background: rgba(255, 255, 255, .08); }
+.v2-pane-tabs button[aria-selected="true"] { color: var(--v2-night); background: var(--v2-gold-bright); }
+.v2-pane-views { display: grid; }
+.v2-pane-views > [role="tabpanel"] { grid-area: 1 / 1; min-width: 0; }
+.v2-pane-views > [role="tabpanel"][hidden] { display: flex; visibility: hidden; }
+.v2-pane-views > [role="tabpanel"]:not([hidden]) { animation: v2-pane-in .28s ease-out; }
+@keyframes v2-pane-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.v2-pane .v2-tiers { width: 100%; padding-block: 0; }
+.v2-tier-rows { display: flex; flex-direction: column; gap: 18px; }
+
+.v2-addons { display: flex; flex-direction: column; gap: 12px; }
+.v2-addons-lead { margin: 0 0 4px; color: #c9d6ea; font-size: 15px; line-height: 1.5; }
+.v2-addon {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 2px 14px;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .06);
+  box-shadow: inset 0 0 0 1px rgba(159, 200, 255, .16);
+}
+.v2-addon-icon {
+  grid-row: 1 / span 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--v2-gold-bright);
+  background: rgba(217, 180, 90, .13);
+  border-radius: 12px;
+}
+.v2-addon-icon svg { width: 24px; height: 24px; }
+.v2-addon h3 { grid-column: 2; margin: 0; color: #ffffff; font-size: 17px; line-height: 1.25; }
+.v2-addon-where { grid-column: 2; margin: 0; color: #9fb3cf; font-size: 13px; line-height: 1.4; }
+.v2-addon-price { grid-column: 3; grid-row: 1 / span 2; color: var(--v2-gold-bright); font: 600 13px/1.35 var(--font-mono); text-align: right; white-space: nowrap; }
+.v2-addon-more { grid-column: 2 / -1; margin: 8px 0 0; color: #c9d6ea; font-size: 13.5px; line-height: 1.5; }
+.v2-addon-chips { grid-column: 2 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 2px; padding: 0; list-style: none; }
+.v2-addon-chips li { padding: 4px 10px; color: #e8f0fc; background: rgba(255, 255, 255, .08); border-radius: var(--v2-pill); font-size: 12px; line-height: 1.4; }
+@media (max-width: 520px) {
+  .v2-pane-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: stretch; border-radius: 26px; }
+  .v2-pane-tabs button { padding: 8px 10px; border-radius: 22px; font-size: 13px; line-height: 1.25; }
+  .v2-addon { grid-template-columns: 40px minmax(0, 1fr); padding: 14px; }
+  .v2-addon-icon { width: 40px; height: 40px; }
+  .v2-addon-price { grid-column: 2; grid-row: auto; text-align: left; white-space: normal; }
+  .v2-addon-more, .v2-addon-chips { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) { .v2-pane-views > [role="tabpanel"]:not([hidden]) { animation: none; } }
+
 /* ---------- Narrow screens ---------- */
 @media (max-width: 1180px) {
   .site-header { flex-wrap: wrap; }
