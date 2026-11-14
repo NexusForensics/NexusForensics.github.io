@@ -2,7 +2,8 @@
   const OPEN_CLASS = "lightbox-open";
   const TRIGGER_CLASS = "lightbox-trigger";
   // Platform capture demos (.pf-capture) play on hover; their pictures are parts of the animation, never opened on their own.
-  const SKIP_SELECTOR = ".brand img, .product-card img, .ocr-demo img, .pf-capture img, .vd-demo img, .v2-footprint img, .v2-tiers img, .v2-footer img, .v2-product-card img, .v2-hero-art img, .v2-contact-art img";
+  // The same for the demo bands: post capture, face match, object match and case target (user, 2026-11-14).
+  const SKIP_SELECTOR = ".brand img, .product-card img, .ocr-demo img, .pc-demo img, .fm-demo img, .om-demo img, .ct-demo img, .pf-capture img, .vd-demo img, .v2-footprint img, .v2-tiers img, .v2-footer img, .v2-product-card img, .v2-hero-art img, .v2-contact-art img";
 
   const getTitle = (element) =>
     element.dataset.lightboxTitle ||
@@ -59,8 +60,14 @@
     lightboxImage.alt = "";
   };
 
+  // The drawn illustrations (assets/illustrations/) have nothing more to show when enlarged (user, 2026-11-14);
+  // one that names a bigger picture with data-lightbox-src still opens it.
+  const isPlainIllustration = (image) =>
+    /(^|\/)illustrations\//.test(image.getAttribute("src") || "") && !image.dataset.lightboxSrc;
+
   document.querySelectorAll("img").forEach((image) => {
     if (image.closest(SKIP_SELECTOR)) return;
+    if (isPlainIllustration(image)) return;
     if (image.closest("button[data-lightbox-src], a[data-lightbox-src]")) return;
     image.classList.add(TRIGGER_CLASS);
     image.setAttribute("tabindex", "0");

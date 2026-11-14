@@ -373,14 +373,14 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
   left: 50%;
   top: 50%;
   z-index: 4;
-  width: 54cqi;
+  width: 62cqi;
   display: grid;
-  grid-template-columns: 19cqi minmax(0, 1fr);
+  grid-template-columns: 16cqi minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
-  gap: 0 3cqi;
+  gap: 0 2.6cqi;
   padding: 2.8cqi;
   color: #101828;
-  background: #ffffff;
+  background: rgba(255, 255, 255, .65); /* 35% see-through (user, 2026-11-14) */
   border-radius: 3cqi;
   box-shadow: 0 2.4cqi 6cqi rgba(0, 0, 0, .5), 0 0 0 .3cqi rgba(217, 180, 90, .55);
   opacity: 0;
@@ -399,8 +399,8 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
 .fp-shot {
   grid-row: 2 / span 2;
   position: relative;
-  width: 19cqi;
-  height: 19cqi;
+  width: 16cqi;
+  height: 16cqi;
   overflow: hidden;
   background: #e6ebf2;
   border-radius: 1.8cqi;
@@ -428,9 +428,13 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
 /* X and the web: the capture scrolls the whole page */
 .fp-card.is-scroll .fp-shot img { height: auto; object-fit: initial; animation: fp-scroll 45.5s ease-in-out infinite both; animation-delay: calc(var(--i) * 3.5s + 1.3s); }
 @keyframes fp-scroll { 0% { transform: translateY(0); } 3.3%, 100% { transform: translateY(-58%); } }
-.fp-card-text { display: flex; flex-direction: column; gap: .9cqi; min-width: 0; }
-.fp-card-text b { font: 800 max(10px, 3.2cqi)/1.2 var(--font-body); overflow-wrap: anywhere; }
-.fp-card-text span { color: #475467; font: 500 max(9px, 2.5cqi)/1.35 var(--font-body); }
+/* every line of text stays on one line (user, 2026-11-14); the ellipsis is only a safety net */
+.fp-card-text { display: flex; flex-direction: column; gap: .8cqi; min-width: 0; }
+.fp-card-text b,
+.fp-card-text span:not(.fp-number),
+.fp-card-done span { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.fp-card-text b { font: 800 max(10px, 3cqi)/1.25 var(--font-body); }
+.fp-card-text span { color: #2d3748; font: 500 max(9px, 2.3cqi)/1.35 var(--font-body); }
 /* LeoList: the phone number is boxed once it is read */
 .fp-card-text .fp-number {
   align-self: flex-start;
@@ -450,15 +454,20 @@ h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.005em; font-weight: 7
   display: flex;
   align-items: center;
   gap: 1.4cqi;
-  color: #127a4d;
-  font: 800 max(9px, 2.6cqi)/1.2 var(--font-body);
+  min-width: 0;
+  color: #08482b;
+  font: 800 max(9px, 2.5cqi)/1.2 var(--font-body);
   animation: fp-done 45.5s infinite both;
   animation-delay: calc(var(--i) * 3.5s + 2.3s);
 }
 .fp-card-done i { flex: 0 0 auto; width: 4.4cqi; height: 4.4cqi; display: grid; place-items: center; background: #18a05e; border-radius: 50%; }
 .fp-card-done i:before { content: ""; width: 1.1cqi; height: 2cqi; margin-top: -.4cqi; border: solid #ffffff; border-width: 0 .55cqi .55cqi 0; transform: rotate(45deg); }
-.fp-card.is-detect .fp-card-done { color: #8a6326; }
+.fp-card.is-detect .fp-card-done { color: #5a3d0e; }
 .fp-card.is-detect .fp-card-done i { background: #d9a53f; }
+/* phones: the card is too narrow for one line each, so the description and result wrap between words (never mid-word) */
+@media (max-width: 520px) {
+  .fp-card-text span:not(.fp-number), .fp-card-done span { overflow: visible; white-space: normal; }
+}
 @keyframes fp-done {
   0% { opacity: 0; transform: translateY(1cqi); }
   0.7%, 100% { opacity: 1; transform: none; }
@@ -1004,4 +1013,60 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
   .v2-step img { grid-column: 1 / -1; grid-row: auto; width: 100%; }
   .fp-tile b { display: none; }
   .subnav { top: 0; }
+}
+
+/* Case target in action (2026-11-14): when the first matching frame is found, a red "Case target match!" banner drops onto the video
+   and the video's edge flashes red; both stay until the demo starts over (assets/capture-demos.js adds .is-alert). */
+.ct-match {
+  position: absolute;
+  left: 50%;
+  top: 46px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 20px);
+  padding: 9px 16px 9px 12px;
+  color: #ffffff;
+  background: #c81e1e;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(200, 30, 30, .45);
+  font: 800 13px/1.2 var(--font-body);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, -14px) scale(.9);
+  transition: opacity .25s ease, transform .45s cubic-bezier(.3, 1.6, .5, 1);
+}
+.ct-match svg { flex: 0 0 auto; width: 18px; height: 18px; }
+.ct-demo.is-alert .ct-match { opacity: 1; transform: translate(-50%, 0) scale(1); animation: ct-match-pulse 1s ease-in-out .45s 3; }
+@keyframes ct-match-pulse {
+  0%, 100% { box-shadow: 0 8px 22px rgba(200, 30, 30, .45), 0 0 0 0 rgba(239, 68, 68, .7); }
+  50% { box-shadow: 0 8px 22px rgba(200, 30, 30, .45), 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+.ct-demo.is-alert .ct-screen { border-color: #c81e1e; box-shadow: 0 0 0 3px #c81e1e, var(--shadow); animation: ct-screen-flash .5s ease-in-out 3; }
+@keyframes ct-screen-flash { 50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, .55), var(--shadow); } }
+@media (max-width: 520px) { .ct-match { top: 40px; padding: 7px 12px 7px 9px; font-size: 11px; } .ct-match svg { width: 15px; height: 15px; } }
+@media (prefers-reduced-motion: reduce) { .ct-demo.is-alert .ct-match, .ct-demo.is-alert .ct-screen { animation: none; } .ct-match { transition: none; } }
+
+/* The Social Recon compass replaces the neon X logo (user, 2026-11-14): one logo family, the app's own mark. */
+.v2-product-card .v2-product-media .hero-compass.sr-compass-card { display: block; width: min(100%, 240px); height: auto; aspect-ratio: 1; margin: 0; }
+.product-card .product-media .hero-compass.sr-compass-card { display: block; width: min(100%, 240px); height: auto; aspect-ratio: 1; margin: 0; }
+/* the Products card's second compass has its own ids: same resting look as the hero one (ring glow hidden, needle drifting) */
+#srCompassRingGlowCard { opacity: 0; }
+#srCompassNeedleCard { transform-origin: 100px 100px; animation: srCompassDrift 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { #srCompassNeedleCard { animation: none; } }
+/* the Products page's single product card: compass on navy at the left, the text at the right, like the home page card */
+.product-grid.one-up .product-card { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); grid-template-rows: 1fr auto; min-height: 0; height: auto; background: var(--v2-band-2); box-shadow: none; }
+.product-grid.one-up .product-card:hover { transform: translateY(-2px); box-shadow: var(--v2-card-shadow); }
+.product-grid.one-up .product-media { grid-row: 1 / span 2; height: auto; padding: 36px; border: 0; background: var(--v2-night); }
+.product-grid.one-up .product-body { align-content: center; padding: 40px 40px 8px; }
+.product-grid.one-up .product-link-label { justify-content: flex-start; min-height: 0; margin: 12px 40px 40px; }
+.product-grid.one-up .product-card:hover .product-link-label { color: var(--v2-navy); background: transparent; }
+@media (max-width: 760px) {
+  .product-grid.one-up .product-card { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; }
+  .product-grid.one-up .product-media { grid-row: auto; padding: 28px; }
+  .product-grid.one-up .product-body { padding: 28px 24px 4px; }
+  .product-grid.one-up .product-link-label { margin: 12px 24px 28px; }
 }
