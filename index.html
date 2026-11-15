@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css?v=20261114-01" />
-  <link rel="stylesheet" href="assets/site-layout.css?v=20261114-14" />
+  <link rel="stylesheet" href="assets/site-layout.css?v=20261114-16" />
 </head>
 <body>
   <header class="site-header">
@@ -36,7 +36,15 @@
        edge (the app’s own emblem with its letters painted out and a gold circuit around a person silhouette in the middle, assets/nexus-forensics-emblem-circuit.webp). -->
   <section class="v2-hero-wm has-stream">
     <div class="hero-stream" data-hero-stream></div>
-    <img class="v2-wm" src="assets/nexus-forensics-emblem-circuit.webp" alt="" width="830" height="830" />
+    <div class="v2-wm has-pulse" aria-hidden="true">
+      <img src="assets/nexus-forensics-emblem-circuit.webp" alt="" width="830" height="830" />
+      <svg class="v2-wm-pulse" viewBox="0 0 830 830" aria-hidden="true" focusable="false">
+        <defs><clipPath id="wmDisc"><circle cx="418" cy="418" r="93" /></clipPath></defs>
+        <g clip-path="url(#wmDisc)"><path d="M397 383 L397 371.8 L383.3 358 L383.3 349.7" pathLength="100" /><path d="M405.4 383 L405.4 374.3 L397.1 366 L397.1 321" pathLength="100" /><path d="M413.8 383 L413.8 376.8 L411.1 374 L411.1 365.6" pathLength="100" /><path d="M422.2 383 L422.2 376.8 L424.9 374 L424.9 319" pathLength="100" /><path d="M430.6 383 L430.6 374.3 L438.9 366 L438.9 321" pathLength="100" /><path d="M439 383 L439 371.8 L452.8 358 L452.8 325" pathLength="100" /><path d="M453 397 L464.3 397 L478 383.3 L511 383.3" pathLength="100" /><path d="M453 405.4 L461.8 405.4 L470 397.1 L515 397.1" pathLength="100" /><path d="M453 413.8 L459.3 413.8 L462 411.1 L479.5 411.1" pathLength="100" /><path d="M453 422.2 L459.3 422.2 L462 424.9 L475.2 424.9" pathLength="100" /><path d="M453 430.6 L461.8 430.6 L470 438.9 L515 438.9" pathLength="100" /><path d="M453 439 L464.3 439 L478 452.8 L511 452.8" pathLength="100" /><path d="M439 453 L439 464.3 L452.8 478 L452.8 511" pathLength="100" /><path d="M430.6 453 L430.6 461.8 L438.9 470 L438.9 515" pathLength="100" /><path d="M422.2 453 L422.2 459.3 L424.9 462 L424.9 517" pathLength="100" /><path d="M413.8 453 L413.8 459.3 L411.1 462 L411.1 517" pathLength="100" /><path d="M405.4 453 L405.4 461.8 L397.1 470 L397.1 515" pathLength="100" /><path d="M397 453 L397 464.3 L383.3 478 L383.3 487.4" pathLength="100" /><path d="M383 439 L371.8 439 L358 452.8 L325 452.8" pathLength="100" /><path d="M383 430.6 L374.3 430.6 L366 438.9 L346.8 438.9" pathLength="100" /><path d="M383 422.2 L376.8 422.2 L374 424.9 L364.9 424.9" pathLength="100" /><path d="M383 413.8 L376.8 413.8 L374 411.1 L319 411.1" pathLength="100" /><path d="M383 405.4 L374.3 405.4 L366 397.1 L321 397.1" pathLength="100" /><path d="M383 397 L371.8 397 L358 383.3 L325 383.3" pathLength="100" /><path d="M446 446 L468.4 468.4 L503.4 468.4" pathLength="100" /><path d="M446 390 L467.5 368.5 L467.5 331.5" pathLength="100" /><path d="M390 446 L369 467 L331 467" pathLength="100" /><path d="M390 390 L366.1 366.1 L366.1 333.1" pathLength="100" /></g>
+        <circle class="v2-wm-ripple" cx="418" cy="418" r="42" />
+        <circle class="v2-wm-frame" cx="418" cy="418" r="42" />
+      </svg>
+    </div>
     <div class="v2-wm-inner">
       <p class="eyebrow">Nexus Forensics Inc.</p>
       <h1>Digital Footprint Intelligence</h1>
