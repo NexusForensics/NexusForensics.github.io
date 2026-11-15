@@ -623,6 +623,12 @@ main section,
   font: 800 11.5px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
   box-shadow: 0 6px 14px rgba(217, 180, 90, .4);
 }
+/* Small thumbnails of the platforms each tier unlocks, under the description (2026-11-15). The row keeps one line of height so prices line up. */
+.tier-platforms { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 6px; min-height: 26px; margin-top: 4px; }
+.tier-platforms img { width: 26px; height: 26px; border-radius: 7px; filter: drop-shadow(0 2px 4px rgba(15, 39, 71, .2)); }
+@media (max-width: 1320px) { .pricing-card:not(.enterprise-team) .tier-platforms { min-height: 58px; } }
+@media (max-width: 960px) { .pricing-card:not(.enterprise-team) .tier-platforms { min-height: 0; } }
+.pricing-card.enterprise-team .tier-platforms { min-height: 0; }
 /* Enterprise Atlas (minimum 5 licences): a wide card under the three tiers, contact sales, no price. */
 .price-tag-team { color: var(--v2-night); background: var(--v2-gold-bright); box-shadow: 0 6px 14px rgba(217, 180, 90, .4); }
 .pricing-card.enterprise-team { box-shadow: 0 0 0 2px var(--v2-gold-bright), var(--v2-card-shadow); }
