@@ -2328,7 +2328,11 @@
       "Searchable captured text, prior-capture alerts across your own cases, and enriched reports.": "Texte capturé consultable, alertes de capture antérieure dans vos propres dossiers et rapports enrichis.",
       "Pro plus Facial Match, Object Match, Case Visual Index, targets, and ten platform modules.": "Pro plus Facial Match, Object Match, Index visuel de dossier, cibles et dix modules de plateforme.",
       "Explainable visual matches from Facial Match and Object Match, and case target alerts.": "Correspondances visuelles explicables de Facial Match et Object Match, et alertes de cibles de dossier.",
-      "Agencies and investigators who need visual matching and the full platform set.": "Organismes et enquêteurs qui ont besoin de la correspondance visuelle et de toutes les plateformes."
+      "Agencies and investigators who need visual matching and the full platform set.": "Organismes et enquêteurs qui ont besoin de la correspondance visuelle et de toutes les plateformes.",
+      "Core plus YouTube and Reddit, OCR, keyword search across your cases, User Index, live Seen Evidence status, the local encrypted index across your own cases, friends and followers comparison across cases, and case targets (Facial Match and Object Match are add-ons).": "Core plus YouTube et Reddit, OCR, recherche par mots-clés dans vos dossiers, Index utilisateur, état Seen Evidence en direct, index local chiffré de vos propres dossiers, comparaison des amis et abonnés entre dossiers et cibles de dossier (Facial Match et Object Match sont en option).",
+      "Pro plus Facial Match, Object Match, Case Visual Index, and ten platform modules.": "Pro plus Facial Match, Object Match, Index visuel de dossier et dix modules de plateforme.",
+      "Explainable visual matches from Facial Match and Object Match.": "Correspondances visuelles explicables de Facial Match et Object Match.",
+      "Friends and followers comparison across cases, and case targets": "Comparaison des amis et abonnés entre dossiers, et cibles de dossier"
     },
     "es": {
       "Quick links": "Enlaces rápidos",
@@ -2491,7 +2495,11 @@
       "Searchable captured text, prior-capture alerts across your own cases, and enriched reports.": "Texto capturado con búsqueda, alertas de captura previa en sus propios casos e informes enriquecidos.",
       "Pro plus Facial Match, Object Match, Case Visual Index, targets, and ten platform modules.": "Pro más Facial Match, Object Match, Índice visual de caso, objetivos y diez módulos de plataforma.",
       "Explainable visual matches from Facial Match and Object Match, and case target alerts.": "Coincidencias visuales explicables de Facial Match y Object Match, y alertas de objetivos del caso.",
-      "Agencies and investigators who need visual matching and the full platform set.": "Agencias e investigadores que necesitan coincidencia visual y el conjunto completo de plataformas."
+      "Agencies and investigators who need visual matching and the full platform set.": "Agencias e investigadores que necesitan coincidencia visual y el conjunto completo de plataformas.",
+      "Core plus YouTube and Reddit, OCR, keyword search across your cases, User Index, live Seen Evidence status, the local encrypted index across your own cases, friends and followers comparison across cases, and case targets (Facial Match and Object Match are add-ons).": "Core más YouTube y Reddit, OCR, búsqueda por palabras clave en sus casos, Índice de usuario, estado de Seen Evidence en vivo, índice local cifrado de sus propios casos, comparación de amigos y seguidores entre casos y objetivos del caso (Facial Match y Object Match son complementos).",
+      "Pro plus Facial Match, Object Match, Case Visual Index, and ten platform modules.": "Pro más Facial Match, Object Match, Índice visual de caso y diez módulos de plataforma.",
+      "Explainable visual matches from Facial Match and Object Match.": "Coincidencias visuales explicables de Facial Match y Object Match.",
+      "Friends and followers comparison across cases, and case targets": "Comparación de amigos y seguidores entre casos y objetivos del caso"
     }
   };
   Object.entries(layoutStrings).forEach(([lang, values]) => { Object.assign(t[lang], values); });
