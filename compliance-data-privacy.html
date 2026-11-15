@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Compliance &amp; Data Privacy | Nexus Forensics</title>
-  <meta name="description" content="Nexus Forensics compliance and data privacy position for Canada and the United States, covering visible-capture compliance mode, local-first deployment, zero-cloud evidence handling, encryption, retention, and vendor access boundaries." />
+  <meta name="description" content="Nexus Forensics compliance and data privacy position for Canada and the United States, covering investigator-directed capture, local-first deployment, local evidence handling, encryption, and vendor access boundaries." />
   <meta property="og:title" content="Nexus Forensics Compliance &amp; Data Privacy" />
-  <meta property="og:description" content="A local-first, zero-cloud privacy and security framework for investigator-controlled evidence workflows." />
+  <meta property="og:description" content="A local-first privacy and security framework for investigator-controlled evidence workflows." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/nexus-forensics-logo-white-20260909-transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,17 +39,17 @@
         <h1>Local-first evidence software designed to reduce data exposure.</h1>
       </div>
       <div class="v2-hero-band">
-        <p class="hero-lede">Nexus Social Recon is built around a local-first deployment model, visible-screen evidence preservation, and compliance-conscious controls for investigators who need to avoid platform scraping. The software records and organizes what the authorized user can view, rather than scraping hidden platform data.</p>
+        <p class="hero-lede">Nexus Social Recon is built around a local-first deployment model and investigator-directed capture. It preserves what the investigator sees and selects, and it is upfront about how: screen capture first, with page structure and the original media files used to make the record complete and verifiable.</p>
         <div class="hero-actions">
         <a class="button primary" href="#framework">View framework</a>
-        <a class="button line" href="#compliance-mode">Compliance mode</a>
+        <a class="button line" href="#how-capture-works">How capture works</a>
         <a class="button line" href="#matrix">Compliance matrix</a>
         <a class="button line" href="mailto:sales@nexus-forensics.ca">Request details</a>
       </div>
         <div class="hero-metrics" aria-label="Compliance posture highlights">
         <span>Zero vendor custody of evidence data</span>
-        <span>Policy-gated visible-capture workflows</span>
-        <span>Encrypted repositories and retention controls</span>
+        <span>Investigator-directed capture, fully logged</span>
+        <span>Encrypted case vaults on macOS</span>
       </div>
       </div>
     </div>
@@ -71,8 +71,8 @@
         <div class="compliance-grid">
           <article class="feature-card">
             <div class="accent-bar"></div>
-            <h3>Zero-cloud evidence handling</h3>
-            <p>Evidence files, local indexes, metadata, reports, and review material are handled locally or within a client-controlled private network, without vendor cloud persistence.</p>
+            <h3>Local evidence handling</h3>
+            <p>Evidence files, local indexes, metadata, reports, and review material are handled on the investigator's computer or within a client-controlled private network, not in a vendor cloud. The few services the software contacts are listed below.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
@@ -82,56 +82,111 @@
           <article class="feature-card">
             <div class="accent-bar"></div>
             <h3>Encrypted local repositories</h3>
-            <p>Captured media, databases, metadata, and local team indexes are designed to be encrypted at rest using AES-256 encryption.</p>
+            <p>Case vaults and the local index are encrypted at rest with AES-256. Available on macOS today; the Windows version is in development.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
-            <h3>Retention boundaries</h3>
-            <p>User-configured retention utilities and audit logs support case file deletion cycles defined by the agency or organization operating the software.</p>
+            <h3>Retention stays with the agency</h3>
+            <p>The agency decides how long case files are kept and when they are deleted. Case files stay on the agency's own computers, and deleting a capture is recorded in the case audit log.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
-            <h3>Visible-screen capture</h3>
-            <p>The software is designed to preserve what the authorized user can see on screen or in a selected local file. It is not designed to bypass platform controls, scrape hidden data, or access non-visible account content.</p>
+            <h3>Investigator-visible capture</h3>
+            <p>The software preserves what the investigator sees and selects: on-screen content, the files the page serves for it, or a selected local file. It is not designed to defeat logins, privacy settings, or other access controls.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="band" id="compliance-mode">
+    <section id="outside-connections">
       <div class="section-inner">
         <div class="section-head">
           <div>
-            <p class="kicker">Nexus Social Recon Compliance</p>
-            <h2>A visible-capture mode for platform ToS-conscious investigations.</h2>
+            <p class="kicker">Outside Connections</p>
+            <h2>What can leave the investigator's computer.</h2>
           </div>
-          <p class="lead">The new Nexus Social Recon Compliance configuration is designed to make visible-screen capture the default evidence path. It uses a feature policy gate to allow low-risk preservation tools while disabling workflows that would scrape platform content, download media streams, or collect hidden structured data.</p>
+          <p class="lead">Evidence is processed locally. The software contacts the services below, only for the purposes shown. None of them receives case files; the only evidence-derived text that can leave is a place phrase the investigator chooses to look up.</p>
+        </div>
+        <div class="comparison compliance-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Connection</th>
+                <th>When</th>
+                <th>What is sent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nexus licence server</td>
+                <td>When a licence is activated, and on later checks</td>
+                <td>Licence key, email, investigator name, a random device ID, the computer's name, and which platform modules are unlocked. No case data.</td>
+              </tr>
+              <tr>
+                <td>Update check (Nexus update server)</td>
+                <td>At start-up and in the background</td>
+                <td>A request for a small version file from our update storage on Amazon S3 (Canada Central). Amazon can see the computer's network address. No case data.</td>
+              </tr>
+              <tr>
+                <td>Report a problem (Nexus support desk)</td>
+                <td>Only when the investigator sends a report</td>
+                <td>The problem type, the text typed, the app and system versions, the reply email, the licence key and device ID, a screenshot only if one is chosen, and the diagnostic log only if its box is ticked. The investigator can preview the log before sending; names of targets, cases and capture files are removed. No case files.</td>
+              </tr>
+              <tr>
+                <td>Place lookups (OpenStreetMap)</td>
+                <td>Only after the investigator allows lookups for a case</td>
+                <td>The place phrases the investigator ticks, and map tile requests. The window shows what will be sent.</td>
+              </tr>
+              <tr>
+                <td>Self-Validation tool</td>
+                <td>Only when the investigator runs it</td>
+                <td>Requests to time servers and time.is, and a public test image from Hugging Face. No case data.</td>
+              </tr>
+              <tr>
+                <td>Platform pages</td>
+                <td>When the investigator opens a platform in the app</td>
+                <td>The app loads the platform's own pages, as any browser would. Telegram uses the investigator's own Telegram account and API ID.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="how-capture-works">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">How Capture Works</p>
+            <h2>Capture what the investigator sees, and be upfront about how.</h2>
+          </div>
+          <p class="lead">Nexus Social Recon captures the content available to the investigator in the app's own browser. The investigator navigates, selects and starts every capture, and Nexus states the methods it used in each report. Nexus Forensics is taking steps to comply with platform terms of service, and the investigator remains responsible for following them.</p>
         </div>
         <div class="compliance-grid">
           <article class="feature-card">
             <div class="accent-bar"></div>
-            <h3>Green: allowed by default</h3>
-            <p>Visible screenshots, visible screen recordings, manual platform navigation, local OCR on preserved evidence, and local report generation remain available as the core workflow.</p>
+            <h3>Screen first</h3>
+            <p>Screenshots and recordings of the page as the investigator sees it are the core of every capture.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
-            <h3>Yellow: authorization required</h3>
-            <p>Approved platform API use, local biometric or profiling analysis, and other sensitive workflows require documented authorization, scope, retention rules, and customer-controlled governance.</p>
+            <h3>Page structure for accuracy</h3>
+            <p>The page's structure (the DOM) is read to find where a post, comment or profile section starts and ends, to read labels, and to crop cleanly. It helps organize what is on screen.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
-            <h3>Red: disabled in compliance mode</h3>
-            <p>Structured DOM scraping, hidden-window collection, bulk relationship capture, CDN/media download, network interception, live page automation, and non-visible platform data collection are blocked by policy.</p>
+            <h3>Original media as served</h3>
+            <p>Where the platform serves the original photo or video for what is on screen, Nexus downloads that exact file instead of settling for a screen grab. For YouTube it uses yt-dlp to download the exact video being served. Every file is hashed and tied to its source URL.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
-            <h3>Policy-gated actions</h3>
-            <p>Restricted capture commands are checked before they run. If a workflow does not meet the visible-capture policy, the software returns a compliance-blocked result and points the investigator to the approved visible-capture replacement.</p>
+            <h3>Investigator-directed</h3>
+            <p>The investigator chooses the platform, the account and the content. Multi-item captures such as scrolling capture run only when the investigator starts them.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
-            <h3>Visible-capture provenance</h3>
-            <p>Selected-region captures can be paired with a local metadata record that notes the capture method, source URL, timestamp, SHA-256 hash, selected region, platform, and a provenance note confirming that no platform DOM, private API, cookies, hidden metadata, or media source URLs were queried for that artifact.</p>
+            <h3>Methods stated in the report</h3>
+            <p>Each report includes a methodology section describing how the evidence was captured, so a reviewer can see what was screen-captured, what was read from the page, and what was downloaded.</p>
           </article>
           <article class="feature-card">
             <div class="accent-bar"></div>
@@ -153,16 +208,16 @@
                 <td>Investigators preserve what is visible on screen through screenshots, selected-region capture, and visible playback recording.</td>
               </tr>
               <tr>
-                <td>No platform scraping in compliance mode</td>
-                <td>Automated DOM extraction, hidden account data collection, bulk relationship capture, and direct media-source downloads are disabled in the compliance configuration.</td>
+                <td>Methods stated</td>
+                <td>Capture methods are named in each report's methodology, so a reviewer knows how every item was obtained.</td>
               </tr>
               <tr>
                 <td>Local processing</td>
                 <td>OCR, indexes, reports, manifests, hashes, and audit records are generated from already preserved local evidence artifacts.</td>
               </tr>
               <tr>
-                <td>Documented exceptions</td>
-                <td>Higher-risk workflows require customer authorization, approved platform access where applicable, defined scope, retention rules, and customer-controlled review.</td>
+                <td>Investigator responsibility</td>
+                <td>The agency decides which platforms, accounts and content to capture and under what authority. Nexus records what was done.</td>
               </tr>
             </tbody>
           </table>
@@ -195,11 +250,11 @@
               </tr>
               <tr>
                 <td>Principle 5: Limiting Use, Disclosure, and Retention</td>
-                <td>Nexus Forensics does not transmit evidence to vendor cloud systems for processing. User-configured retention utilities support agency-defined case deletion cycles.</td>
+                <td>Nexus Forensics does not transmit evidence to vendor cloud systems for processing. The agency decides how long case files are kept and when they are deleted.</td>
               </tr>
               <tr>
                 <td>Principle 7: Safeguards</td>
-                <td>Captured media, databases, metadata, and local indexes are designed to be encrypted at rest using AES-256 encryption on the workstation or private agency network.</td>
+                <td>Case vaults and the local index are encrypted at rest using AES-256 encryption on the investigator's workstation (macOS today; Windows in development).</td>
               </tr>
               <tr>
                 <td>Accountability support</td>
@@ -218,7 +273,7 @@
             <p class="kicker">United States Alignment</p>
             <h2>A privacy posture shaped for CCPA, CPRA, and state privacy laws.</h2>
           </div>
-          <p class="lead">The software does not use external public APIs or cloud databases to process evidence. With no external transmission of analyzed evidence to Nexus Forensics, the product is structured to avoid selling or sharing personal information for advertising or third-party data purposes.</p>
+          <p class="lead">OCR, face and object matching, indexing, and reports run on the investigator's own computer, using models bundled with the app. The software does not send analyzed evidence to Nexus Forensics. With that, the product is structured to avoid selling or sharing personal information for advertising or third-party data purposes.</p>
         </div>
         <p class="legal-reference"><strong>CCPA</strong> means the California Consumer Privacy Act, which gives California residents rights over personal information collected by covered businesses. <strong>CPRA</strong> means the California Privacy Rights Act, which amended and expanded California's privacy framework. Learn more from the <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener">California Attorney General</a> and the <a href="https://cppa.ca.gov/regulations/" target="_blank" rel="noopener">California Privacy Protection Agency</a>.</p>
         <div class="comparison privacy-law-chart">
@@ -244,24 +299,14 @@
               </tr>
               <tr>
                 <td>Sensitive personal information protection</td>
-                <td>Local repositories, media, metadata, and indexes are designed for encrypted storage at rest and private-network deployment boundaries.</td>
+                <td>Case vaults, media, metadata, and the local index are designed for encrypted storage at rest (macOS today; Windows in development).</td>
               </tr>
               <tr>
                 <td>Automated analysis and profiling risk controls</td>
-                <td>Face, image, and cross-case matching operate on locally preserved case material inside the client's local or agency-controlled environment rather than a public, centralized, or multi-tenant cloud database.</td>
+                <td>Face, image, and cross-case matching operate on locally preserved case material on the investigator's own computer, rather than a public or cloud database.</td>
               </tr>
             </tbody>
           </table>
-        </div>
-        <div class="split">
-          <div>
-            <p class="compliance-copy">For organizations using shared analysis or image-matching workflows, Nexus Forensics supports local or private-network indexes controlled by the client agency. Team members can match faces or case images previously preserved from visible, authorized case material inside their own organization without connecting to a centralized, public, or multi-tenant cloud database.</p>
-            <p class="compliance-copy">This keeps cross-case analysis inside the agency's defined access boundaries, infrastructure, and retention rules.</p>
-          </div>
-          <div class="compliance-note">
-            <h3>Deployment boundary</h3>
-            <p>Shared indexing is an enterprise-controlled, localized database model hosted on the client agency's secure internal network infrastructure.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -273,7 +318,7 @@
             <p class="kicker">Compliance Matrix</p>
             <h2>Key requirements mapped to technical implementation.</h2>
           </div>
-          <p class="lead">This matrix summarizes the privacy and security controls described in the Nexus Forensics compliance position paper.</p>
+          <p class="lead">This matrix summarizes how the software's privacy and security controls support these requirements. Nexus Forensics is taking steps toward compliance with applicable privacy law; the matrix describes design, not a legal certification.</p>
         </div>
         <div class="comparison compliance-table">
           <table>
@@ -287,22 +332,22 @@
             <tbody>
               <tr>
                 <td>Data minimization and sovereign control</td>
-                <td>Zero cloud dependencies. Visible, user-selected evidence is processed, indexed, and stored on the client's local host or private agency network.</td>
-                <td>Compliant by design</td>
+                <td>Evidence is processed, indexed, and stored on the client's local host or private agency network. The few outside connections are listed on this page.</td>
+                <td>Built to support</td>
               </tr>
               <tr>
                 <td>Data security and protection</td>
-                <td>Repository data and local team indexes are encrypted at rest using AES-256 encryption.</td>
-                <td>Compliant</td>
+                <td>Case vaults and the local index are encrypted at rest with AES-256 (macOS; Windows in development).</td>
+                <td>Built to support</td>
               </tr>
               <tr>
                 <td>Retention boundaries</td>
-                <td>Built-in audit logs and user-configured case file deletion cycles support agency-defined retention schedules.</td>
-                <td>Compliant</td>
+                <td>Case files stay on the agency's own computers, so the agency sets its own retention schedule. Deleting a capture is recorded in the audit log.</td>
+                <td>Built to support</td>
               </tr>
               <tr>
                 <td>Third-party data risk</td>
-                <td>No external evidence telemetry, no vendor cloud persistence, no scraping of hidden platform data, and no vendor custody of analyzed evidence data.</td>
+                <td>Nothing is reported to us automatically: no usage tracking and no crash reports. A problem reaches us only when the investigator sends a ticket. No vendor cloud persistence, and no vendor custody of analyzed evidence data.</td>
                 <td>Zero vendor custody</td>
               </tr>
             </tbody>
@@ -317,7 +362,7 @@
           <div>
             <p class="kicker">Position Summary</p>
             <h2>Evidence control stays with the organization responsible for the case.</h2>
-            <p class="lead">By enforcing local or on-premise storage, encryption, configurable retention schedules, and a strict zero-cloud evidence footprint, Nexus Forensics helps legal and investigative professionals reduce the data liabilities normally associated with forensic and analysis software.</p>
+            <p class="lead">By enforcing local or on-premise storage, encryption, and a local-first evidence footprint, Nexus Forensics helps legal and investigative professionals reduce the data liabilities normally associated with forensic and analysis software.</p>
           </div>
         </div>
       </div>
@@ -364,7 +409,7 @@
     </div>
     <div class="v2-footer-bar">© 2026 Nexus Forensics Inc. All rights reserved.</div>
   </footer>
-  <script src="assets/site-language.js?v=20261114-06" defer></script>
+  <script src="assets/site-language.js?v=20261114-14" defer></script>
   <script src="assets/site-lightbox.js?v=20261114-02" defer></script>
 </body>
 </html>
