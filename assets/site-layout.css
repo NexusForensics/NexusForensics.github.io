@@ -1109,3 +1109,9 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 .seen-evidence-panel .seen-evidence-copy { max-width: 760px; }
 @media (max-width: 1000px) { #features .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { #features .feature-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Home hero = the full company logo; the platform ring moved to the Social Recon hero, around the Social Recon compass (2026-11-14) */
+.v2-hero-art > img.v2-art-logo { width: min(72%, 460px); height: auto; margin-block: 48px 64px; }
+.fp-compass.fp-sr { width: 44%; }
+.fp-sr .hero-compass { display: block; width: 100%; height: auto; aspect-ratio: 1; margin: 0; }
+.v2-hero-sr .fp-ring { width: 46%; }
