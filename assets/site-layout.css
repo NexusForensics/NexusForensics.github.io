@@ -1072,8 +1072,9 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 }
 /* Home About (2026-11-14): the old animated top banner runs edge to edge at the top of the section, the text sits under it,
    heading left and paragraphs right. */
-#about.v2-about { --about-l: max(32px, env(safe-area-inset-left, 0px)); --about-r: max(32px, env(safe-area-inset-right, 0px)); padding-top: 0; }
-#about .v2-about-banner { height: clamp(232px, 21vw, 340px); margin: 0 calc(-1 * var(--about-r)) clamp(48px, 6vw, 80px) calc(-1 * var(--about-l)); border-bottom: 0;
+#about.v2-about { --about-l: max(32px, env(safe-area-inset-left, 0px)); --about-r: max(32px, env(safe-area-inset-right, 0px)); }
+/* the network banner at the top of the Social Recon page (moved from the home About section, 2026-11-14) */
+.hero-banner.v2-top-banner { height: clamp(200px, 19vw, 320px); border-bottom: 0;
   background: linear-gradient(90deg, rgba(10, 20, 36, .55), transparent 18%, transparent 82%, rgba(10, 20, 36, .55)), url("hero-network.svg") center / cover no-repeat, radial-gradient(900px 420px at 50% 62%, rgba(31, 142, 241, .16), transparent 70%), linear-gradient(180deg, #0b182c, #0a1628); }
 .v2-about-text { max-width: var(--v2-wrap); margin: 0 auto; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 20px clamp(32px, 6vw, 80px); align-items: start; }
 .v2-about-head { display: flex; flex-direction: column; gap: 14px; }

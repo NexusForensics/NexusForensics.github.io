@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/site.css?v=20261114-01" />
-  <link rel="stylesheet" href="../assets/site-layout.css?v=20261114-08" />
+  <link rel="stylesheet" href="../assets/site-layout.css?v=20261114-09" />
 </head>
 <body>
   <header class="site-header">
@@ -31,6 +31,10 @@
       <a class="contact-link" href="../index.html#contact">Contact Us</a>
     </nav>
   </header>
+
+  <!-- The animated network banner (assets/hero-animation.js, full show): a signal moves through the network, platform marks light up
+       in the hub, packets land on the map and small avatars pop up with what was found. Moved here from the home page (2026-11-14). -->
+  <div class="hero-banner v2-top-banner" aria-hidden="true"></div>
 
   <section class="v2-hero v2-hero-sr">
     <div class="v2-hero-copy">
@@ -1330,6 +1334,7 @@ capture-001   &lt;64-character hash&gt;   https://&hellip;</pre>
     <div class="v2-footer-bar">© 2026 Nexus Forensics Inc. All rights reserved.</div>
   </footer>
   <script src="../assets/site-language.js?v=20261114-05" defer></script>
+  <script src="../assets/hero-animation.js?v=20261114-01" defer></script>
   <script src="../assets/site-lightbox.js?v=20261114-02" defer></script>
   <script src="../assets/ocr-demo.js?v=20261108-02" defer></script>
   <script src="../assets/capture-demos.js?v=20261109-10" defer></script>
