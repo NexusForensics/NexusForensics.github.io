@@ -584,6 +584,8 @@ main section,
 
 /* ---------- Pricing ---------- */
 .pricing-card.featured { box-shadow: 0 0 0 2px var(--v2-navy), var(--v2-card-shadow); }
+/* Enterprise (Full platform) card outline, gold like its badge (2026-11-15). */
+.pricing-card.full-platform { box-shadow: 0 0 0 2px var(--v2-gold-bright), var(--v2-card-shadow); }
 .pricing-badge { color: var(--v2-night); background: var(--v2-gold-bright); border: 0; border-radius: var(--v2-pill); }
 .price strong { color: var(--v2-navy); font-family: var(--font-body); font-weight: 800; letter-spacing: -.02em; }
 .pricing-grid.four-up .price strong { font-size: 30px; }
@@ -614,6 +616,32 @@ main section,
   text-overflow: ellipsis;
 }
 .pricing-grid { padding-top: 14px; }
+/* Enterprise card: the "Full platform" badge sits on the top edge like the red tags, so its title lines up with Core and Pro (2026-11-15). */
+.pricing-card.full-platform .pricing-badge {
+  position: absolute; top: 0; left: 24px; transform: translateY(-50%);
+  max-width: calc(100% - 48px); padding: 6px 14px;
+  font: 800 11.5px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(217, 180, 90, .4);
+}
+/* Enterprise Atlas (minimum 5 licences): a wide card under the three tiers, contact sales, no price. */
+.price-tag-team { color: var(--v2-night); background: var(--v2-gold-bright); box-shadow: 0 6px 14px rgba(217, 180, 90, .4); }
+.pricing-card.enterprise-team { box-shadow: 0 0 0 2px var(--v2-gold-bright), var(--v2-card-shadow); }
+.pricing-card.enterprise-team {
+  grid-column: 1 / -1; display: grid; grid-template-columns: 1.15fr 1.5fr .9fr; gap: 14px 44px; align-items: center;
+  margin-top: 14px;
+}
+.pricing-card.enterprise-team .pricing-top { grid-column: 1; grid-row: 1 / span 2; }
+.pricing-card.enterprise-team .pricing-list { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+.pricing-card.enterprise-team .price { grid-column: 3; grid-row: 1; }
+.pricing-card.enterprise-team .button { grid-column: 3; grid-row: 2; }
+.pricing-card.full-platform .price, .pricing-card.enterprise-team .price { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; padding: 8px 0; min-height: 74px; box-sizing: border-box; }
+.pricing-card.full-platform .price strong, .pricing-card.enterprise-team .price strong { font-size: 32px; line-height: 1; white-space: nowrap; }
+.pricing-card.full-platform .price span, .pricing-card.enterprise-team .price span { padding-bottom: 0; }
+@media (max-width: 960px) {
+  .pricing-card.enterprise-team { grid-template-columns: 1fr; }
+  .pricing-card.enterprise-team .pricing-top, .pricing-card.enterprise-team .pricing-list,
+  .pricing-card.enterprise-team .price, .pricing-card.enterprise-team .button { grid-column: auto; grid-row: auto; }
+}
 .pricing-list li { color: var(--v2-body); }
 .pricing-list li:before { color: var(--v2-gold); background: var(--v2-gold); }
 .purchase-note { color: var(--v2-soft); }
@@ -909,6 +937,7 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 .v2-tier b span { display: block; margin-top: 2px; color: var(--v2-gold-bright); font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .v2-tier-icons { display: flex; flex-wrap: wrap; gap: 10px; }
 .v2-tier-icons img { width: 52px; height: 52px; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
+.v2-tier.is-atlas { box-shadow: inset 0 0 0 2px var(--v2-gold-bright); }
 @media (max-width: 520px) { .v2-tier { grid-template-columns: minmax(0, 1fr); } .v2-tier-icons img { width: 44px; height: 44px; } }
 
 /* The pricing pane (2026-11-14): tabs switch it between the tiers and the add-on modules. Both views share one grid cell,
