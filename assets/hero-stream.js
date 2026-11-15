@@ -21,10 +21,10 @@
   let risers = [], floor = [], sparks = [];
   const build = () => {
     seed = 41;
-    bx = W * 0.5; horizon = H * 0.64;
-    risers = Array.from({ length: 30 }, () => {
+    bx = W * 0.36; horizon = H * 0.64; // the beam sits left of the headline; the wider stream spreads to either side
+    risers = Array.from({ length: 44 }, () => {
       const side = rnd() < .5 ? -1 : 1;
-      const x = bx + side * (6 + Math.pow(rnd(), 1.4) * W * 0.44);
+      const x = bx + side * (6 + Math.pow(rnd(), 1.2) * W * 0.5);
       const top = horizon - (0.12 + rnd() * 0.78) * horizon;
       return { x, top, gold: rnd() < .35, a: .25 + rnd() * .45, ring: rnd() < .18, speed: .25 + rnd() * .6, t: rnd() };
     });
@@ -34,7 +34,7 @@
       const bend = .3 + rnd() * .35;                     // where the trace turns
       return { s, spread, bend, gold: i % 3 === 1, a: .3 + rnd() * .35, speed: .2 + rnd() * .35, t: rnd() };
     });
-    sparks = Array.from({ length: 70 }, () => ({
+    sparks = Array.from({ length: 110 }, () => ({
       x: bx + (rnd() - .5) * W * .9, y: rnd() * horizon, r: .6 + rnd() * 1.4, gold: rnd() < .4,
       vy: 4 + rnd() * 14, tw: rnd() * Math.PI * 2, cross: rnd() < .12,
     }));
@@ -96,9 +96,9 @@
 
     // the beam: a wide cyan glow, a gold core above the horizon, a cyan core below it, a hot spot where they meet
     const pulse = .85 + .15 * Math.sin(t * 2.2);
-    const glow = g.createLinearGradient(bx - 34, 0, bx + 34, 0);
+    const glow = g.createLinearGradient(bx - 64, 0, bx + 64, 0);
     glow.addColorStop(0, rgba(CYAN, 0)); glow.addColorStop(.5, rgba(CYAN, .32 * pulse)); glow.addColorStop(1, rgba(CYAN, 0));
-    g.fillStyle = glow; g.fillRect(bx - 34, 0, 68, H);
+    g.fillStyle = glow; g.fillRect(bx - 64, 0, 128, H);
     const core = g.createLinearGradient(0, 0, 0, horizon);
     core.addColorStop(0, rgba(GOLD, .55)); core.addColorStop(.5, rgba(GOLD, .95)); core.addColorStop(1, rgba(WHITE, 1));
     g.fillStyle = rgba(GOLD, .35 * pulse); g.fillRect(bx - 6, 0, 12, horizon);
