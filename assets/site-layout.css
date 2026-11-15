@@ -890,15 +890,15 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
   color: var(--text);
   background: linear-gradient(180deg, #0b182c, var(--v2-night));
 }
-.v2-live .hero-banner { border-bottom: 1px solid var(--line); }
+/* the animated network banner was taken off this page (user, 2026-11-14: too crowded); it runs on the home page's About section */
 .v2-live-inner {
   max-width: 1120px;
   margin: 0 auto;
-  padding-block: 8px 56px;
+  padding-block: 56px;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.v2-live .hero-match { margin-top: 0; transform: translateY(-34px); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+.v2-live .hero-match { margin-top: 0; box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
 .v2-hero-art .hero-compass.v2-compass-big { width: min(64%, 340px); height: auto; aspect-ratio: 1; margin: 0; }
 @media (max-width: 700px) { .v2-hero-art .hero-compass.v2-compass-big { width: min(64%, 240px); height: auto; } }
 
@@ -1083,3 +1083,20 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 .v2-about-body .lead { margin: 0; }
 @media (max-width: 1000px) { .v2-about-text { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 680px) { #about.v2-about { --about-l: max(16px, env(safe-area-inset-left, 0px)); --about-r: max(16px, env(safe-area-inset-right, 0px)); } }
+/* Home contact band (2026-11-14): the communication drawing, shown whole on the band's own navy (it has no background) */
+.v2-contact-art.is-drawn { background: radial-gradient(120% 90% at 50% 45%, #15335c 0%, #0c1c35 55%, var(--v2-night) 100%); }
+.v2-contact-art.is-drawn img { inset: 6%; width: 88%; height: 88%; object-fit: contain; }
+/* Home contact band (2026-11-14): the user's office photo (Nexus open on the monitor), shown whole as a rounded picture on the grey
+   band, centred beside the text, instead of filling the column (the photo is too wide to crop without losing the monitor or the person). */
+.v2-contact-art.is-photo {
+  align-self: center;
+  min-height: 0;
+  aspect-ratio: 1376 / 732;
+  margin: clamp(32px, 4vw, 56px) max(32px, env(safe-area-inset-right, 0px)) clamp(32px, 4vw, 56px) 0;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(15, 39, 71, .2);
+}
+.v2-contact-art.is-photo img { object-fit: cover; }
+@media (max-width: 1000px) {
+  .v2-contact-art.is-photo { margin: 0 max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+}
