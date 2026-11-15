@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css?v=20261114-01" />
-  <link rel="stylesheet" href="assets/site-layout.css?v=20261114-05" />
+  <link rel="stylesheet" href="assets/site-layout.css?v=20261114-06" />
 </head>
 <body>
   <header class="site-header">
@@ -170,14 +170,16 @@
   </nav>
 
   <main>
-    <section id="about">
-      <div class="v2-split">
-        <div class="v2-split-media">
-          <img src="assets/report-shots/person-and-activity-reports.jpg?v=2" data-lightbox-src="assets/report-shots/person-and-activity-reports-full.jpg?v=2" alt="Demo case: Case Activity Report with its hash chain check and each entry’s log line" width="960" height="540" loading="lazy" decoding="async" />
-        </div>
-        <div class="v2-split-copy">
+    <section id="about" class="v2-about">
+      <!-- The animated banner from the top of the old site (assets/hero-animation.js, full show): a signal moves through the
+           network, platform marks light up in the hub, packets land on the map and small avatars pop up with what was found. -->
+      <div class="hero-banner v2-about-banner" aria-hidden="true"></div>
+      <div class="v2-about-text">
+        <div class="v2-about-head">
           <p class="kicker">About Nexus Forensics</p>
           <h2>Where evidence leads.</h2>
+        </div>
+        <div class="v2-about-body">
           <p class="lead">Nexus Forensics Inc. builds software for people who have to explain their evidence to someone else: investigators, analysts, and legal teams working from public online sources.</p>
           <p class="lead">A digital footprint is more than a screenshot. It is the profiles, posts, comments, images, identifiers, and connections a person leaves across platforms. Our work is turning that footprint into an organized, source-linked case record that the investigator controls.</p>
         </div>
@@ -441,6 +443,7 @@
     <div class="v2-footer-bar">© 2026 Nexus Forensics Inc. All rights reserved.</div>
   </footer>
   <script src="assets/site-language.js?v=20261114-05" defer></script>
+  <script src="assets/hero-animation.js?v=20261114-01" defer></script>
   <script src="assets/site-lightbox.js?v=20261114-02" defer></script>
   <script src="assets/sr-compass.js?v=20261108-01" defer></script>
 </body>

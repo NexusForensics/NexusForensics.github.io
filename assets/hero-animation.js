@@ -268,7 +268,12 @@
     () => 'AVATAR INDEXED',
     () => 'IMAGE ANALYZED',
     () => 'IDENTITY PHOTO',
-    () => 'ACCOUNT FOUND'
+    () => 'ACCOUNT FOUND',
+    // what was captured, as the investigator remembered the old banner (2026-11-14)
+    () => 'PROFILE CAPTURED',
+    () => 'SNAP CAPTURED',
+    () => 'POST CAPTURED',
+    () => 'REEL CAPTURED'
   ];
   const inUse = new Set();
   const labelsInUse = new Set();
