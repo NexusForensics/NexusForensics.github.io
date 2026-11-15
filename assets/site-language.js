@@ -1355,7 +1355,7 @@
   // Added 2026-10-06 when the company home page was made company-only.
   const revamp2 = {
   "fr": {
-    "We build investigator-first software that helps investigators understand a digital footprint: what is publicly visible, how it connects, and how to explain it to someone else.": "Nous concevons des logiciels pensés d’abord pour l’enquêteur, afin de l’aider à comprendre une empreinte numérique : ce qui est publiquement visible, comment tout se relie et comment l’expliquer à quelqu’un d’autre.",
+    "We build investigator-first software that helps investigators understand a digital footprint: what is publicly visible, how it connects, and how to preserve it as evidence.": "Nous concevons des logiciels pensés d’abord pour l’enquêteur, afin de l’aider à comprendre une empreinte numérique : ce qui est publiquement visible, comment tout se relie et comment le préserver comme preuve.",
     "About us": "À propos de nous",
     "Where evidence leads": "Là où mène la preuve",
     "Our software keeps case data on the investigator's workstation or organization-controlled storage by default.": "Nos logiciels conservent par défaut les données du dossier sur le poste de l’enquêteur ou sur un stockage contrôlé par l’organisation.",
@@ -1376,7 +1376,7 @@
     "Talk to Nexus Forensics about public-source investigation workflows and how we can help your team.": "Parlez à Nexus Forensics des flux de travail d’enquête en sources publiques et de la façon dont nous pouvons aider votre équipe."
   },
   "es": {
-    "We build investigator-first software that helps investigators understand a digital footprint: what is publicly visible, how it connects, and how to explain it to someone else.": "Creamos software pensado primero para el investigador, para ayudarle a comprender una huella digital: qué es públicamente visible, cómo se conecta y cómo explicarlo a otra persona.",
+    "We build investigator-first software that helps investigators understand a digital footprint: what is publicly visible, how it connects, and how to preserve it as evidence.": "Creamos software pensado primero para el investigador, para ayudarle a comprender una huella digital: qué es públicamente visible, cómo se conecta y cómo preservarlo como evidencia.",
     "About us": "Sobre nosotros",
     "Where evidence leads": "Hacia donde lleva la evidencia",
     "Our software keeps case data on the investigator's workstation or organization-controlled storage by default.": "Nuestro software mantiene por defecto los datos del caso en la estación de trabajo del investigador o en un almacenamiento controlado por la organización.",
