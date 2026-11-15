@@ -1186,3 +1186,8 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
   .v2-wm-pulse { opacity: .55; }
 }
 @media (prefers-reduced-motion: reduce) { .v2-wm-pulse path { animation: none; stroke-dashoffset: 0; opacity: .5; } .v2-wm-frame, .v2-wm-ripple { animation: none; } }
+
+/* The home overview strip has three items since the methodology section was removed (2026-11-14) */
+.v2-strip-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .v2-strip-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .v2-strip-inner { grid-template-columns: minmax(0, 1fr); } }
