@@ -1101,3 +1101,11 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 @media (max-width: 1000px) {
   .v2-contact-art.is-photo { margin: 0 max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
 }
+
+/* Social Recon page cleaned up (user, 2026-11-14): still pictures removed (animations kept); Actions, Reports and Hashing sections
+   removed. The text-only Features cards sit four across; Previous Capture Detection is text only. */
+#features .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.seen-evidence-panel { grid-template-columns: minmax(0, 1fr); }
+.seen-evidence-panel .seen-evidence-copy { max-width: 760px; }
+@media (max-width: 1000px) { #features .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { #features .feature-grid { grid-template-columns: minmax(0, 1fr); } }

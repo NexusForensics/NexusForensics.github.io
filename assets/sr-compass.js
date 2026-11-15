@@ -11,6 +11,23 @@
   if (!compass || !needle || !ringGlow || !fingerprint) return;
   const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // The app's own Seen Evidence sonar (assets/sounds/evidence-sonar.mp3, copied from the app) plays as the needle starts spinning,
+  // at the app's volume and, like the app, never twice within 2.5 s (2026-11-14). Browsers only allow sound after the visitor has
+  // clicked or tapped the page, so before that the spin stays silent.
+  const SOUND_URL = document.currentScript ? new URL('sounds/evidence-sonar.mp3', document.currentScript.src).href : null;
+  let sonar = null;
+  let lastSonarAt = 0;
+  const playSonar = () => {
+    if (!SOUND_URL) return;
+    const now = Date.now();
+    if (now - lastSonarAt < 2500) return;
+    lastSonarAt = now;
+    if (!sonar) { sonar = new Audio(SOUND_URL); sonar.volume = 0.55; }
+    const s = sonar.cloneNode();
+    s.volume = sonar.volume;
+    s.play().catch(() => {});
+  };
+
   let spinTimer = null;
   let settleTimer = null;
   let stopTimer = null;
@@ -74,6 +91,7 @@
     void needle.getBoundingClientRect();
     angle = 0;
     spinning = true;
+    playSonar();
     compass.classList.add('is-searching');
     ringGlow.classList.remove('pulse');
     void ringGlow.getBoundingClientRect();
