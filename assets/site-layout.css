@@ -631,6 +631,9 @@ main section,
 .pricing-card.enterprise-team .tier-platforms { min-height: 0; }
 /* Enterprise Atlas (minimum 5 licences): a wide card under the three tiers, contact sales, no price. */
 .price-tag-team { color: var(--v2-night); background: var(--v2-gold-bright); box-shadow: 0 6px 14px rgba(217, 180, 90, .4); }
+/* The seat minimum sits on the bottom edge, mirroring the tag on top (2026-11-15). */
+.price-tag-bottom { top: auto; bottom: 0; transform: translateY(50%); color: #ffffff; background: var(--v2-navy); box-shadow: 0 6px 14px rgba(15, 39, 71, .3); }
+.pricing-grid.three-up { padding-bottom: 20px; }
 .pricing-card.enterprise-team { box-shadow: 0 0 0 2px var(--v2-gold-bright), var(--v2-card-shadow); }
 .pricing-card.enterprise-team {
   grid-column: 1 / -1; display: grid; grid-template-columns: 1.15fr 1.5fr .9fr; gap: 14px 44px; align-items: center;
