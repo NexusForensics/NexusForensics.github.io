@@ -281,6 +281,60 @@
       </div>
     </section>
 
+    <section id="canada-evidence-act">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Canadian Evidence Law</p>
+            <h2>Built to help prove electronic evidence under the Canada Evidence Act.</h2>
+          </div>
+          <p class="lead">Sections 31.1 to 31.3 of the Canada Evidence Act ask whoever offers an electronic document in court to prove it is authentic and that the system that recorded it can be trusted. Nexus does not decide that for a court. It keeps the records an investigator needs to show it.</p>
+        </div>
+        <p class="legal-reference"><strong>Canada Evidence Act</strong> means the federal law on evidence in criminal and other federal proceedings in Canada. Sections 31.1 to 31.8, headed Electronic Documents, cover electronic evidence. Read them on the <a href="https://laws-lois.justice.gc.ca/eng/acts/c-5/" target="_blank" rel="noopener">Justice Laws Website</a>.</p>
+        <div class="comparison pipeda-chart">
+          <table>
+            <thead>
+              <tr>
+                <th>Canada Evidence Act Section</th>
+                <th>How Nexus Forensics Supports the Proof</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Section 31.1: Authenticity</td>
+                <td>The party offering an electronic document must show it is what it claims to be. Each capture records its source link, the time it was made and the SHA-256 hash of the file. Where the platform serves the original photo or video, Nexus keeps that exact file, and each report's methodology section states how every item was obtained.</td>
+              </tr>
+              <tr>
+                <td>Section 31.2(1): Best evidence and system integrity</td>
+                <td>The best evidence rule is met by proving the integrity of the electronic documents system, which the Act defines to include the procedures for recording and storing documents as well as the computer. Nexus writes every investigator action to an audit log in which each entry is chained to the one before it with SHA-256, so an edited, removed or added entry breaks the chain. Case vaults are encrypted at rest, and file hashes let anyone check that a file has not changed since capture.</td>
+              </tr>
+              <tr>
+                <td>Section 31.2(2): Printouts</td>
+                <td>A printout meets the rule if it has been manifestly or consistently acted on, relied on or used as a record of the information. Nexus reports list the source link and hash of the items they show, so an agency can document that it relied on them as its record.</td>
+              </tr>
+              <tr>
+                <td>Section 31.3(a): System operating properly</td>
+                <td>Integrity is presumed on evidence that the computer system was operating properly at all material times. The Self-Validation tool lets an agency test Nexus on its own computer against public reference material with known answers: the clock against an official time server, file hashes, text reading, video frames and the audit trail. The agency decides whether each step passed, and keeps the result as a PDF report with a signature block. <a href="samples/Nexus-Self-Validation-Report-sample.pdf" target="_blank" rel="noopener">See a sample Self-Validation report</a>.</td>
+              </tr>
+              <tr>
+                <td>Section 31.3(b) and (c): Who recorded the document</td>
+                <td>These routes depend on a document being recorded by an opposing party, or by a non-party in the ordinary course of business. They depend on who made the record, not on the software, so Nexus makes no claim here.</td>
+              </tr>
+              <tr>
+                <td>Section 31.5: Standards, procedures and practice</td>
+                <td>Evidence may be given of the procedures followed in recording or storing a document. Each report's methodology section states the methods used, showing what was screen-captured, what was read from the page and what was downloaded, and the audit log records every step.</td>
+              </tr>
+              <tr>
+                <td>Section 31.6: Proof by affidavit</td>
+                <td>These points may be proven by affidavit, and the person who swears it can be cross-examined. The methodology section, audit log and Self-Validation report give the investigator the facts to describe, which a reviewer can check against the report. The investigator remains responsible for what is sworn.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="legal-reference">This section describes how Nexus supports the proof the Act asks for. It does not say that any item is admissible: the court decides that, and the party offering the evidence carries the burden. Evidence in provincial civil matters follows each province's own evidence act, which has similar rules. This page is not legal advice.</p>
+      </div>
+    </section>
+
     <section>
       <div class="section-inner">
         <div class="section-head">
@@ -418,7 +472,7 @@
     </div>
     <div class="v2-footer-bar">© 2026 Nexus Forensics Inc. All rights reserved.</div>
   </footer>
-  <script src="assets/site-language.js?v=20261116-02" defer></script>
+  <script src="assets/site-language.js?v=20261116-03" defer></script>
   <script src="assets/site-lightbox.js?v=20261114-02" defer></script>
 </body>
 </html>
