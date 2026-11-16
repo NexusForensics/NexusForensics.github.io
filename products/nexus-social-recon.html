@@ -598,7 +598,7 @@
           <article class="spec-card">
             <span class="spec-tag">AES-256</span>
             <h3>Encrypted case vaults</h3>
-            <p>A case can live in its own AES-256 encrypted volume that is mounted only while the case is open and unmounted when it is closed. Available on macOS. Windows: in development.</p>
+            <p>A case lives in its own AES-256 encrypted vault, unlocked only while the case is open. On macOS it is an encrypted volume, mounted while the case is open and unmounted when it is closed; on Windows each file is encrypted and decrypted only while the case is open.</p>
             <div class="clipart vd-demo" data-scene-demo="vault" role="img" aria-label="Closing a case: its evidence goes into the case, the case into its vault, and the vault locks, encrypted at rest with AES-256">
               <div class="vd-box">
                 <div class="vd-scene" aria-hidden="true">
@@ -1239,7 +1239,7 @@
     </div>
     <div class="v2-footer-bar">© 2026 Nexus Forensics Inc. All rights reserved.</div>
   </footer>
-  <script src="../assets/site-language.js?v=20261115-06" defer></script>
+  <script src="../assets/site-language.js?v=20261116-01" defer></script>
   <script src="../assets/hero-animation.js?v=20261114-01" defer></script>
   <script src="../assets/site-lightbox.js?v=20261114-02" defer></script>
   <script src="../assets/ocr-demo.js?v=20261108-02" defer></script>
