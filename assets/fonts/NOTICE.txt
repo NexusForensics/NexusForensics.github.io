@@ -1,0 +1,7 @@
+Fonts served from this folder
+
+Inter (inter-latin-variable.woff2): Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter).
+IBM Plex Mono (ibm-plex-mono-*-latin.woff2): Copyright (c) 2017 IBM Corp. with Reserved Font Name "Plex".
+
+Both are licensed under the SIL Open Font License, Version 1.1: https://openfontlicense.org
+Files are the Latin subsets as distributed by Google Fonts (fonts.gstatic.com), unmodified.
