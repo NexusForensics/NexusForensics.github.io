@@ -9,6 +9,7 @@
   <form method="dialog" class="notify-form" data-notify-form novalidate>
     <h2 id="notify-title">Not yet available</h2>
     <p class="notify-lead">Sign up to our e-mail list to be notified when Nexus Social Recon is released and when new products are released.</p>
+    <p class="notify-interest" data-notify-interest hidden><span>Interested in:</span> <b data-notify-tier-name></b></p>
     <label class="notify-field"><span>Name</span><input type="text" name="name" autocomplete="name" maxlength="120" required /></label>
     <label class="notify-field"><span>Business name</span><input type="text" name="businessName" autocomplete="organization" maxlength="160" required /></label>
     <label class="notify-field"><span>E-mail address</span><input type="email" name="email" autocomplete="email" maxlength="254" required /></label>
@@ -32,7 +33,12 @@
     const show = key => {
       dialog.querySelectorAll('[data-notify-message]').forEach(item => { item.hidden = item.getAttribute('data-notify-message') !== key; });
     };
-    const open = () => {
+    let tier = '';
+    const interestLine = dialog.querySelector('[data-notify-interest]');
+    const open = event => {
+      tier = (event && event.currentTarget && event.currentTarget.getAttribute('data-notify-tier')) || '';
+      interestLine.hidden = !tier;
+      dialog.querySelector('[data-notify-tier-name]').textContent = tier;
       show('');
       send.disabled = false;
       if (typeof dialog.showModal === 'function') dialog.showModal(); else dialog.setAttribute('open', '');
@@ -56,7 +62,7 @@
         const response = await fetch(ENDPOINT, {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ name, businessName, email, language, source: 'website:' + (location.pathname.split('/').pop() || 'index.html') }),
+          body: JSON.stringify({ name, businessName, email, language, interest: tier, source: 'website:' + (location.pathname.split('/').pop() || 'index.html') }),
         });
         const result = await response.json().catch(() => ({}));
         if (response.ok && result.ok) { show('done'); form.reset(); send.disabled = true; setTimeout(close, 2600); return; }

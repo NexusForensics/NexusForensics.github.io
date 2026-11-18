@@ -1283,3 +1283,6 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 .notify-message.notify-ok { color: var(--green); }
 .notify-actions { display: flex; justify-content: flex-end; gap: 10px; }
 .notify-actions .button[disabled] { opacity: .6; cursor: default; }
+
+.notify-interest { margin: 0; font-size: .9rem; color: var(--v2-body); }
+.notify-interest b { color: var(--v2-navy); }
