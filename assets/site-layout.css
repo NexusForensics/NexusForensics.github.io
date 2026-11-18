@@ -1286,3 +1286,12 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 
 .notify-interest { margin: 0; font-size: .9rem; color: var(--v2-body); }
 .notify-interest b { color: var(--v2-navy); }
+
+.notify-done { display: grid; gap: 10px; padding: 28px 24px 24px; text-align: center; justify-items: center; }
+.notify-done[hidden], .notify-form[hidden] { display: none; }
+.notify-done h2 { margin: 0; font-size: 1.35rem; color: var(--v2-navy); }
+.notify-done p { margin: 0; color: var(--v2-body); line-height: 1.5; }
+.notify-done-check { width: 56px; height: 56px; color: var(--green); }
+.notify-done-email { font-size: 1.05rem; word-break: break-all; }
+.notify-done-email b { color: var(--v2-navy); }
+.notify-done .notify-actions { margin-top: 6px; justify-content: center; }

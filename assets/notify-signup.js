@@ -17,12 +17,20 @@
     <p class="notify-message" data-notify-message="missing" hidden>Please fill in your name, business name and e-mail address.</p>
     <p class="notify-message" data-notify-message="email" hidden>Please enter a valid e-mail address.</p>
     <p class="notify-message" data-notify-message="failed" hidden>We could not save your sign-up. Please try again in a moment.</p>
-    <p class="notify-message notify-ok" data-notify-message="done" hidden>Thank you. You are on the list.</p>
     <div class="notify-actions">
       <button type="button" class="button soft" data-notify-close>Close</button>
       <button type="submit" class="button primary" data-notify-send>Sign up</button>
     </div>
   </form>
+  <div class="notify-done" data-notify-done role="status" hidden>
+    <svg class="notify-done-check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24" fill="none" stroke="currentColor" stroke-width="3"></circle><path d="M15 27l8 8 14-16" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    <h2 id="notify-done-title">You are on the list</h2>
+    <p>Your sign-up was received. We will send an e-mail to:</p>
+    <p class="notify-done-email"><b data-notify-done-email></b></p>
+    <p>when Nexus Social Recon is released and when new products are released.</p>
+    <p class="notify-interest" data-notify-done-interest hidden><span>Interested in:</span> <b data-notify-done-tier></b></p>
+    <div class="notify-actions"><button type="button" class="button primary" data-notify-done-close>Close</button></div>
+  </div>
 </dialog>`;
 
   function setup() {
@@ -30,6 +38,7 @@
     const dialog = document.querySelector('[data-notify-dialog]');
     const form = dialog.querySelector('[data-notify-form]');
     const send = dialog.querySelector('[data-notify-send]');
+    const done = dialog.querySelector('[data-notify-done]');
     const show = key => {
       dialog.querySelectorAll('[data-notify-message]').forEach(item => { item.hidden = item.getAttribute('data-notify-message') !== key; });
     };
@@ -41,12 +50,16 @@
       dialog.querySelector('[data-notify-tier-name]').textContent = tier;
       show('');
       send.disabled = false;
+      form.hidden = false;
+      done.hidden = true;
+      dialog.setAttribute('aria-labelledby', 'notify-title');
       if (typeof dialog.showModal === 'function') dialog.showModal(); else dialog.setAttribute('open', '');
       form.querySelector('input')?.focus();
     };
     const close = () => { if (typeof dialog.close === 'function') dialog.close(); else dialog.removeAttribute('open'); };
     document.querySelectorAll('[data-notify-signup]').forEach(button => button.addEventListener('click', open));
     dialog.querySelector('[data-notify-close]').addEventListener('click', close);
+    dialog.querySelector('[data-notify-done-close]').addEventListener('click', close);
     dialog.addEventListener('click', event => { if (event.target === dialog) close(); });
     form.addEventListener('submit', async event => {
       event.preventDefault();
@@ -65,7 +78,18 @@
           body: JSON.stringify({ name, businessName, email, language, interest: tier, source: 'website:' + (location.pathname.split('/').pop() || 'index.html') }),
         });
         const result = await response.json().catch(() => ({}));
-        if (response.ok && result.ok) { show('done'); form.reset(); send.disabled = true; setTimeout(close, 2600); return; }
+        if (response.ok && result.ok) {
+          // A confirmation box replaces the form and stays until the person closes it.
+          dialog.querySelector('[data-notify-done-email]').textContent = email;
+          dialog.querySelector('[data-notify-done-tier]').textContent = tier;
+          dialog.querySelector('[data-notify-done-interest]').hidden = !tier;
+          form.reset();
+          form.hidden = true;
+          done.hidden = false;
+          dialog.setAttribute('aria-labelledby', 'notify-done-title');
+          done.querySelector('[data-notify-done-close]').focus();
+          return;
+        }
         show(result.reason === 'invalid_email' ? 'email' : 'failed');
       } catch (error) {
         show('failed');
