@@ -1268,3 +1268,18 @@ footer.v2-footer a:hover { color: var(--v2-gold); }
 .cea-chart th:nth-child(1), .cea-chart td:nth-child(1) { width: 20%; }
 .cea-chart th:nth-child(2), .cea-chart td:nth-child(2) { width: 36%; }
 .cea-chart th:nth-child(3), .cea-chart td:nth-child(3) { width: 44%; }
+
+/* "Not yet available" sign-up pop-up (2026-11-18, assets/notify-signup.js) */
+.notify-dialog { width: min(440px, calc(100vw - 32px)); padding: 0; border: 1px solid var(--line-strong); border-radius: 16px; background: #ffffff; color: var(--v2-ink); box-shadow: 0 30px 80px rgba(10, 22, 40, .35); }
+.notify-dialog::backdrop { background: rgba(10, 22, 40, .6); }
+.notify-form { display: grid; gap: 12px; padding: 24px; }
+.notify-form h2 { margin: 0; font-size: 1.35rem; color: var(--v2-navy); }
+.notify-lead { margin: 0; color: var(--v2-body); line-height: 1.5; }
+.notify-field { display: grid; gap: 4px; font-size: .85rem; font-weight: 600; color: var(--v2-navy); }
+.notify-field input { height: 42px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 10px; font: inherit; font-weight: 400; color: var(--v2-ink); background: #ffffff; }
+.notify-field input:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+.notify-disclaimer { margin: 0; font-size: .8rem; color: var(--v2-soft); line-height: 1.45; }
+.notify-message { margin: 0; font-size: .85rem; font-weight: 600; color: var(--red); }
+.notify-message.notify-ok { color: var(--green); }
+.notify-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.notify-actions .button[disabled] { opacity: .6; cursor: default; }
